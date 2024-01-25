@@ -1,0 +1,415 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{广义逆矩阵}
+\begin{question}（P162.3）
+求下列矩阵的广义逆$\bs{A}^{+}$。
+\begin{tasks}[label=(\arabic*)](3)
+    \task $\begin{pmatrix}
+        1 & -1 & 0\\
+        -1&2&0\\
+    \end{pmatrix}$
+    \task $\begin{pmatrix}
+        1 & -1&2\\
+        1&0&0\\
+        -1 & -1 &2\\
+        -1&0&0
+    \end{pmatrix}$
+    \task $\begin{pmatrix}
+        -2& 0&0&-2\\
+        1&2&-4&3\\
+        2 & -1 &2&1\\
+        0&2&-4&2
+    \end{pmatrix}$
+\end{tasks}
+\end{question}
+
+   
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                1&-1\\
+                -1&2
+            \end{pmatrix}\begin{pmatrix}
+                1&0&0\\
+                0&1&0
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                2&-3\\
+                -3&5
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1& 0\\
+                0&1\\
+                0&0
+            \end{pmatrix}\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                2&-3\\
+                -3&5
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                1&-1\\
+                -1&2
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                2&1\\
+                1&1\\
+                0&0
+            \end{pmatrix}
+        \end{align*}
+    
+        \item \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                1&-1\\
+                1&0 \\
+                -1&-1\\
+                -1&0
+            \end{pmatrix}\begin{pmatrix}
+                1&0&0\\
+                0&1&-2
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                1&0\\
+                0&5
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                4&0\\
+                0&2
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1& 0\\
+                0&1\\
+                0&-2
+            \end{pmatrix}\begin{pmatrix}
+                1&0\\
+                0&5
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                4&0\\
+                0&2
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                1&1&-1&-1\\
+                -1&0&-1&0
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{1}{4}&\frac{1}{4}&-\frac{1}{4}&-\frac{1}{4}\\
+                -\frac{1}{10}&0&-\frac{1}{10}&0\\
+                \frac{1}{5}&0&\frac{1}{5}&0
+            \end{pmatrix}
+        \end{align*}
+    
+        \item \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                -2&0\\
+                1&2\\
+                2&-1\\
+                0&2
+            \end{pmatrix}\begin{pmatrix}
+                1&0&0&1\\
+                0&1&-2&1
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                2&1\\
+                1&6
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                9&0\\
+                0&9
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1& 0\\
+                0&1\\
+                0&-2 \\
+                1&1
+            \end{pmatrix}\begin{pmatrix}
+                2&1\\
+                1&6
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                9&0\\
+                0&9
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                -2&1&2&0\\
+                0&2&-1&2
+            \end{pmatrix}\\
+            &=\frac{1}{99}\begin{pmatrix}
+                -12&4&13&-2\\
+                2&3&-4&4\\
+                -4&-6&8&-8\\
+                -10&7&9&2
+            \end{pmatrix}
+        \end{align*}
+    \end{enumerate}
+    
+\end{solution}
+
+\begin{question}
+    验证线性方程组$\bs{A}\bs{x}=\bs{b}$有解，并求其通解和最小长度解，其中$\bs{A}=\begin{pmatrix}
+        1&2\\
+        0&0\\
+        2&4
+    \end{pmatrix},\bs{b}=\begin{pmatrix}
+        -1\\
+        0\\
+        -2
+    \end{pmatrix}$
+\end{question}
+
+\begin{solution}
+    $(\bs{A}|\bs{b})=\begin{pmatrix}
+        1&2&-1\\
+        0&0&0\\
+        2&4&-2
+    \end{pmatrix} \rightarrow \begin{pmatrix}
+        1&2&-1\\
+        0&0&0\\
+        0&0&0
+    \end{pmatrix}$，则$\mathrm{r}(\bs{A}|\bs{b})=\mathrm{r}(\bs{A})$，于是方程组有解。
+    \begin{align*}
+        \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+            1\\
+            0\\
+            2
+        \end{pmatrix}\begin{pmatrix}
+            1&2
+        \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{C}\bs{C}^T=\begin{pmatrix}
+            5
+        \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+            5
+        \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+        &=\begin{pmatrix}
+            1\\
+            2
+        \end{pmatrix}\begin{pmatrix}
+            5
+        \end{pmatrix}^{-1}\begin{pmatrix}
+            5
+        \end{pmatrix}^{-1}\begin{pmatrix}
+            1&0&2
+        \end{pmatrix}\\
+        &=\frac{1}{25}\begin{pmatrix}
+            1&0&2\\
+            2&0&4
+        \end{pmatrix}
+    \end{align*}
+    则通解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+    =\begin{pmatrix}
+        -\frac{1}{5}+\frac{4}{5}y_1-\frac{2}{5}y_2\\
+        -\frac{2}{5}-\frac{2}{5}y_1+\frac{1}{5}y_1
+    \end{pmatrix}$，其中$\bs{y}\in \R^2$。最小长度解为$\bs{x}^{*}=\begin{pmatrix}
+        -\frac{1}{5}\\
+        -\frac{2}{5}
+    \end{pmatrix}$。
+
+\end{solution}
+
+\begin{question}
+    验证下列线性方程组$\bs{A}\bs{x}=\bs{b}$为矛盾方程组，并求其最小二乘解的通解和
+    最小长度二乘解。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\bs{A}=\begin{pmatrix}
+            1&2\\
+            0&0\\
+            2&4
+        \end{pmatrix},\bs{b}=\begin{pmatrix}
+            1\\
+            1\\
+            2
+        \end{pmatrix}$
+        \task $\bs{A}=\begin{pmatrix}
+            1&2&-1\\
+            -3&-6&3
+        \end{pmatrix},\bs{b}=\begin{pmatrix}
+            1\\
+            1
+        \end{pmatrix}$
+        \task $\bs{A}=\begin{pmatrix}
+            1&1\\
+            2&0\\
+            -1&3
+        \end{pmatrix},\bs{b}=\begin{pmatrix}
+            1\\
+            0\\
+            2
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item  则$\mathrm{r}(\bs{A}|\bs{b})=2,\mathrm{r}(\bs{A})=1,\mathrm{r}(\bs{A}) \neq \mathrm{r}(\bs{A}|\bs{b})$，
+        于是为矛盾方程组。
+        \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                1\\
+                0\\
+                2
+            \end{pmatrix}\begin{pmatrix}
+                1&2
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                5
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                5
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1\\
+                2
+            \end{pmatrix}\begin{pmatrix}
+                5
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                5
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                1&0&2
+            \end{pmatrix}\\
+            &=\frac{1}{25}\begin{pmatrix}
+                1&0&2\\
+                2&0&4
+            \end{pmatrix}
+        \end{align*}
+        最小二乘解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+        =\begin{pmatrix}
+            \frac{1}{5}+\frac{4}{5}y_1-\frac{2}{5}y_2\\
+            \frac{2}{5}-\frac{2}{5}y_1+\frac{1}{5}y_1
+        \end{pmatrix}$，其中$\bs{y}\in \R^2$。最小长度二乘解为$\bs{x}^{*}=\begin{pmatrix}
+            \frac{1}{5}\\
+            \frac{2}{5}
+        \end{pmatrix}$。
+
+        \item  则$\mathrm{r}(\bs{A}|\bs{b})=2,\mathrm{r}(\bs{A})=1,\mathrm{r}(\bs{A}) \neq \mathrm{r}(\bs{A}|\bs{b})$，
+        于是为矛盾方程组。
+        \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                1\\
+                -3
+            \end{pmatrix}\begin{pmatrix}
+                1&2&-1
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                6
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                10
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1\\
+                2\\
+                -1
+            \end{pmatrix}\begin{pmatrix}
+                6
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                10
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                1&-3
+            \end{pmatrix}\\
+            &=\frac{1}{60}\begin{pmatrix}
+                1&-3\\
+                2&-6\\
+                -1&3
+            \end{pmatrix}
+        \end{align*}
+        最小二乘解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+        =\begin{pmatrix}
+            -\frac{1}{30}+\frac{5}{6}y_1-\frac{1}{3}y_2+\frac{1}{6}y_3\\
+            -\frac{1}{15}-\frac{1}{3}y_1-\frac{1}{3}y_2+\frac{1}{3}y_3\\
+            \frac{1}{30}+\frac{1}{6}y_1+\frac{1}{3}y_2+\frac{5}{6}y_3
+        \end{pmatrix}$，其中$\bs{y}\in \R^3$。最小长度二乘解为$\bs{x}^{*}=\begin{pmatrix}
+            -\frac{1}{30}\\
+            -\frac{1}{15}\\
+            \frac{1}{30}
+        \end{pmatrix}$。
+
+        \item  则$\mathrm{r}(\bs{A}|\bs{b})=3,\mathrm{r}(\bs{A})=2,\mathrm{r}(\bs{A}) \neq \mathrm{r}(\bs{A}|\bs{b})$，
+        于是为矛盾方程组。
+        \begin{align*}
+            \bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+                1&1\\
+                2&0\\
+                -1&3
+            \end{pmatrix}\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix},\bs{B}^T\bs{B}=\begin{pmatrix}
+                6&-2\\
+                -2&10
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=\bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+            &=\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix}\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                6&-2\\
+                -2&10
+            \end{pmatrix}^{-1}\begin{pmatrix}
+                1&2&-1\\
+                1&0&3
+            \end{pmatrix}\\
+            &=\frac{1}{14}\begin{pmatrix}
+                3&5&-1\\
+                2&1&4
+            \end{pmatrix}
+        \end{align*}
+        最小二乘解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+        =\begin{pmatrix}
+            \frac{1}{14}\\
+            \frac{10}{14}\\
+        \end{pmatrix}$，其中$\bs{y}\in \R^3$。最小长度二乘解为$\bs{x}^{*}=\begin{pmatrix}
+            \frac{1}{14}\\
+            \frac{10}{14}\\
+        \end{pmatrix}$。
+    \end{enumerate}
+
+\end{solution}
+
+
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

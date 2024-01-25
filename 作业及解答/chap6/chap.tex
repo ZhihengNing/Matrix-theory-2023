@@ -1,0 +1,1203 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{矩阵分解}
+\begin{question}（p140.1）
+计算下列矩阵的Doolittle分解，Crout三角分解和LDU三角分解。
+\begin{tasks}[label=(\arabic*)](2)
+    \task $\begin{pmatrix}
+        2 & 4 & 6\\
+        2&7&12\\
+        -2 & -10& -13
+    \end{pmatrix}$
+    \task $\begin{pmatrix}
+        4 & 8&0\\
+        4& 11 & 6\\
+        -6 & -12 &10
+    \end{pmatrix}$
+\end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 先对矩阵进行初等行变换变成上三角矩阵
+            \begin{align*}
+                \begin{pmatrix}
+                    2 & 4 & 6\\
+                    2&7&12\\
+                    -2 & -10& -13
+                \end{pmatrix}\xrightarrow{r_2-r_1}
+                \begin{pmatrix}
+                    2 & 4 & 6\\
+                    0&3&6\\
+                    -2 & -10& -13
+                \end{pmatrix}\xrightarrow{r_3+r_1}
+                \begin{pmatrix}
+                    2 & 4 & 6\\
+                    0&3&6\\
+                    0 & -6& -7
+                \end{pmatrix}\xrightarrow{r_3+2r_2}
+                \begin{pmatrix}
+                    2 & 4 & 6\\
+                    0&3&6\\
+                    0 & 0& 5
+                \end{pmatrix}
+            \end{align*}
+            则$\bs{R}$为上面所求，
+            将每一步变换用初等矩阵表示，则$\bs{P}_3\bs{P}_2\bs{P}_1\bs{A}=\bs{R}$，
+            于是
+            \begin{align*}
+                \bs{L}=(\bs{P}_3\bs{P}_2\bs{P}_1)^{-1}
+                =\bs{P}_1^{-1}\bs{P}_2^{-1}\bs{P}_3^{-1}
+                =\begin{pmatrix}
+                    1& 0 &0\\
+                    1&1&0\\
+                    0&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0\\
+                    0&1&0\\
+                    -1&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0\\
+                    0&1&0\\
+                    0&-2&1
+                \end{pmatrix}
+                =\begin{pmatrix}
+                    1& 0 &0\\
+                    1&1&0\\
+                    -1&-2&1
+                \end{pmatrix}
+            \end{align*}
+            Doolittle分解、Crout分解、LDU分解
+        \begin{align*}
+            \bs{L}\bs{R}&=
+            \begin{pmatrix}
+                1& 0 &0\\
+                1&1&0\\
+                -1&-2&1
+            \end{pmatrix}\begin{pmatrix}
+                2 & 4 & 6\\
+                0&3&6\\
+                0 & 0& 5
+            \end{pmatrix}\\
+            \bs{L}\bs{D}\bs{U}&=\begin{pmatrix}
+                1& 0 &0\\
+                1&1&0\\
+                -1&-2&1
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & & \\
+                & 3& \\
+                & & 5
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                0&1&2\\
+                0 & 0& 1
+            \end{pmatrix}\\
+            \bs{L}\bs{U}&=
+            \begin{pmatrix}
+                2 & 0 & 0\\
+                2&3&0\\
+                -2 & -6& 5
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                0&1&2\\
+                0 & 0& 1
+            \end{pmatrix}
+        \end{align*}
+        其中空白位置全是$0$。
+    \item 先对矩阵进行初等行变换变成上三角矩阵
+    \begin{align*}
+        \begin{pmatrix}
+        4 & 8&0\\
+        4& 11 & 6\\
+        -6 & -12 &10
+        \end{pmatrix}\xrightarrow{r_2-r_1}
+        \begin{pmatrix}
+        4 & 8&0\\
+        0& 3 & 6\\
+        -6 & -12 &10
+        \end{pmatrix}\xrightarrow{r_3+\frac{3}{2}r_1}
+        \begin{pmatrix}
+        4 & 8&0\\
+        0& 3 & 6\\
+        0 & 0 &10
+        \end{pmatrix}
+    \end{align*}
+    则$\bs{R}$为上面所求，
+    将每一步变换用初等矩阵表示，则$\bs{P}_2\bs{P}_1\bs{A}=\bs{R}$，
+    于是
+    \begin{align*}
+        \bs{L}=(\bs{P}_2\bs{P}_1)^{-1}
+        =\bs{P}_1^{-1}\bs{P}_2^{-1}
+        =\begin{pmatrix}
+            1& 0 &0\\
+            1&1&0\\
+            0&0&1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1& 0 &0\\
+            0&1&0\\
+            -\frac{3}{2}&0&1
+        \end{pmatrix}
+        =\begin{pmatrix}
+            1& 0 &0\\
+            1&1&0\\
+            -\frac{3}{2}&0&1
+        \end{pmatrix}
+    \end{align*}
+    Doolittle分解、Crout分解、LDU分解
+\begin{align*}
+    \bs{L}\bs{R}&=
+    \begin{pmatrix}
+        1& 0 &0\\
+        1&1&0\\
+        -\frac{3}{2}&0&1
+    \end{pmatrix}\begin{pmatrix}
+        4 & 8&0\\
+        0& 3 & 6\\
+        0 & 0 &10
+    \end{pmatrix}\\
+    \bs{L}\bs{D}\bs{U}&=\begin{pmatrix}
+        1& 0 &0\\
+        1&1&0\\
+        -\frac{3}{2}&0&1
+    \end{pmatrix}
+    \begin{pmatrix}
+        4 & & \\
+        & 3& \\
+        & & 10
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & 2 & 0\\
+        0&1&2\\
+        0 & 0& 1
+    \end{pmatrix}\\
+    \bs{L}\bs{U}&=
+    \begin{pmatrix}
+        4 & 0 & 0\\
+        4&3&0\\
+        -6 & 0& 10
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & 2 & 0\\
+        0&1&2\\
+        0 & 0& 1
+    \end{pmatrix}
+\end{align*}
+其中空白位置全是$0$。
+    \end{enumerate}
+\end{solution}
+
+\begin{question}（p141.2）
+    计算下列矩阵的Cholesky分解。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            1 & 1 & -1\\
+            1&2&-3\\
+            -1 & -3& 6
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            4 & 4&-6\\
+            4& 5 & -6\\
+            -6 & -6 &13
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 设$\bs{G}=\begin{pmatrix}
+            g_{11}& &\\
+            g_{21}&g_{22}&\\
+            g_{31}&g_{32}&g_{33}
+        \end{pmatrix}$，则$\bs{G}^T=\begin{pmatrix}
+            g_{11}& g_{21}&g_{31}\\
+            &g_{22}&g_{32}\\
+            & &g_{33}
+        \end{pmatrix}$，其中空白位置全是$0$。
+        于是有：
+        \begin{align*}
+            \left\{
+                \begin{array}{ll}
+                    g_{11}^2=1\\
+                    g_{11}g_{21}=1\\
+                    g_{11}g_{31}=-1\\
+                    g_{21}g_{11}=1\\
+                    g_{21}^2+g_{22}^2=2\\
+                    g_{21}g_{31}+g_{22}g_{32}=-3\\
+                    g_{31}g_{11}=-1\\
+                    g_{31}g_{21}+g_{32}g_{22}=-3\\
+                    g_{31}^2+g_{32}^2+g_{33}^2=6
+                \end{array}
+                \right.
+                \Rightarrow
+            \left\{
+                \begin{array}{ll}
+                    g_{11}=1\\
+                    g_{21}=1\\
+                    g_{31}=-1\\
+                    g_{22}=1\\
+                    g_{32}=-2\\
+                    g_{33}=1
+                \end{array}
+                \right.
+        \end{align*}
+        $\bs{G}=\begin{pmatrix}
+            1 & 0&0\\
+            1& 1&0\\
+            -1& -2&1
+        \end{pmatrix}\quad \bs{A}=\bs{G}\bs{G}^T=\begin{pmatrix}
+            1 & 0&0\\
+            1& 1&0\\
+            -1& -2&1
+        \end{pmatrix}\begin{pmatrix}
+            1 &1 &-1\\
+            0& 1&-2\\
+            0& &1
+        \end{pmatrix}$
+        \item 设$\bs{G}=\begin{pmatrix}
+            g_{11}& &\\
+            g_{21}&g_{22}&\\
+            g_{31}&g_{32}&g_{33}
+        \end{pmatrix}$，则$\bs{G}^T=\begin{pmatrix}
+            g_{11}& g_{21}&g_{31}\\
+            &g_{22}&g_{32}\\
+            & &g_{33}
+        \end{pmatrix}$，其中空白位置全是$0$。
+        于是有：
+        \begin{align*}
+            \left\{
+                \begin{array}{ll}
+                    g_{11}^2=4\\
+                    g_{11}g_{21}=4\\
+                    g_{11}g_{31}=-6\\
+                    g_{21}g_{11}=4\\
+                    g_{21}^2+g_{22}^2=5\\
+                    g_{21}g_{31}+g_{22}g_{32}=-6\\
+                    g_{31}g_{11}=-6\\
+                    g_{31}g_{21}+g_{32}g_{22}=-6\\
+                    g_{31}^2+g_{32}^2+g_{33}^2=13
+                \end{array}
+                \right.
+                \Rightarrow
+            \left\{
+                \begin{array}{ll}
+                    g_{11}=2\\
+                    g_{21}=2\\
+                    g_{31}=-3\\
+                    g_{22}=1\\
+                    g_{32}=0\\
+                    g_{33}=2
+                \end{array}
+                \right.
+        \end{align*}
+        $\bs{G}=\begin{pmatrix}
+            2 &0 &0\\
+            2& 1&0\\
+            -3& 0&2
+        \end{pmatrix}\quad \bs{A}=\bs{G}\bs{G}^T=\begin{pmatrix}
+            2 &0 &0\\
+            2& 1&0\\
+            -3& 0&2
+        \end{pmatrix}\begin{pmatrix}
+            2&2&-3\\
+            0&1&0\\
+            0&0&2
+        \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    计算矩阵$\begin{pmatrix}
+        2&4&6&8\\
+        4&12&20&16\\
+        3&10&20&18\\
+        1&-4&-9&14
+    \end{pmatrix}$的Doolittle分解。
+\end{question}
+
+
+\begin{solution}
+    先对矩阵进行初等行变换变成上三角矩阵
+            \begin{align*}
+                &\begin{pmatrix}
+                    2&4&6&8\\
+                    4&12&20&16\\
+                    3&10&20&18\\
+                    1&-4&-9&14
+                \end{pmatrix}\xrightarrow{r_2-2r_1}
+                \begin{pmatrix}
+                    2&4&6&8\\
+                    0&4&8&0\\
+                    3&10&20&18\\
+                    1&-4&-9&14
+                \end{pmatrix}\xrightarrow{r_3-\frac{3}{2}r_1}
+                \begin{pmatrix}
+                    2&4&6&8\\
+                    0&4&8&0\\
+                    0&4&11&6\\
+                    1&-4&-9&14
+                \end{pmatrix}\xrightarrow{r_4-\frac{1}{2}r_1}
+                \begin{pmatrix}
+                    2&4&6&8\\
+                    0&4&8&0\\
+                    0&4&11&6\\
+                    0&-6&-12&10
+                \end{pmatrix}\\
+                &\xrightarrow{r_3-r_2}
+                \begin{pmatrix}
+                    2&4&6&8\\
+                    0&4&8&0\\
+                    0&0&3&6\\
+                    0&-6&-12&10
+                \end{pmatrix}\xrightarrow{r_4+\frac{3}{2}r_2}
+                \begin{pmatrix}
+                    2&4&6&8\\
+                    0&4&8&0\\
+                    0&0&3&6\\
+                    0&0&0&10
+                \end{pmatrix}
+            \end{align*}
+            则$\bs{R}$为上面所求，
+            将每一步变换用初等矩阵表示，则$\bs{P}_5\bs{P}_4\bs{P}_3\bs{P}_2\bs{P}_1\bs{A}=\bs{R}$，
+            于是
+            \begin{align*}
+                \bs{L}&=(\bs{P}_5\bs{P}_4\bs{P}_3\bs{P}_2\bs{P}_1)^{-1}
+                =\bs{P}_1^{-1}\bs{P}_2^{-1}\bs{P}_3^{-1}\bs{P}_4^{-1}\bs{P}_5^{-1}\\
+                &=\begin{pmatrix}
+                    1& 0 &0 &0\\
+                    2&1&0&0\\
+                    0&0&1&0\\
+                    0&0&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0 &0\\
+                    0&1&0&0\\
+                    \frac{3}{2}&0&1&0\\
+                    0&0&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0 &0\\
+                    0&1&0&0\\
+                    0&0&1&0\\
+                    \frac{1}{2}&0&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0 &0\\
+                    0&1&0&0\\
+                    0&1&1&0\\
+                    0&0&0&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1& 0 &0 &0\\
+                    0&1&0&0\\
+                    0&0&1&0\\
+                    0&-\frac{3}{2}&0&1
+                \end{pmatrix}\\
+                &=\begin{pmatrix}
+                    1& 0 &0 &0\\
+                    2&1&0&0\\
+                    \frac{3}{2}&1&1&0\\
+                    \frac{1}{2}&-\frac{3}{2}&0&1
+                \end{pmatrix}
+            \end{align*}
+\begin{align*}
+    \bs{A}=\bs{L}\bs{R}=\begin{pmatrix}
+        1& 0 &0 &0\\
+        2&1&0&0\\
+        \frac{3}{2}&1&1&0\\
+        \frac{1}{2}&-\frac{3}{2}&0&1
+    \end{pmatrix}
+    \begin{pmatrix}
+        2&4&6&8\\
+        0&4&8&0\\
+        0&0&3&6\\
+        0&0&0&10
+    \end{pmatrix}
+\end{align*}
+\end{solution}
+
+\begin{question}
+    计算矩阵$\begin{pmatrix}
+        1&2&3&4\\
+        2&8&10&2\\
+        3&10&14&6\\
+        4&2&6&29
+    \end{pmatrix}$的Cholesky分解。
+\end{question}
+
+\begin{solution}
+    设$\bs{G}=\begin{pmatrix}
+        g_{11}& & &\\
+        g_{21}&g_{22}& &\\
+        g_{31}&g_{32}&g_{33}& \\
+        g_{41}&g_{42}&g_{43}&g_{44}\\
+    \end{pmatrix}$，则$\bs{G}^T=\begin{pmatrix}
+        g_{11}& g_{21}&g_{31}&g_{41}\\
+        &g_{22}&g_{32}&g_{42}&\\
+        & &g_{33}&g_{43}\\
+        & & & g_{44}
+    \end{pmatrix}$，其中空白位置全是$0$。
+    于是有：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                g_{11}^2=1\\
+                g_{11}g_{21}=2\\
+                g_{11}g_{31}=3\\
+                g_{11}g_{41}=4 \\
+                g_{21}g_{11}=2\\
+                g_{21}^2+g_{22}^2=8\\
+                g_{21}g_{31}+g_{22}g_{32}=10\\
+                g_{21}g_{41}+g_{22}g_{42}=2 \\
+                g_{31}g_{11}=3\\
+                g_{31}g_{21}+g_{32}g_{22}=10\\
+                g_{31}^2+g_{32}^2+g_{33}^2=14\\
+                g_{31}g_{41}+g_{32}g_{42}+g_{33}g_{43}=6 \\
+                g_{41}g_{11}=4 \\
+                g_{41}g_{21}+g_{42}g_{22}=2 \\
+                g_{41}g_{31}+g_{42}g_{32}+g_{43}g_{33}= 6\\
+                g_{41}^2+g_{42}^2+g_{43}^2+g_{44}^2=29
+            \end{array}
+            \right.
+            \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                g_{11}=1\\
+                g_{21}=2\\
+                g_{31}=3\\
+                g_{41}= 4\\
+                g_{22}=2\\
+                g_{32}=2\\
+                g_{42}=-3 \\
+                g_{33}=1 \\
+                g_{43}= 0\\
+                g_{44}= 2
+            \end{array}
+            \right.
+    \end{align*}
+    $\bs{G}=\begin{pmatrix}
+        1 &0 &0&0\\
+        2& 2&0&0\\
+        3& 2&1&0\\
+        4&-3&0&2
+    \end{pmatrix}\quad \bs{A}=\bs{G}\bs{G}^T=\begin{pmatrix}
+        1 &0 &0&0\\
+        2& 2&0&0\\
+        3& 2&1&0\\
+        4&-3&0&2
+    \end{pmatrix}\begin{pmatrix}
+        1 &2 &3&4\\
+        0& 2&2&-3\\
+        0& 0&1&0\\
+        0&0&0&2
+    \end{pmatrix}$
+\end{solution}
+
+\begin{question}
+    计算下列矩阵的满秩分解。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            1&2&3&3\\
+            4&5&9&6\\
+            7&8&15&9\\
+            2&5&7&8
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            1&3&-3&4\\
+            3&5&-5&8\\
+            6&-1&1&5\\
+            8&-6&6&2
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+   
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 先对矩阵进行初等行变换变成行阶梯型矩阵
+        \begin{align*}
+            \begin{pmatrix}
+                1&2&3&3\\
+                4&5&9&6\\
+                7&8&15&9\\
+                2&5&7&8
+            \end{pmatrix} \xrightarrow{}
+            \begin{pmatrix}
+                1&2&3&3\\
+                0&1&1&2\\
+                0&0&0&0\\
+                0&0&0&0
+            \end{pmatrix}
+        \end{align*}
+        于是$\bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+            1&2\\
+            4&5\\
+            7&8\\
+            2&5
+        \end{pmatrix}\begin{pmatrix}
+            1&0&1&-1\\
+            0&1&1&2\\
+        \end{pmatrix}$
+    \item 先对矩阵进行初等行变换变成行阶梯型矩阵
+    \begin{align*}
+        \begin{pmatrix}
+            1&3&-3&4\\
+            3&5&-5&8\\
+            6&-1&1&5\\
+            8&-6&6&2
+        \end{pmatrix} \xrightarrow{}
+        \begin{pmatrix}
+            1&3&-3&4\\
+            0&-1&1&-1\\
+            0&0&0&0\\
+            0&0&0&0
+        \end{pmatrix}
+    \end{align*}
+    于是$\bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+        1&3\\
+        3&5\\
+        6&-1\\
+        8&-6
+    \end{pmatrix}\begin{pmatrix}
+        1&0&0&1\\
+        0&1&-1&1\\
+    \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    计算下列矩阵的谱分解。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            3&0&1\\
+            0&2&0\\
+            1&0&3
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            5&-2&0\\
+            -2&6&-2\\
+            0&-2&7
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\lambda_1=\lambda_2=2,\lambda_3=4$
+        所以
+        \begin{align*}
+            \bs{A}&=\bs{P}\bs{\Lambda}\bs{P}^T\\
+            &=\begin{pmatrix}
+                0 & -\frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}} \\
+                1 & 0& 0\\
+                0 & \frac{1}{\sqrt{2}} &\frac{1}{\sqrt{2}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & & \\
+                & 2& \\
+                & & 4
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 &1&0 \\
+                -\frac{1}{\sqrt{2}} & 0& \frac{1}{\sqrt{2}}\\
+                \frac{1}{\sqrt{2}} & 0& \frac{1}{\sqrt{2}}
+            \end{pmatrix}\\
+            &=2\begin{pmatrix}
+                0 \\
+                1\\
+                0
+            \end{pmatrix}\begin{pmatrix}
+                0 & 1&0
+            \end{pmatrix}+2\begin{pmatrix}
+                -\frac{1}{\sqrt{2}}\\
+                0\\
+                \frac{1}{\sqrt{2}} 
+            \end{pmatrix}\begin{pmatrix}
+                -\frac{1}{\sqrt{2}} & 0& \frac{1}{\sqrt{2}} 
+            \end{pmatrix}+4\begin{pmatrix}
+                \frac{1}{\sqrt{2}} \\
+                0\\
+                \frac{1}{\sqrt{2}} 
+            \end{pmatrix}\begin{pmatrix}
+                \frac{1}{\sqrt{2}} & 0&\frac{1}{\sqrt{2}} 
+            \end{pmatrix}
+        \end{align*}
+        其中空白位置全是$0$。
+        \item $\lambda_1=3,\lambda_2=6,\lambda_3=9$
+        所以
+        \begin{align*}
+            \bs{A}&=\bs{P}\bs{\Lambda}\bs{P}^T\\
+            &=\begin{pmatrix}
+                \frac{2}{3} & -\frac{2}{3} &\frac{1}{3} \\
+                \frac{2}{3} & \frac{1}{3}& -\frac{2}{3}\\
+                \frac{1}{3} & \frac{2}{3} &\frac{2}{3}
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 & & \\
+                & 6& \\
+                & & 9
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{2}{3} &\frac{2}{3}&\frac{1}{3} \\
+                -\frac{2}{3} & \frac{1}{3}&\frac{2}{3}\\
+                \frac{1}{3} & -\frac{2}{3}& \frac{2}{3}
+            \end{pmatrix}\\
+            &=3\begin{pmatrix}
+                \frac{2}{3}  \\
+                \frac{2}{3} \\
+                \frac{1}{3} 
+            \end{pmatrix}\begin{pmatrix}
+                \frac{2}{3} & \frac{2}{3} &\frac{1}{3} 
+            \end{pmatrix}+6\begin{pmatrix}
+                -\frac{2}{3}\\
+                \frac{1}{3}\\
+                \frac{2}{3}
+            \end{pmatrix}\begin{pmatrix}
+                -\frac{2}{3} & \frac{1}{3}& \frac{2}{3}
+            \end{pmatrix}+9\begin{pmatrix}
+                \frac{1}{3} \\
+                -\frac{2}{3}\\
+                \frac{2}{3}
+            \end{pmatrix}\begin{pmatrix}
+                \frac{1}{3} & -\frac{2}{3}&\frac{2}{3}
+            \end{pmatrix}
+        \end{align*}
+        其中空白位置全是$0$。
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    计算下列矩阵的QR分解。
+    \begin{tasks}[label=(\arabic*)](4)
+        \task $\begin{pmatrix}
+            2&1\\
+            1&1\\
+            2&1
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            1&0\\
+            0&1\\
+            1&1
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            0&1&1\\
+            1&1&0\\
+            1&0&0
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            2&2&1\\
+            0&2&2\\
+            2&1&2
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    把矩阵记作$\bs{A}_{m\times n}$，并进行列分块$(\bs{a}_1,\ldots,\bs{a}_n)$。
+    \begin{enumerate}[label=(\arabic*)]
+        \item 对$\bs{A}$进行Schmidt正交化
+        \begin{align*}
+            \bs{\beta}_1&=\bs{\alpha}_1=(2,1,2)^T \\
+            \bs{\beta}_2&=\bs{\alpha}_2-\frac{(\bs{\alpha}_2,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)}\bs{\beta}_1
+            =\bs{\alpha}_2-\frac{5}{9}\bs{\beta}_1=
+            (-\frac{1}{9},\frac{4}{9},-\frac{1}{9})^T
+        \end{align*}
+        于是
+        \begin{align*}
+            \bs{A}&
+            =(\bs{\alpha}_1,\bs{\alpha}_2)=(\bs{\beta}_1,\bs{\beta}_2)\begin{pmatrix}
+                1 &\frac{5}{9}\\
+                0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                2& -\frac{1}{9}\\
+                1& \frac{4}{9}\\
+                2&-\frac{1}{9}
+            \end{pmatrix}
+                \begin{pmatrix}
+                1 &\frac{5}{9}\\
+                0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{2}{3}& -\frac{1}{3\sqrt{2}}\\
+                \frac{1}{3}& \frac{4}{3\sqrt{2}}\\
+                \frac{2}{3}&-\frac{1}{3\sqrt{2}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 & \\
+                & \frac{\sqrt{2}}{3}
+            \end{pmatrix}
+                \begin{pmatrix}
+                1 &\frac{5}{9}\\
+                0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{2}{3}& -\frac{1}{3\sqrt{2}}\\
+                \frac{1}{3}& \frac{4}{3\sqrt{2}}\\
+                \frac{2}{3}&-\frac{1}{3\sqrt{2}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 &\frac{5}{3}\\
+                0 & \frac{\sqrt{2}}{3}
+            \end{pmatrix}
+        \end{align*}
+        \item 对$\bs{A}$进行Schmidt正交化
+        \begin{align*}
+            \bs{\beta}_1&=\bs{\alpha}_1=(1,0,1)^T \\
+            \bs{\beta}_2&=\bs{\alpha}_2-\frac{(\bs{\alpha}_2,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)} \bs{\beta}_1
+            =\bs{\alpha}_2-\frac{1}{2}\bs{\beta}_1=
+            (-\frac{1}{2},1,-\frac{1}{2})^T
+        \end{align*}
+        于是
+        \begin{align*}
+            \bs{A}&=(\bs{\alpha}_1,\bs{\alpha}_2)
+            =(\bs{\beta}_1,\bs{\beta}_2)\begin{pmatrix}
+                1 &\frac{1}{2}\\
+                0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                1& -\frac{1}{2}\\
+                0& 1\\
+                1&\frac{1}{2}
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 &\frac{1}{2}\\
+                0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}& -\frac{1}{\sqrt{6}}\\
+                0& \frac{\sqrt{6}}{3}\\
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{6}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{2} & \\
+                & \frac{\sqrt{3}}{\sqrt{2}}
+            \end{pmatrix}
+                \begin{pmatrix}
+                    1 &\frac{1}{2}\\
+                    0 & 1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}& -\frac{1}{\sqrt{6}}\\
+                0& \frac{\sqrt{6}}{3}\\
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{6}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{2} &\frac{\sqrt{2}}{2}\\
+                0 & \frac{\sqrt{6}}{2}
+            \end{pmatrix}
+        \end{align*}
+        \item 对$\bs{A}$进行Schmidt正交化
+        \begin{align*}
+            \bs{\beta}_1&=\bs{\alpha}_1=(0,1,1)^T\\
+            \bs{\beta}_2&=\bs{\alpha}_2-\frac{(\bs{\alpha}_2,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)}\bs{\beta}_1
+            =\bs{\alpha}_2-\frac{1}{2}\bs{\beta}_1=
+            (1,\frac{1}{2},-\frac{1}{2})^T\\
+            \bs{\beta}_3&=\bs{\alpha}_3
+            -\frac{(\bs{\alpha}_3,\bs{\beta}_2)}{(\bs{\beta}_2,\bs{\beta}_2)}\bs{\beta}_2
+            -\frac{(\bs{\alpha}_3,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)}\bs{\beta}_1
+            =\bs{\alpha}_3-\frac{2}{3}\bs{\beta}_2=
+            (\frac{1}{3},-\frac{1}{3},\frac{1}{3})^T
+        \end{align*}
+        于是
+        \begin{align*}
+            \bs{A}
+            &=(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)
+            =(\bs{\beta}_1,\bs{\beta}_2,\bs{\beta}_3)
+            \begin{pmatrix}
+                1 &\frac{1}{2}&0\\
+                0 & 1&\frac{2}{3} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                0& 1 & \frac{1}{3}\\
+                1& \frac{1}{2}& -\frac{1}{3} \\
+                1 & -\frac{1}{2} & \frac{1}{3}
+            \end{pmatrix} 
+            \begin{pmatrix}
+                1 &\frac{1}{2}&0\\
+                0 & 1&\frac{2}{3} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                0& \frac{\sqrt{2}}{\sqrt{3}} & \frac{\sqrt{3}}{3}\\
+                \frac{1}{\sqrt{2}}& \frac{\sqrt{2}}{2\sqrt{3}}& -\frac{\sqrt{3}}{3} \\
+                \frac{1}{\sqrt{2}} & -\frac{\sqrt{2}}{2\sqrt{3}}& \frac{\sqrt{3}}{3}
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{2} & & \\
+                & \frac{\sqrt{6}}{2}& \\
+                & & \frac{1}{\sqrt{3}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 &\frac{1}{2}&0\\
+                0 & 1&\frac{2}{3} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                0& \frac{\sqrt{2}}{\sqrt{3}} & \frac{\sqrt{3}}{3}\\
+                \frac{1}{\sqrt{2}}& \frac{\sqrt{2}}{2\sqrt{3}}& -\frac{\sqrt{3}}{3} \\
+                \frac{1}{\sqrt{2}} & -\frac{\sqrt{2}}{2\sqrt{3}}& \frac{\sqrt{3}}{3}
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{2} &\frac{\sqrt{2}}{2}&0\\
+                0 & \frac{\sqrt{6}}{2}&\frac{\sqrt{6}}{3} \\
+                0&0&\frac{\sqrt{3}}{\sqrt{3}}
+            \end{pmatrix}
+        \end{align*}
+        \item 对$\bs{A}$进行Schmidt正交化
+        \begin{align*}
+            \bs{\beta}_1&=\bs{\alpha}_1=(2,0,2)^T\\
+            \bs{\beta}_2&=\bs{\alpha}_2-\frac{(\bs{\alpha}_2,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)}\bs{\beta}_1
+            =\bs{\alpha}_2-\frac{3}{4}\bs{\beta}_1=
+            (\frac{1}{2},2,-\frac{1}{2})^T\\
+            \bs{\beta}_3&=\bs{\alpha}_3
+            -\frac{(\bs{\alpha}_3,\bs{\beta}_2)}{(\bs{\beta}_2,\bs{\beta}_2)}\bs{\beta}_2
+            -\frac{(\bs{\alpha}_3,\bs{\beta}_1)}{(\bs{\beta}_1,\bs{\beta}_1)}\bs{\beta}_1
+            =\bs{\alpha}_3-\frac{7}{9}\bs{\beta}_2-\frac{3}{4}\bs{\beta}_1=
+            (-\frac{8}{9},\frac{4}{9},\frac{8}{9})^T
+        \end{align*}
+        于是
+        \begin{align*}
+            \bs{A}
+            &=(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)
+            =(\bs{\beta}_1,\bs{\beta}_2,\bs{\beta}_3)
+            \begin{pmatrix}
+                1 &\frac{3}{4}&\frac{3}{4}\\
+                0 & 1&\frac{7}{9} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                2& \frac{1}{2} & -\frac{8}{9}\\
+                0& 2& \frac{4}{9} \\
+                2 & -\frac{1}{2} & \frac{8}{9}
+            \end{pmatrix} 
+            \begin{pmatrix}
+                1 &\frac{3}{4}&\frac{3}{4}\\
+                0 & 1&\frac{7}{9} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}& \frac{1}{3\sqrt{2}} & -\frac{2}{3}\\
+                0& \frac{4}{3\sqrt{2}}& \frac{1}{3} \\
+                \frac{1}{\sqrt{2}} & -\frac{1}{3\sqrt{2}}& \frac{2}{3}
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{2} & & \\
+                & \frac{\sqrt{6}}{2}& \\
+                & & \frac{1}{\sqrt{3}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 &\frac{1}{2}&0\\
+                0 & 1&\frac{2}{3} \\
+                0&0&1
+            \end{pmatrix}\\
+            &=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}& \frac{1}{3\sqrt{2}} & -\frac{2}{3}\\
+                0& \frac{4}{3\sqrt{2}}& \frac{1}{3} \\
+                \frac{1}{\sqrt{2}} & -\frac{1}{3\sqrt{2}}& \frac{2}{3}
+            \end{pmatrix}
+            \begin{pmatrix}
+                2\sqrt{2} &\frac{3}{\sqrt{2}}&\frac{3}{\sqrt{2}}\\
+                0 & \frac{3}{\sqrt{2}}&\frac{7\sqrt{2}}{6} \\
+                0&0&\frac{4}{3}
+            \end{pmatrix}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}
+    计算下列矩阵的奇异值分解。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            2&0\\
+            0&2\\
+            1&1
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            1&0&1\\
+            0&1&-1\\
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 不妨令$\bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T$，其中$\bs{\Sigma}=\begin{pmatrix}
+            \bs{D}& \bs{O}\\
+            \bs{O}&\bs{O}
+        \end{pmatrix}$。
+        先计算$\bs{V}^T$，即利用相似对角化计算$\bs{V}^T\bs{A}^T\bs{A}\bs{V}=\begin{pmatrix}
+            \bs{D}^2&\bs{O}\\
+            \bs{O}&\bs{O}
+        \end{pmatrix}$，
+        其中$\bs{A}^T\bs{A}=\begin{pmatrix}
+            5& 1\\
+            1 & 5
+        \end{pmatrix}$，$\bs{V}^T=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+        \end{pmatrix}$，$\bs{\Sigma}=\begin{pmatrix}
+            2 & 0\\
+            0 & \sqrt{6} \\
+            0 & 0
+        \end{pmatrix}$，
+        此时$\bs{V}_1=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+            -\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+        \end{pmatrix}
+        $，$\bs{D}=\begin{pmatrix}
+            2 & 0\\
+            0& \sqrt{6}
+        \end{pmatrix}$。
+
+        \begin{align*}
+            \bs{U}_1=\bs{A}\bs{V}_1\bs{D}^{-1}=
+            \begin{pmatrix}
+                2 & 0\\
+                0 & \sqrt{6} \\
+                0 & 0
+            \end{pmatrix}\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+            \end{pmatrix} \begin{pmatrix}
+                \frac{1}{2}& 0\\
+                0& \frac{1}{\sqrt{6}}
+            \end{pmatrix}=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}\\
+                -\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}\\
+                0&\frac{1}{\sqrt{3}}&
+            \end{pmatrix}
+        \end{align*}
+        把$\bs{U}_1$扩充成正交矩阵$\bs{U}=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}\\
+            -\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}\\
+            0&\frac{1}{\sqrt{3}}&-\frac{2}{\sqrt{6}}
+        \end{pmatrix}$，于是：
+        \begin{align*}
+            \bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}\\
+                -\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{6}}\\
+                0&\frac{1}{\sqrt{3}}&-\frac{2}{\sqrt{6}}
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & 0\\
+                0 & \sqrt{6} \\
+                0 & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+            \end{pmatrix}
+        \end{align*}
+
+        \item 不妨令$\bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T$，其中$\bs{\Sigma}=\begin{pmatrix}
+            \bs{D}& \bs{O}\\
+            \bs{O}&\bs{O}
+        \end{pmatrix}$。
+        先计算$\bs{V}^T$，即利用相似对角化计算$\bs{V}^T\bs{A}^T\bs{A}\bs{V}=\begin{pmatrix}
+            \bs{D}^2&\bs{O}\\
+            \bs{O}&\bs{O}
+        \end{pmatrix}$，
+        其中$\bs{A}^T\bs{A}=\begin{pmatrix}
+            1& 0&1\\
+            0 & 1&-1 \\
+            1&-1&2
+        \end{pmatrix}$，$\bs{V}^T=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}&0\\
+            \frac{1}{\sqrt{6}}&-\frac{1}{\sqrt{6}}&\frac{2}{\sqrt{6}}\\
+            -\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}
+        \end{pmatrix}$，$\bs{\Sigma}=\begin{pmatrix}
+            1 & 0&0\\
+            0 & \sqrt{3}&0 \\
+        \end{pmatrix}$，
+        此时$\bs{V}_1=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{6}}\\
+            \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{6}}\\
+            0&\frac{2}{\sqrt{6}}\\
+        \end{pmatrix}
+        $，$\bs{D}=\begin{pmatrix}
+            1 & 0 \\
+            0& \sqrt{3}\\
+        \end{pmatrix}$。
+
+        \begin{align*}
+            \bs{U}_1=\bs{A}\bs{V}_1\bs{D}^{-1}=
+            \begin{pmatrix}
+                1& 0&1\\
+                0 & 1&-1 \\
+            \end{pmatrix}\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{6}}\\
+                \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{6}}\\
+                0&\frac{2}{\sqrt{6}}\\
+            \end{pmatrix} \begin{pmatrix}
+                1& 0\\
+                0& \frac{1}{\sqrt{3}}
+            \end{pmatrix}=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+                \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+            \end{pmatrix}
+        \end{align*}
+        由于$\bs{U}_1$已经是正交矩阵，无需扩充，令$\bs{U}=\bs{U}_1$，于是：
+        \begin{align*}
+            \bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T=\begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+                \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0&0\\
+                0 & \sqrt{3}&0 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}&0\\
+                \frac{1}{\sqrt{6}}&-\frac{1}{\sqrt{6}}&\frac{2}{\sqrt{6}}\\
+                -\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}&\frac{1}{\sqrt{3}}
+            \end{pmatrix}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}
+    证明：对任意实（复）非退化方阵$\bs{A}$，存在唯一的正交（酉）矩阵$\bs{Q}$和
+    正定矩阵$\bs{H}_1$和$\bs{H}_2$，使得$\bs{A}=\bs{Q}\bs{H}_1=\bs{H}_2\bs{Q}$，
+    该分解称为矩阵的\textbf{极分解}，若去掉矩阵的非退化条件，结论改如何修正？
+\end{question}
+
+
+\begin{proof}
+    先给出需要用到的引理：
+    \begin{lemma} \label{正定引理}
+        任意一个正定矩阵$\bs{A}$，一定存在唯一的一个正定矩阵$\bs{S}$使得
+        $\bs{A}=\bs{S}^2$
+    \end{lemma}
+    \begin{proof}
+        \textbf{存在性}：由于$\bs{H} \succ \bs{0}$，则存在正交矩阵$\bs{P}$，
+        使得$\bs{H}=\bs{P}\bs{\Lambda}\bs{P}^T$，其中$\bs{\Lambda}
+        =\mathrm{diag}\{\lambda_1,\ldots,\lambda_n\}$，$\lambda_i > 0$。
+        令$\bs{Z}=\bs{\Lambda}^{\frac{1}{2}}=\mathrm{diag}\{\sqrt{\lambda_1},\ldots,\sqrt{\lambda_n}\}$，
+        则
+        \begin{align*}
+            \bs{H}=\bs{P}\bs{\Lambda}^{\frac{1}{2}}\bs{\Lambda}^{\frac{1}{2}}\bs{P}^T=(\bs{P}\bs{Z}\bs{P}^T)(\bs{P}\bs{Z}\bs{P}^T)
+            =(\bs{P}\bs{Z}\bs{P}^T)^2=\bs{S}^2
+        \end{align*}
+        而任取$\bs{x}\in \R^n$，$\bs{x}^T\bs{S}\bs{x}=
+        \bs{x}^T\bs{P}\bs{Z}\bs{P}^T\bs{x}=
+        (\bs{P}^T\bs{x})^T\bs{Z}(\bs{P}^T\bs{x}) >0$，
+        这说明了$\bs{S}$是正定阵。
+
+        \textbf{唯一性}：记矩阵$\bs{A}$的特征值与对应的特征向量为$\lambda,\bs{\nu}$。
+        若存在两个正定阵$\bs{S}_0,\bs{S}_1$，
+        使得$\bs{H}=\bs{S}_0^2=\bs{S}_1^2$，显然有$\bs{S}_0\bs{\nu}=\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{\nu}$。
+        于是$\bs{S}_0\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{S}_0\bs{\nu}=\lambda \bs{\nu},
+        \bs{S}_0\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{S}_0\bs{\nu}=\lambda \bs{\nu},
+        (\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0)\bs{\nu}=\bs{0}$，
+        由于$\bs{H}$是对称的，一定存在$n$个线性无关的特征向量，即特征子空间的维数$\mathrm{dim}(\bs{V})=n$，
+        则$\mathrm{r}(\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0)=n-\mathrm{dim}(\bs{V})=0$，即$\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0=\bs{O}$。
+        此时$(\bs{S}_0+\bs{S}_1)(\bs{S}_0-\bs{S}_1)=\bs{S}_0^2-\bs{S}_0\bs{S}_1+\bs{S}_1\bs{S}_0-\bs{S}_1^2=\bs{O}$，于是$\mathrm{r}(\bs{S}_0+\bs{S}_1)+\mathrm{r}(\bs{S}_0-\bs{S}_1)=n$，
+        而$\bs{S}_0+\bs{S}_1$是正定矩阵，即$\mathrm{r}(\bs{S}_0-\bs{S}_1)=n$，所以$\mathrm{r}(\bs{S}_0-\bs{S}_1)=0$，$\bs{S}_0=\bs{S}_1$。
+    \end{proof}
+    下面给出两种证明方法。
+    \begin{enumerate}[label=(\arabic*)]
+        \item 
+    \textbf{存在性}：由于$\bs{A}^T\bs{A}$是一个正定矩阵，
+    由引理\ref{正定引理}可知，$\bs{A}^T\bs{A}=\bs{H}_1^2$，
+    则有$\bs{E}=\bs{H}_1^{-1}\bs{A}^T\bs{A}\bs{H}_1^{-1}=
+    (\bs{H}_1^T)^{-1}\bs{A}^T\bs{A}\bs{H}_1^{-1}
+    =(\bs{A}\bs{H}_1^{-1})^T\bs{A}\bs{H}_1^{-1}$，
+    令$\bs{Q}_1=\bs{A}\bs{H}_1^{-1}$，有$\bs{Q}_1^T\bs{Q}_1=\bs{E}$，
+    故$\bs{Q}_1$是正交矩阵，同时$\bs{A}=\bs{Q}_1\bs{H}_1$。
+    
+    同理：$\bs{A}\bs{A}^T=\bs{H}_2^2$，
+    则有$\bs{E}=\bs{H}_2^{-1}\bs{A}\bs{A}^T\bs{H}_2^{-1}=\bs{H}_2^{-1}\bs{A}\bs{A}^T(\bs{H}_2^T)^{-1}
+    =H_2^{-1}\bs{A}(H_2^{-1}\bs{A})^T$，令$\bs{Q}_2=\bs{H}_2^{-1}\bs{A}$，有$\bs{Q}_2\bs{Q}_2^T=\bs{E}$，
+    故$\bs{Q}_2$是正交矩阵，同时$\bs{A}=\bs{H}_2\bs{Q}_2$。
+
+    下面证明$\bs{Q}_1=\bs{Q}_2=\bs{Q}$，即证$\bs{A}\bs{H}_1^{-1}=\bs{H}_2^{-1}\bs{A} \Leftrightarrow \bs{H}_2\bs{A}=\bs{A}\bs{H}_1$，
+
+
+    \textbf{唯一性}：假设存在另外一个正交矩阵$\bs{U}$与正定矩阵$\bs{W}$，使得
+    $\bs{A}=\bs{U}\bs{W}$
+    由引理\ref{正定引理}唯一性可知，$\bs{W}=\bs{H}_1$；而
+    $\bs{U}=\bs{A}\bs{W}^{-1}=\bs{A}\bs{H}_1^{-1}=\bs{Q}$，同理可以说明$\bs{A}=\bs{H}_2\bs{Q}$分解
+    的唯一性。
+        
+    \item
+    \textbf{存在性}：由SVD分解可知，$\bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T$，其中$\bs{U},\bs{V}^T$是正交矩阵，
+    $\bs{\Sigma}=\mathrm{diag}\{\lambda_1,\ldots,\lambda_n\}$，其中$\lambda_i >0$。又因为
+    $\bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T=\bs{U}(\bs{V}^T\bs{V})\bs{\Sigma}\bs{V}^T=(\bs{U}\bs{V}^T)\bs{V}\bs{\Sigma}\bs{V}^T$，
+    令$\bs{Q}=\bs{U}\bs{V}^T,\bs{H}_1=\bs{V}\bs{\Sigma}\bs{V}^T$即可，容易验证$\bs{Q}$为正交矩阵，$\bs{H}_1$为正定矩阵。
+
+    同理：$\bs{A}=\bs{U}\bs{\Sigma}\bs{V}^T=\bs{U}\bs{\Sigma}(\bs{U}^T\bs{U})\bs{V}^T=\bs{U}\bs{\Sigma}\bs{U}^T(\bs{U}\bs{V}^T)$，
+    令$\bs{Q}=\bs{U}\bs{V}^T,\bs{H}_2=\bs{U}\bs{\Sigma}\bs{U}^T$。
+    
+    \textbf{唯一性}：假设存在另外一个正交矩阵$\bs{U}$与正定矩阵$\bs{W}$，使得
+    $\bs{A}=\bs{U}\bs{W}$，$\bs{A}^T\bs{A}=(\bs{Q}\bs{H}_1)^T\bs{Q}\bs{H}_1=\bs{H}_1^2,
+    \bs{A}^T\bs{A}=(\bs{U}\bs{W})^T\bs{U}\bs{W}=\bs{W}^2$，
+    由引理\ref{正定引理}唯一性可知，$\bs{W}=\bs{H}_1$，而$\bs{A}\bs{H}_1^{-1}=\bs{Q},\bs{A}\bs{W}^{-1}=\bs{U}$，
+    于是$\bs{U}=\bs{Q}$。同理可以说明$\bs{A}=\bs{H}_2\bs{Q}$分解
+    的唯一性。
+\end{enumerate}
+结论修正为：存在唯一的酉矩阵$\bs{Q}$与半正定矩阵$\bs{H}_1$与$\bs{H}_2$使得$\bs{A}=\bs{Q}\bs{H}_1=\bs{H}_2\bs{Q}$。
+
+\end{proof}
+
+   
+
+
+\begin{question}
+    证明：对任何正定矩阵$\bs{H}$，存在唯一的正定矩阵$\bs{S}$，使得$\bs{H}=\bs{S}^2$。
+    若将正定矩阵改为半正定矩阵，结论如何？
+\end{question}
+
+\begin{proof}
+    \textbf{存在性}：由于$\bs{H} \succ \bs{0}$，则存在正交矩阵$\bs{P}$，
+    使得$\bs{H}=\bs{P}\bs{\Lambda}\bs{P}^T$，其中$\bs{\Lambda}
+    =\mathrm{diag}\{\lambda_1,\ldots,\lambda_n\}$，$\lambda_i > 0$。
+    令$\bs{Z}=\bs{\Lambda}^{\frac{1}{2}}=\mathrm{diag}\{\sqrt{\lambda_1},\ldots,\sqrt{\lambda_n}\}$，
+    则
+    \begin{align*}
+        \bs{H}=\bs{P}\bs{\Lambda}^{\frac{1}{2}}\bs{\Lambda}^{\frac{1}{2}}\bs{P}^T=(\bs{P}\bs{Z}\bs{P}^T)(\bs{P}\bs{Z}\bs{P}^T)
+        =(\bs{P}\bs{Z}\bs{P}^T)^2=\bs{S}^2
+    \end{align*}
+    而任取$\bs{x}\in \R^n$，$\bs{x}^T\bs{S}\bs{x}=
+    \bs{x}^T\bs{P}\bs{Z}\bs{P}^T\bs{x}=
+    (\bs{P}^T\bs{x})^T\bs{Z}(\bs{P}^T\bs{x}) >0$，
+    这说明了$\bs{S}$是正定阵。
+
+    \textbf{唯一性}：记矩阵$\bs{A}$的特征值与对应的特征向量为$\lambda,\bs{\nu}$。
+    若存在两个正定阵$\bs{S}_0,\bs{S}_1$，
+    使得$\bs{H}=\bs{S}_0^2=\bs{S}_1^2$，显然有$\bs{S}_0\bs{\nu}=\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{\nu}$。
+    于是$\bs{S}_0\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{S}_0\bs{\nu}=\lambda \bs{\nu},
+    \bs{S}_0\bs{S}_1\bs{\nu}=\sqrt{\lambda}\bs{S}_0\bs{\nu}=\lambda \bs{\nu},
+    (\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0)\bs{\nu}=\bs{0}$，
+    由于$\bs{H}$是对称的，一定存在$n$个线性无关的特征向量，即特征子空间的维数$\mathrm{dim}(\bs{V})=n$，
+    则$\mathrm{r}(\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0)=n-\mathrm{dim}(\bs{V})=0$，即$\bs{S}_0\bs{S}_1-\bs{S}_1\bs{S}_0=\bs{O}$。
+    此时$(\bs{S}_0+\bs{S}_1)(\bs{S}_0-\bs{S}_1)=\bs{S}_0^2-\bs{S}_0\bs{S}_1+\bs{S}_1\bs{S}_0-\bs{S}_1^2=\bs{O}$，于是$\mathrm{r}(\bs{S}_0+\bs{S}_1)+\mathrm{r}(\bs{S}_0-\bs{S}_1)=n$，
+    而$\bs{S}_0+\bs{S}_1$是正定矩阵，即$\mathrm{r}(\bs{S}_0-\bs{S}_1)=n$，所以$\mathrm{r}(\bs{S}_0-\bs{S}_1)=0$，$\bs{S}_0=\bs{S}_1$。
+    
+    结论修正为：存在唯一的半正定矩阵$\bs{S}$，使得$\bs{H}=\bs{S}^2$。
+    
+\end{proof}
+
+
+
+
+
+
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

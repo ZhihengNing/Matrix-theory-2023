@@ -1,0 +1,480 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{线性空间与线性变换}
+\begin{question} 
+    （P98.3）在$\mathbb{R}^3$中，取
+    \begin{align*}
+    \bs{F}_1=\begin{pmatrix}
+        1\\
+        0\\
+        0
+    \end{pmatrix},
+    \bs{F}_2=\begin{pmatrix}
+        1\\
+        1\\
+        0
+    \end{pmatrix},
+    \bs{F}_3=\begin{pmatrix}
+        1\\
+        1\\
+        1
+    \end{pmatrix}
+\end{align*}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 证明：$\bs{F}_1,\bs{F}_2,\bs{F}_3$构成${\R}^3$的一组基。
+        \item 已知$\R^3$中元素$\bs{A}$在基$\bs{F}_1,\bs{F}_2,\bs{F}_3$下的坐标为$(1,2,3)^T$，求$\bs{A}$。
+        \item 求$\bs{B}=(1,2,3)^T$在基$\bs{F}_1,\bs{F}_2,\bs{F}_3$下的坐标。
+    \end{enumerate}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 令$\bs{F}=(\bs{F}_1,\bs{F}_2,\bs{F}_3)$，此时$|\bs{F}|=\begin{vx}
+        1& 1& 1 \\
+        0& 1 & 1 \\
+        0 & 0 & 1
+        \end{vx}=1\neq 0$，这构成了$\R^3$下的一组基。
+        \item $\bs{A}=\bs{F}\bs{x}=(6,5,3)^T$，其中$\bs{x}=(1,2,3)^T$。
+        \item $\bs{B}=\bs{F}\bs{x}$，则$\bs{x}=\bs{F}^{-1}\bs{B}=(-1,-1,3)^T$。
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    （p98.4）验证
+    \begin{align*}
+        \bs{\nu}_1=\begin{pmatrix}
+            1 \\
+            2\\
+            1
+        \end{pmatrix},\bs{\nu}_2=\begin{pmatrix}
+            2\\
+            3\\
+            3
+        \end{pmatrix},\bs{\nu}_3=\begin{pmatrix}
+            3\\
+            7\\
+            10
+        \end{pmatrix}
+    \end{align*}
+    与
+    \begin{align*}
+        \bs{\omega}_1=\begin{pmatrix}
+            3 \\
+            1\\
+            4
+        \end{pmatrix},\bs{\omega}_2=\begin{pmatrix}
+            5\\
+            2\\
+            1
+        \end{pmatrix},\bs{\omega}_3=\begin{pmatrix}
+            1\\
+            1\\
+            -6
+        \end{pmatrix}
+    \end{align*}
+    都可作为$\R^3$的基，并求$\bs{\nu}_1,\bs{\nu}_2,\bs{\nu}_3$到$\bs{\omega}_1,\bs{\omega}_2,\bs{\omega}_3$的过渡矩阵。
+\end{question}
+
+\begin{solution}
+令$\bs{V}=(\bs{\nu}_1,\bs{\nu}_2,\bs{\nu}_3)$，$\bs{W}=(\bs{\omega}_1,\bs{\omega}_2,\bs{\omega}_3)$，
+此时有$|\bs{V}|=\begin{vx}
+    1&2&3\\
+    2&3&7\\
+    1&3&10
+\end{vx} \neq 0$，$|\bs{W}|=\begin{vx}
+    3&5&1\\
+    1&2&1\\
+    4&1&-6
+\end{vx} \neq 0$，这说明了$\bs{\nu}_1,\bs{\nu}_2,\bs{\nu}_3$与$\bs{\omega}_1,\bs{\omega}_2,\bs{\omega}_3$都可作为$\R^3$的一组基。
+
+记过渡矩阵为$\bs{A}$，则$\bs{W}=\bs{V}\bs{A}$，则$\bs{A}=\bs{V}^{-1}\bs{W}$，$\bs{A}=\begin{pmatrix}
+    -\frac{9}{2}& -\frac{7}{2}&4 \\
+    \frac{9}{2}& \frac{13}{2}& 0 \\
+    -\frac{1}{2} &-\frac{3}{2} &-1
+\end{pmatrix}$
+\end{solution}
+
+\begin{question}
+    \label{no zhihe}
+    （P99.10）设$\bs{V}_1,\bs{V}_2,\bs{V}_3$为线性空间$\bs{V}$的子空间，
+    且$\bs{V}_1 \cap \bs{V}_2 \cap \bs{V}_3=\{\bs{0}\}$，试问$\bs{V}_1+\bs{V}_2+\bs{V}_3$是否为直和？    
+\end{question}
+
+\begin{proof}
+    \textbf{结论}：不构成直和。下面通过举反例给出证明：
+
+    取线性空间$\bs{V}=\R^3$，并令$\bs{e}_1$，$\bs{e}_2$，$\bs{e}_3$分别为$\bs{V}$
+    子空间$\bs{V}_1$，$\bs{V}_2$，$\bs{V}_3$上的一组基，其中$\bs{V}_i=\{ke_i|k\in\R\} i=1,2,3$
+    （此时$\bs{V}_i$为三维空间中的一条直线），
+    则$\mathrm{dim}(\bs{V}_i)=1$。
+    
+    容易验证子空间$\bs{V}_i$满足题设要求，
+    并且$\bs{A}=(\bs{e}_1,\bs{e}_2,\bs{e}_3)=\begin{pmatrix}
+        1 & -1 &1 \\
+        1 & 1 &2 \\
+        0 & 0 & 0
+    \end{pmatrix}$，$\mathrm{r}(\bs{A})=2$，$\mathrm{dim}(\bs{V}_1+\bs{V}_2+\bs{V}_3)=2$，所以$\bs{V}_1+\bs{V}_2+\bs{V}_3$构成了$\R^2$。
+    此时$\mathrm{dim}(\bs{V}_1)+\mathrm{dim}(\bs{V}_2)+\mathrm{dim}(\bs{V}_3)=1+1+1=3 \neq \mathrm{dim}(\bs{V}_1+\bs{V}_2+\bs{V}_3)$，这便说明了
+    $\bs{V}_1+\bs{V}_2+\bs{V}_3$不构成直和。
+\end{proof}
+
+\begin{question}
+    （P99.12）设$\bs{V}_1,\bs{V}_2,\ldots,\bs{V}_n$为线性空间$\bs{V}$的子空间，举例说明，
+    即使$\bs{V}_1,\bs{V}_2,\ldots,\bs{V}_n$两两的交空间均为零空间，其和$\bs{V}_1+\bs{V}_2+\cdots+\bs{V}_n$
+    也未必是直和。
+\end{question}
+
+\begin{proof}
+    与例\ref{no zhihe}有类似的证明过程，不妨令$\bs{V}=\R^n$，则$\mathrm{dim}(\bs{V})=n$
+    ，取$n$个向量$\bs{e}_1,\cdots,\bs{e}_n$，
+    其中
+    $\bs{e}_1=(1,0,\ldots,0)^T$，
+    $\bs{e}_2=(\cos \frac{\pi}{n},\sin \frac{\pi}{n},0,\ldots,0)^T$，
+    $\bs{e}_k=(\cos \frac{k\pi}{n},\sin \frac{\pi}{n},0,\ldots,0)^T$，
+    $\bs{e}_n=(\cos \frac{(n-1)\pi}{n},\sin \frac{(n-1)\pi}{n},0,\ldots,0)^T$，
+    并且$||\bs{e}_i||_2^2=1$。
+
+    令$\bs{V}_i=\{k\bs{e}_i|k\in\R,i=1,\ldots,n\}$，则$\mathrm{dim}(\bs{V}_i)=1$，
+    $\sum_{i=1}^n \bs{V}_i=\{\sum_{i=1}^n \bs{\alpha}_i|\bs{\alpha}_i \in \bs{V}_1\}$构成了$\R^2$，
+    所以$\mathrm{dim}(\sum_{i=1}^n \bs{V}_i)=2$。而$\sum_{i=1}^n \mathrm{dim}(\bs{V}_i)=n \neq \mathrm{dim}(\sum_{i=1}^n \bs{V}_i)$，
+    这便说明了不构成直和。
+    
+    下面验证$\bs{V}_1$，$\bs{V}_2$，$\ldots$，$\bs{V}_n$两两的交空间均为零空间。
+    任取$\bs{V}_i=\{k_i\bs{e}_i\}$，$\bs{V}_j=\{k_j\bs{e}_j\}$，其中$i < j$。要验证其交空间为零空间，
+    只需验证前两个维度的交为0。即满足如下等式：
+    \begin{align}
+    k_i\cos \frac{(i-1)\pi}{n}=k_j \cos \frac{(j-1)\pi}{n} \label{(1)} \\
+    k_i\sin \frac{(i-1)\pi}{n}=k_j \sin \frac{(j-1)\pi}{n} \label{(2)}
+    \end{align}
+\begin{itemize}
+    \item 若$i=1$，$k_i=k_j=0$。
+    \item 若$i,j>1$，$k_i=0$，
+    由于$\frac{(i-1)\pi}{n} \in (0,\pi)$，
+    则$\sin x \in (0,\pi)$，
+    则$k_j=0$。同理：若$k_j=0$，则$k_i=0$。
+    \item 若$i,j>1$，$i=1+\frac{n}{2}$，根据式$\ref{(1)}$得$k_j=0$，根据式$\ref{(2)}$得$k_i=0$。
+    同理：若$j=1+\frac{n}{2}$，则$k_i=k_j=0$。
+    \item 若$i,j>1$，且$k_i\neq 0$，$k_j \neq 0$，
+    $i\neq 1+\frac{n}{2}$，$j \neq 1+\frac{n}{2}$。
+    此时$k_i\cos \frac{(i-1)\pi}{n} \neq 0$，$k_j\cos \frac{(i-1)\pi}{n} \neq 0$，
+    用式$\ref{(2)}$除以式$\ref{(1)}$，
+    得$\tan \frac{(i-1)\pi}{n}=\tan \frac{(i-1)\pi}{n}$，此时$i= j$，这与$i \neq j$矛盾。
+\end{itemize}
+则$k_1=k_2=0$，$\bs{V}_i \cap \bs{V}_j =\{\bs{0}\}$，这便完成了证明。
+\end{proof}
+
+
+\begin{question}
+    （P100.14）考虑关于函数的集合$\bs{V}=\{(a_2x^2+a_1x+a_0)e^x:a_0,a_1,a_2 \in \R\}$。
+   \begin{enumerate}[label=(\arabic*)]
+    \item 证明该集合关于函数的线性运算构成3维实线性空间。
+    \item 证明求导算子$\mathcal{D}: f \rightarrow f'$为$\bs{V}$上的线性变换，并给出$\mathcal{D}$
+    在基$\alpha_1=x^2e^x$，$\alpha_2=xe^x$，$\alpha_3=e^x$下的矩阵。
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 由于函数的本质是$\R^3 \to \bs{V}$的映射，其中$\bs{V} \subset \R$。
+        所以$\bs{V}$显然满足加法和乘法的八条运算法则。
+        接下来一一验证八条法则：
+
+        任取$a,b,c \in \bs{V}$，$k,l \in \R$，则$a=(a_2x^2+a_1x+a_0)e^x$，$a=(b_2x^2+b_1x+b_0)e^x$，$c=(c_2x^2+c_1x+c_0)e^x$
+        
+        加法：
+
+        $a+b=b+a$，$(a+b)+c=a+(b+c)$，$a+0=a \Leftrightarrow 0=(0x^2+0x+0)e^x$，
+        $a+b=0 \Leftrightarrow b=(-a_2x^2-a_1x-a_0)e^x$
+        
+        乘法：
+
+        $k(a+b)=ka+kb$，$(k+l)a=ka+la$，$(kl)a=k(la)$，$1a=a$
+        
+        \item 只需验证其对加法和乘法封闭，
+        任取$a,b \in \bs{V}$，$k \in \R$，
+        $\mc{D}(a)=(a_2x^2+(2a_2+a_1)x+a_1+a_0)e^x$，$\mc{D}(b)=(b_2x^2+(2b_2+b_1)x+b_1+b_0)e^x$。
+        则$\mc{D}(a)+\mc{D}(b)=((a_2+b_2)x^2+(2a_2+a_1+2b_2+b_1)x+a_1+a_0+b_1+b_0)e^x=\mc{D}(a+b)$，
+        $\mc{D}(ka)=k(a_2x^2+(2a_2+a_1)x+a_1+a_0)e^x=k\mc{D}(a)$。
+
+        又由于$\mc{D}(\alpha_1)=(x^2+2x)e^x$，$\mc{D}(\alpha_2)=(x+1)e^x$，$\mc{D}(\alpha_3)=e^x$。
+        所以$\mc{D}(\alpha_1,\alpha_2,\alpha_3)=(\alpha_1,\alpha_2,\alpha_3)\begin{pmatrix}
+            1 & 0 & 0\\
+            2 & 1 & 0 \\
+            0 & 1 & 1
+        \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+（p100.17）设$\mc{A}$是线性空间$\bs{V}$上的线性变换，且$\mathrm{Im} \mc{A}^2=\mathrm{Im} \mc{A}$，则$\mc{A}^2=\mc{A}$是否成立？说明理由。
+\end{question}
+
+\begin{solution}
+\textbf{结论}：不一定成立。下面通过举反例说明，即若$\mc{A}^2=n\mc{A}$，$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$仍然成立。
+
+先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，
+显然$\mathrm{Im}\mc{A} \subset \bs{V}$，所以$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
+任取$\bs{\alpha} \in \bs{V}$，若存在$\bs{\beta}$，使$\mc{A}^2(\bs{\beta})=\mc{A}(\bs{\alpha})$，则$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。因为$\mc{A}(\bs{\alpha})=\frac{1}{n}\mc{A}^2(\bs{\alpha})=\mc{A}^2(\frac{1}{n}\bs{\alpha})$，
+而线性空间数乘封闭，令$\frac{1}{n}\bs{\alpha}=\bs{\beta}$便说明了$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$。
+\end{solution}
+
+\begin{question}（p100.18）
+    设$\mc{A}$是线性空间$\bs{V}$上的线性变换，且$\bs{V}=\mathrm{ker}\mc{A} \oplus  \mathrm{Im} \mc{A}$，
+    证明$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$。举例说明一般情况下$\mathrm{ker}\mc{A}$和$\mathrm{Im}\mc{A}$不构成直和关系？
+    
+\end{question}
+
+\begin{proof}
+    给出如下两种解法：
+    \begin{enumerate}[label=(\arabic*)]
+        \item 直接利用题目条件证明
+    \begin{align*}
+        \mathrm{Im}(\mc{A})=\mathrm{Im}(\bs{V})=\mathrm{Im}(\mathrm{ker}\mc{A} \oplus  \mathrm{Im} \mc{A})=\mathrm{Im}(\mathrm{ker}\mc{A})+\mathrm{Im}(\mathrm{Im}\mc{A})
+        =\bs{0}+\mathrm{Im}^2\mc{A}=\mathrm{Im}^2\mc{A}
+    \end{align*}
+    \item 先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，
+    显然$\mathrm{Im}\mc{A} \subset \bs{V}$，所以$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
+    任取$\bs{\alpha} \in \bs{V}$，一定存在$\bs{\beta},\bs{\gamma}$，
+    使$\bs{\alpha}=\bs{\beta}+\bs{\gamma}$，其中$\mc{A}(\bs{\beta})=0,\bs{\gamma}=\mc{A}(\eta) \in \mathrm{Im}(\mc{A})$，
+    \begin{align*}
+        \mc{A}(\bs{\alpha})=\mc{A}(\bs{\beta}+\bs{\gamma})=
+        \mc{A}(\bs{\beta})+\mc{A}(\bs{\gamma})=\mc{A}(\bs{\gamma})=\mc{A}(\mc{A}(\bs{\eta}))
+        =\mc{A}^2(\eta)
+    \end{align*}
+    则$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}(\mc{A}^2)=\mathrm{Im}(\mc{A})$
+    
+\end{enumerate}
+\end{proof}
+
+\begin{question}（p100.19）
+定义映射$\mc{T}:\R^{2 \times 2} \rightarrow \R^{2\times 2}$为
+\begin{align*}
+    \mc{T}(\bs{A})=\begin{pmatrix}
+        1 & 2\\
+        0 & 0
+    \end{pmatrix} \bs{A},\quad \bs{A} \in \R^{2 \times 2}
+\end{align*}
+\begin{enumerate}[label=(\arabic*)]
+    \item 证明：$\mc{T}$是$\R^{2 \times 2}$上的线性变换。
+    \item 求$\mc{T}$在基
+    \begin{align*}
+        \bs{E}_1=\begin{pmatrix}
+            1  & 0\\
+            0 & 0
+        \end{pmatrix},\bs{E}_2=\begin{pmatrix}
+            1  & 0\\
+            0 & 1
+        \end{pmatrix},\bs{E}_3=\begin{pmatrix}
+            0  & 1\\
+            1 & 0
+        \end{pmatrix},\bs{E}_4=\begin{pmatrix}
+            0  & 1\\
+            -1 & 0
+        \end{pmatrix}
+    \end{align*}下的矩阵。
+    \item 已知$\R^{2 \times 2}$中元素$\bs{A}$在基$\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4$下的坐标为$(1,2,3,4)^T$，求$\mc{T}(\bs{A})$。
+    \item 求$\mathrm{ker}\mc{T}$和$\mathrm{Im}\mc{T}$。
+    \item 求$\mc{T}$的不变因子和最小多项式。
+    \item 是否存在一组基，使得$\mc{T}$在这组基下的矩阵为对角矩阵？如存在，求出这组基和相应的对角阵。
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 任取$\bs{A},\bs{B} \in \mc{R}^{2 \times 2}$，$k \in \R$，
+        显然$\mc{T}(\bs{A}+\bs{B})=\mc{T}(\bs{A})+\mc{T}(\bs{A})$，$k\mc{T}(\bs{A})=\mc{T}(k\bs{A})$，这便说明了$\mc{T}$是$\R^{2 \times 2}$上的线性变换。
+        \item 
+        \begin{align*}
+            \mc{T}(\bs{E}_1)=\begin{pmatrix}
+                1  & 0\\
+                0 & 0
+            \end{pmatrix},\mc{T}(\bs{E}_2)=\begin{pmatrix}
+                1  & 2\\
+                0 & 0
+            \end{pmatrix},\mc{T}(\bs{E}_3)=\begin{pmatrix}
+                2  & 1\\
+                0 & 0
+            \end{pmatrix},\mc{T}(\bs{E}_4)=\begin{pmatrix}
+                -2  & 1\\
+                0 & 0
+            \end{pmatrix}
+        \end{align*}
+        所以$\mc{T}(\bs{E}_1)=\bs{E}_1$，
+        $\mc{T}(\bs{E}_2)=\bs{E}_1+\bs{E}_3+\bs{E}_4$，
+        $\mc{T}(\bs{E}_3)=2\bs{E}_1+\frac{1}{2}\bs{E}_3+\frac{1}{2}\bs{E}_4$，
+        $\mc{T}(\bs{E}_4)=-2\bs{E}_1+\frac{1}{2}\bs{E}_3+\frac{1}{2}\bs{E}_4$
+        所以
+        \begin{align*}
+            \mc{T}(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)=(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4) 
+            \begin{pmatrix}
+                1 & 1 & 2& -2 \\
+                0 & 0& 0& 0 \\
+                0& 1 & \frac{1}{2} & \frac{1}{2} \\
+                0& 1 & \frac{1}{2} & \frac{1}{2}
+            \end{pmatrix}
+        \end{align*}
+        记$\bs{C}=\begin{pmatrix}
+            1 & 1 & 2& -2 \\
+            0 & 0& 0& 0 \\
+            0& 1 & \frac{1}{2} & \frac{1}{2} \\
+            0& 1 & \frac{1}{2} & \frac{1}{2}
+        \end{pmatrix}$，则$\bs{C}$为所求。
+        \item \begin{align*}
+        \mc{T}(\bs{A})=&\mc{T}[(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)\bs{x}] \\
+        =&\mc{T}(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)\bs{x} \\
+        =&\bs{E}_1+\frac{11}{2}\bs{E}_3+\frac{11}{2}\bs{E}_4 \\
+        =& \begin{pmatrix}
+            1 &11 \\
+            0 &0 
+        \end{pmatrix}
+        \end{align*}
+        其中$\bs{x}=(1,2,3,4)^T$
+        \item 将$\bs{C}$化为行阶梯形式矩阵$\begin{pmatrix}
+            1 & 1 & 2& -2 \\
+            0 & 0& 0& 0 \\
+            0& 1 & \frac{1}{2} & \frac{1}{2} \\
+            0& 0 & 0 & 0
+        \end{pmatrix}$，可知$\mathrm{r}(\bs{C})=2$，则选取第一和第二列作为极大无关组，
+        则$\mathrm{Im}\mc{T}=(\bs{E_1},\bs{E_1}+\bs{E}_3+\bs{E}_4)$；$\mathrm{ker}(\mc{T})$则为矩阵$\bs{C}$的化零空间，
+        即$\mathrm{ker}(\mc{T})=(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4)$
+        \item
+        矩阵$\bs{C}$的特征值为$\lambda_1=\lambda_2=0,\lambda_3=\lambda_4=1$，
+        
+        行列式因子为$D_1=1,D_2=1,D_3=\lambda(\lambda-1),D_4=\lambda^2(\lambda-1)^2$，
+        
+        则不变因子为$d_1=1,d_2=1,d_3=\lambda(\lambda-1),d_3=\lambda(\lambda-1)$，
+        
+        最小多项式为$m_{\bs{A}}(\lambda)=\lambda(\lambda-1)$。
+        \item 一定存在，这是由于最小多项式不同项的最高系数为1。
+        
+        则其若当标准型$\bs{J}=\begin{pmatrix}
+            0 & 0 & 0& 0 \\
+            0 & 0& 0& 0 \\
+            0& 0 & 1 & 0 \\
+            0& 0 & 0 & 1
+        \end{pmatrix}$
+
+        求出属于$\lambda=0$的特征向量$\bs{p}_1=(-3,-1,2,0)^T$，$\bs{p}_2=(5,-1,0,2)^T$。
+        
+        求出属于$\lambda=1$的特征向量$\bs{p}_3=(1,0,0,0)^T$，$\bs{p}_4=(0,0,1,1)^T$。
+        
+        接着设新基底为$(\bs{Y}_1,\bs{Y}_2,\bs{Y}_3,\bs{Y}_4)$，
+        令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3,\bs{p}_4)$，
+        则$(\bs{Y}_1,\bs{Y}_2,\bs{Y}_3,\bs{Y}_4)=(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)\bs{P}
+        =(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4,\bs{E}_1,\bs{E}_3+\bs{E}_4)$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}（p100.21）
+复数集$\mathbb{C}$上的共轭变换$\bs{z} \rightarrow \bar{\bs{z}}$是否是$\mathbb{C}$作为复线性空间上的线性变换？是否是$\bs{C}$作为实线性空间上的
+线性变换？
+\end{question}
+
+\begin{solution}
+    定义变换$\mc{T}(z)=\bar{z}$。
+    任取$z_1=a+bi,z_2=c+di \in \mathbb{C}$，
+    $k=k_1+k_2i \in \mathbb{C}$，其中$a,b,c,d,k_1,k_2 \in \R$。
+
+    若选取的是复线性空间。$\mc{T}(z_1+z_2)=
+    \overline{z_1+z_2}=\overline{(a+c)+(b+d)i}=
+    (a-bi)+(c-di)=\bar{z}_1+\bar{z}_2=\mc{T}(z_1)+\mc{T}(z_2)$，对加法封闭；
+    $\mc{T}(kz_1)=(k_1a-k_2b)+(-k_1b-k_2a)i $，
+    $k\mc{T}(z_1)=(k_1+k_2i)(a-bi)=(k_1a+k_2b)+(-k_1b+k_2a)i$，
+    $\mc{T}(kz_1) \neq k\mc{T}(z_1)$，
+    对数乘不封闭，不构成线性变换。
+    
+    若选取的是实线性空间。加法封闭同上，下面验证数乘封闭，此时$k_2=0$，
+    $\mc{T}(kz_1)=ka-k_1b=k\mc{T}(z_1)$，则构成线性变换。
+\end{solution}
+
+\begin{question}（p100.22）
+设矩阵$\bs{A}$可以相似对角化，证明：$\bs{A}$可以表示为矩阵$\bs{P}_1$，$\cdots$，$\bs{P}_n$的线性组合，
+其中$\bs{P}_1$，$\ldots$，$\bs{P}_n$满足
+\begin{enumerate}[label=(\arabic*)]
+    \item 对一切$i$，有$\bs{P}_i^2=\bs{P}_i$；
+    \item 对一切$i \neq j$，有$\bs{P}_i\bs{P}_j=\bs{O}$;
+    \item $\bs{E}=\bs{P_1}+\cdots+\bs{P}_n$
+\end{enumerate}
+给出具体的构造方法，并讨论该分解的唯一性。
+\end{question}
+
+\begin{solution}
+    由于矩阵$\bs{A}$可相似对角化，则存在$\bs{Q}$使得$\bs{Q}^{-1}\bs{A}\bs{Q}=\bs{\Lambda}=\mathrm{diag}(\lambda_1,\ldots,\lambda_n)$
+    不妨令$\bs{E}_{ii}=\begin{pmatrix}
+        0& \cdots &0 \\
+        \vdots & 1 & \vdots \\
+        0 & \cdots & 0
+    \end{pmatrix}$，这表明了矩阵第$i$行第$i$列为$1$，其他元素全为$0$。
+    则$\bs{\Lambda}=\sum_{i=1}^n \lambda_i \bs{E}_{ii}$，
+    $\bs{A}=\sum_{i=1}^n\lambda_i \bs{Q}\bs{E}_{ii}\bs{Q}^{-1}$，
+    令$\bs{P}_i=\bs{Q}\bs{E}_{ii}\bs{Q}^{-1}$，
+    便满足了线性组合的要求，并且容易验证$\bs{P}_{i},\ldots,\bs{P}_{n}$满足三个约束条件。
+
+    下面验证该分解的唯一性，假设存在其他符合题意的分解，记$\bs{A}=\sum_{i=1}^n\bs{\nu}_i\bs{H}_i$。
+    则$\bs{A}\bs{H}_j=\sum_{i=1}^n \bs{\nu}_i\bs{H}_i\bs{H}_j=\bs{\nu}_i\bs{H}_j$。
+
+    若$\bs{H}_j=\bs{O}$，
+\end{solution}
+
+\begin{question}（p100.23）
+已知$\mc{A}$为线性空间$\bs{V}$上的线性变换，$\bs{\nu}\in \bs{V}$，$k \geq 1$ 为正整数，满足$\mc{A}^k\bs{\nu}=\bs{0}$，且$\mc{A}^{k-1} \bs{\nu} \neq \bs{0}$。
+\begin{enumerate}[label=(\arabic*)]
+    \item 证明：$\bs{\nu},\mc{A}\bs{\nu},\ldots,\mc{A}^{k-1}\bs{\nu}$线性无关，特别$k \leq \mathrm{dim}\bs{V}$。
+    \item 证明：$\bs{W}=\mathrm{span}\{\bs{\nu},\mc{A}\bs{\nu},\ldots,\mc{A}^{k-1}\bs{\nu}\}$为$\mc{A}$的不变子空间。
+    \item 求$\mc{A}$在$\bs{W}$上的限制$\mc{A}|_{\bs{W}}$在基$\bs{\nu},\mc{A}\bs{\nu},\ldots,\mc{A}^{k-1}\bs{\nu}$下的矩阵。
+\end{enumerate}
+
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 只需验证对于实数$l_1,\ldots,l_k$，当$l_1\bs{\nu}+l_2 \mc{A}\bs{\nu}+\cdots+l_k\mc{A}^{k-1}\bs{\nu} = \bs{0}$时，有$l_1=\cdots=l_k=0$
+        对等式两边进行$\mc{A}^m, m=k-1,\ldots,1$的线性变换， 由于$\mc{A}^k\bs{\nu}=\bs{0}$，则$\mc{A}^{k+d}\bs{\nu}=\bs{0}$，其中$d \geq 0$。
+        \begin{align*}
+            &l_1\mc{A}^{k-1}\bs{\nu}+l_2\mc{A}^{k}\bs{\nu}+\cdots+l_k\mc{A}^{2k-2}\bs{\nu}=\bs{0}  \tag{1} \label{式1}\\
+            &l_1\mc{A}^{k-2}\bs{\nu}+l_2\mc{A}^{k-1}\bs{\nu}+\cdots+l_k\mc{A}^{2k-1}\bs{\nu}=\bs{0}  \tag{2} \label{式2}\\
+            &\vdots \notag \\
+            &l_1\mc{A}\bs{\nu}+l_2\mc{A}^{2}\bs{\nu}+\cdots+l_k\mc{A}^{k}\bs{\nu}=\bs{0}  \tag{n} \label{式n}
+        \end{align*}
+        由式\eqref{式1}可知，$l_1\mc{A}^{k-1}\bs{\nu}=\bs{0}$，而$\mc{A}^{k-1}\bs{\nu} \neq \bs{0}$，所以$l_1=0$。
+        同理，观察式\eqref{式2} 到式\eqref{式n}，可得$l_1=\cdots=l_n=0$。
+        \item 验证$\bs{W}$的基$(\bs{e}_1,\ldots,\bs{e}_k)$经过线性变换后仍在$\bs{W}$中即可。$\mc{A}(\bs{e}_1)=\mc{A}\bs{\nu},\ldots,\mc{A}(\bs{e}_k)=\mc{A}^{k}\bs{\nu}=\bs{0}$，
+        这表明了经过线性变换后$\mc{A}(\bs{e}_i)=\bs{e}_{i+1} \in \bs{W}$（$i=1,\ldots,k-1$），而$\mc{A}(\bs{e}_k)=\bs{0} \in \bs{W}$。
+        \item 根据第(2)问，$\mc{A}(\bs{e}_1,\ldots,\bs{e}_k)=(\bs{e}_1,\ldots,\bs{e}_k)\begin{pmatrix}
+            0 & 0 &\cdots& 0 & 0\\
+            1 & 0 & \cdots& 0 & 0 \\
+            0 & 1 &  & 0 & 0  \\
+            \vdots& & \ddots & & \vdots \\
+            0 & 0 & \cdots & 1 & 0
+        \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}（p100.24）
+已知$\mc{A}$为线性空间$\bs{V}$上的线性变换，$\bs{\alpha}_i \in \bs{V}$，$k_i \geq 1$为正整数，其中$i=1,2,\ldots,s$，
+满足$(\mc{A}-\lambda_i \mathrm{id})^{k_i}\bs{\nu}_i = \bs{0}$且$(\mc{A}-\lambda_i \mathrm{id})^{k_i-1}\bs{\nu}_i \neq \bs{0}$，并记
+\begin{align*}
+    \bs{W}_i=\mathrm{span}\{\bs{\nu}_i,(\mc{A}-\lambda_i \mathrm{id})\bs{\nu}_i,\ldots,(\mc{A}-\lambda_i \mathrm{id})^{k_i-1}\bs{\nu}_i\}
+\end{align*}
+证明：若$\lambda_i \neq \lambda_j$，则$\bs{W} \cap \bs{W}_j =\{\bs{0}\}$
+\end{question}
+
+\begin{proof}
+    由$(x-\lambda_i)^{k_i}$与$(x-\lambda_j)^{k_j}$互素，则存在$f(x),g(x)$，使$f(x)(x-\lambda_i)^{k_i}+g(x)(x-\lambda_j)^{k_j}=1$，
+    对应到线性变换$\mc{A}$上即为$f(\mc{A})(\mc{A}-\lambda_i\mathrm{id})^{k_i}+g(\mc{A})(\mc{A}-\lambda_j\mathrm{id})^{k_j}=\mathrm{id}$。
+    
+    令$\bs{\alpha} \in \bs{W}_i \cap \bs{W}_j$，则$\bs{\alpha}=l_1\bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{k_i-1}\bs{\nu}_i$，
+    $(\mc{A}-\lambda_i\mathrm{id})^{k_i}\bs{\alpha}=l_1(\mc{A}-\lambda_i\mathrm{id})^{k_i} \bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{2k_i-1}=\bs{0}$；同理，$(\mc{A}-\lambda_j\mathrm{id})^{k_j}\bs{\alpha}=\bs{0}$。
+    又因为$\bs{\alpha}=\mathrm{id}(\bs{\alpha})=f(\mc{A})(\mc{A}-\lambda_i\mathrm{id})^{k_i}\bs{\alpha}+g(\mc{A})(\mc{A}-\lambda_j\mathrm{id})^{k_j}\bs{\alpha}$。
+    所以$\bs{\alpha}=\mathrm{id}(\bs{\alpha})=\bs{0}+\bs{0}=\bs{0}$，
+    即$\bs{W} \cap \bs{W}_j =\{\bs{0}\}$。
+\end{proof}
+\ifx\allfiles\undefined
+\end{document}
+\fi

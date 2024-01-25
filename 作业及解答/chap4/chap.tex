@@ -1,0 +1,384 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{矩阵的Jordan标准形}
+\begin{question}（p63.1）
+利用初等变换把下列$\lambda$矩阵化为等价标准形。
+\begin{enumerate}[label=(\arabic*)]
+    \item $\begin{pmatrix}
+        \lambda+1 & \lambda^2+1 &\lambda^2 \\
+        \lambda-1 & \lambda^2-1 & \lambda \\
+        3\lambda-1 & 3\lambda^2-1 & \lambda^2+2\lambda 
+    \end{pmatrix}$
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+    \begin{align*}
+        &\begin{pmatrix}
+            \lambda+1 & \lambda^2+1 &\lambda^2 \\
+            \lambda-1 & \lambda^2-1 & \lambda \\
+            3\lambda-1 & 3\lambda^2-1 & \lambda^2+2\lambda 
+        \end{pmatrix} \xrightarrow{r_3-r_1}
+        \begin{pmatrix}
+            \lambda+1 & \lambda^2+1 &\lambda^2  \\
+            \lambda-1 & \lambda^2-1 & \lambda \\
+            2\lambda-2 & 2\lambda^2-2 & 2\lambda 
+        \end{pmatrix}\xrightarrow{r_3-2r_2}
+        \begin{pmatrix}
+            \lambda+1 & \lambda^2+1 &\lambda^2 \\
+            \lambda-1 & \lambda^2-1 & \lambda \\
+            0 & 0& 0
+        \end{pmatrix} \\
+        &\xrightarrow{(r_1-r_2)\times \frac{1}{2}}
+        \begin{pmatrix}
+            1 & 1 &\frac{1}{2}(\lambda^2-\lambda) \\
+            \lambda-1 & \lambda^2-1 & \lambda \\
+            0 & 0& 0 
+        \end{pmatrix}
+        \xrightarrow[c_2-c_1]{r_2-(\lambda-1) r_1}
+        \begin{pmatrix}
+            1 & 0 &\frac{1}{2}(\lambda^2-\lambda) \\
+            0 & \lambda^2-\lambda & -\frac{1}{2}\lambda(\lambda+1)^2 \\
+            0 & 0& 0 
+        \end{pmatrix}\\
+        &\xrightarrow[c_3-(\lambda^2-\lambda) c_1]{c_3\times 2}
+        \begin{pmatrix}
+            1 & 0 &0 \\
+            0 & \lambda^2-\lambda & -\lambda(\lambda+1)^2 \\
+            0 & 0& 0 
+        \end{pmatrix} 
+        \xrightarrow{c_3+\lambda c_2}
+        \begin{pmatrix}
+            1 & 0 &0 \\
+            0 & \lambda^2-\lambda & -3\lambda^2-\lambda \\
+            0 & 0& 0 
+        \end{pmatrix}
+        \xrightarrow[c_3 \times -\frac{1}{4}]{(c_3+3\lambda c_2)}
+        \begin{pmatrix}
+            1 & 0 &0 \\
+            0 & \lambda^2-\lambda & \lambda \\
+            0 & 0& 0 
+        \end{pmatrix} \\
+        &\xrightarrow[c_3-(\lambda-1) c_2 ]{c_2 \leftrightarrow c_3}
+        \begin{pmatrix}
+            1 & 0 &0 \\
+            0 & \lambda & 0\\
+            0 & 0& 0 
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+\begin{question}（p64.2）
+    求下列$\lambda$矩阵的行列式因子、不变因子和初等因子。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            \lambda+1 & -2 & 2 \\
+            1 & \lambda-2 & 1\\
+            -1 & 1& \lambda-2
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            \lambda+1 & -3 & -6 \\
+            0 & \lambda-3 & 8\\
+            0 & 2& \lambda+5
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 
+        $D_1=1,D_2=\lambda-1,D_3=(\lambda-1)^3$；
+        $d_1=1,d_2=\lambda-1,d_3=(\lambda-1)^2$；
+        初等因子组：$(\lambda-1)^2,\lambda-1$
+        \item $D_1=1,D_2=1,D_3=(\lambda+1)(\lambda-4\sqrt{2}+1)(\lambda+4\sqrt{2}+1)$；
+        $d_1=1,d_2=1,d_3=(\lambda+1)(\lambda-4\sqrt{2}+1)(\lambda+4\sqrt{2}+1)$；
+        初等因子组：$\lambda+1,\lambda-4\sqrt{2}+1,\lambda+4\sqrt{2}+1$
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}（p64.3）
+    设6阶矩阵$\bs{A}(\lambda)$的秩为5，其初等因子是$\lambda-1,\lambda-1,(\lambda-2)^3,\lambda+2,(\lambda+2)^2$，
+    求$\bs{A}(\lambda)$的行列式因子、不变因子，以及$\bs{A}(\lambda)$的等价标准形。
+\end{question}
+
+
+\begin{solution}
+    $d_5=(\lambda-1)(\lambda-2)^3(\lambda+2)^2,d_4=(\lambda-1)(\lambda+2),d_3=d_2=d_1=1$；
+    $D_1=D_2=D_3=1,D_4=(\lambda-1)(\lambda+2),D_5=(\lambda-1)(\lambda-2)^3(\lambda+2)^3$；等价标准型为：
+    \begin{align*}
+        \bs{S}=\begin{pmatrix}
+            1 & & & & & \\
+            & 1 & & & &\\
+            & & 1 & & &\\
+            & & & (\lambda-1)(\lambda+2) & &\\
+            & & & & (\lambda-1)(\lambda-2)^3(\lambda+2)^2 &\\
+            & & & & & 0 \\
+        \end{pmatrix}
+    \end{align*}
+    其中，空白的位置全为0。
+\end{solution}
+
+\begin{question}（p64.5）
+    证明：两个等价的$n$阶$\lambda$矩阵的行列式只相差一个常数因子。
+\end{question}
+
+\begin{proof}
+    不妨令题中所说的两个矩阵为$\bs{A}(\lambda),\bs{B}(\lambda)$。
+
+    若非满秩矩阵，则$|\bs{A}(\lambda)|=|\bs{B}(\lambda)|=0$，显然符合题意。
+
+    若为满秩矩阵，则$|\bs{A}(\lambda)| \neq 0,|\bs{B}(\lambda)| \neq 0$由于等价的$\lambda$矩阵具有相同的行列式因子和不变因子，
+    则$|\bs{A}|=k_1D_n(\bs{A}(\lambda))=k_1D_n,|\bs{B}|=k_2D_n(\bs{B}(\lambda))=k_2D_n$，其中$k_1,k_2 \neq 0$。
+    于是$\frac{|\bs{A}(\lambda)|}{|\bs{B}(\lambda)|}=\frac{k_1}{k_2}$
+\end{proof}
+
+\begin{question}（p64.6）
+    求下列矩阵的Jordan标准形。
+    \begin{tasks}[label=(\arabic*)](2)
+        \task $\begin{pmatrix}
+            1 & -2 & 2 \\
+            1 & -2 & 1\\
+            -1 & 1& -2
+        \end{pmatrix}$
+        \task $\begin{pmatrix}
+            1 & -3 & 3 \\
+            -2 & -6 & 13\\
+            -1 & -4& 8
+        \end{pmatrix}$
+    \end{tasks}
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item $D_1=1,D_2=\lambda+1,D_3=(\lambda+1)^2$；$d_1=1,d_2=\lambda+1,d_3=(\lambda+1)^2$；
+        初等因子组为$(\lambda+1)^2,\lambda+1$；Jordan标准型为$\bs{J}=\begin{pmatrix}
+            -1 & 1& 0\\
+            0 & -1& 0 \\
+            0 &0 & -1
+        \end{pmatrix}$
+        \item $D_1=1,D_2=1,D_3=(\lambda-1)^3$；$d_1=1,d_2=1,d_3=(\lambda-1)^3$；
+        初等因子组为$(\lambda-1)^3$；Jordan标准型为$\bs{J}=\begin{pmatrix}
+            1 & 1& 0\\
+            0 & 1& 1 \\
+            0 &0 & 1
+        \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}（p64.7）
+    证明：矩阵$\bs{A}$是幂零阵（即存在正整数$k$，使得$\bs{A}^k=\bs{O}$）当且仅当$\bs{A}$的特征值都等于零。
+\end{question}
+
+\begin{proof}
+    先证必要性。若$\bs{A}^k=\bs{O}$，由Hamilton-Cayley定理可知，$\lambda^k=0$，则$\lambda=0$。
+
+    再证充分性。矩阵$\bs{A}$必定相似于矩阵$\bs{J}
+        =\begin{pmatrix}
+            \bs{J}_1 & & & \\
+            & \bs{J_2} & & \\
+            & & \ddots & \\
+            & & & \bs{J}_m
+        \end{pmatrix}$，
+    其中$\bs{J}_i$为Jordan标准型，$\bs{J}_i=\begin{pmatrix}
+        0 & 1 & & \\
+        & 0 & 1& &\\
+        & & \ddots & \ddots\\
+        & & & 0& 1\\
+        & & & & 0
+    \end{pmatrix}$，空白位置全是0。
+
+    由于$\bs{A}=\bs{P}\bs{J}\bs{P}^{-1}$，
+    若$\bs{A}^k=\bs{P}\bs{J}^k\bs{P}^{-1}=\bs{O}$，则$\bs{J}^k=\bs{O}$，
+    于是有$\bs{J}_1,\ldots,\bs{J}_k=\bs{O}$。
+    令$\bs{J}_i$的阶数为$\mc{N}_i$，容易证明$J_i^{\mc{N}_i}=\bs{O}$。
+    只需取$k=\max\limits_i\{\mc{N}_1,\ldots,\mc{N}_m\}$，
+    则$\bs{J}_i^k=\bs{O},i=1,\ldots,m$，
+    于是$\bs{A}^k=\bs{J}^k=\bs{O}$，这便完成了证明。
+\end{proof}
+
+\begin{question}（p64.8）
+    设非零矩阵$\bs{A}$是幂零阵，证明$\bs{A}$不相似于对角阵。
+\end{question}
+
+\begin{proof}
+    由$\bs{A}^k=\bs{O}$与Hamilton-Cayley定理可知，$\lambda^k=0 \Rightarrow \lambda=0$。
+    若$\bs{A}$相似于对角矩阵$\bs{\Lambda}$，则$\bs{\Lambda}=\begin{pmatrix}
+        0 & & \\
+        & \ddots & \\
+        & & 0
+    \end{pmatrix}=\bs{O}$，此时有$\bs{A}=\bs{P}\bs{\Lambda}\bs{P}^{-1}=\bs{O}$，
+    与$\bs{A}$是零矩阵矛盾，所以$\bs{A}$不相似于对角矩阵。
+\end{proof}
+
+\begin{question}（p64.9）
+    求$3$阶幂零阵的全部可能的Jordan标准形。
+\end{question}
+
+\begin{solution}
+    由题意与Hamilton-Cayley定理可知，$\bs{A}^k=\bs{O} \Rightarrow \lambda^k=0 \Rightarrow \lambda=0$，
+    则$\bs{A}$与$\bs{J}=\begin{pmatrix}
+        0 & * &  &\\
+        & 0 & * & \\
+        & & \ddots &* \\
+        & & & 0
+    \end{pmatrix}$相似，其中$*$为$0$或$1$，空白处全为$0$，则：
+    \begin{align*}
+        \bs{J}=\begin{pmatrix}
+            0 &0 &0\\
+            0 &0 &0\\
+            0 &0 &0
+        \end{pmatrix} \text{或} \ \bs{J}=\begin{pmatrix}
+            0 &1 &0\\
+            0 &0 &0\\
+            0 &0 &0
+        \end{pmatrix}\text{或} \ \bs{J}=\begin{pmatrix}
+            0 &1 &0\\
+            0 &0 &1\\
+            0 &0 &0
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+\begin{question}（p64.10）
+    求$3$阶幂等阵（即满足$\bs{A}^2=\bs{A}$的矩阵$\bs{A}$）的全部可能的Jordan标准形。
+\end{question}
+
+\begin{solution}
+    由题意与Hamilton-Cayley定理可知，$\bs{A}^k=\bs{O} \Rightarrow \lambda_1=0,\lambda_2=1,m_{\bs{A}}(\lambda)|\lambda^2-\lambda$，
+    且$\bs{A}$一定可以相似对角化。
+    \begin{enumerate}[label=(\arabic*)]
+        \item 若$m_{\bs{A}}(\lambda)=\lambda$，此时初等因子为$\lambda,\lambda,\lambda$，$\bs{J}=\begin{pmatrix}
+            0 &0 &0\\
+            0 &0 &0\\
+            0 &0 &0
+        \end{pmatrix}$
+        \item 若$m_{\bs{A}}(\lambda)=\lambda-1$，此时初等因子为$\lambda-1,\lambda-1,\lambda-1$，$\bs{J}=\begin{pmatrix}
+            1 &0 &0\\
+            0 &1 &0\\
+            0 &0 &1
+        \end{pmatrix}$
+        \item 若$m_{\bs{A}}(\lambda)=\lambda(\lambda-1)$，
+        此时初等因子为$\lambda,\lambda,\lambda-1$或$\lambda,\lambda-1,\lambda-1$。$\bs{J}=\begin{pmatrix}
+        0 &0 &0\\
+        0 &0 &0\\
+        0 &0 &1
+    \end{pmatrix}$或$\bs{J}=\begin{pmatrix}
+        0 &0 &0\\
+        0 &1 &0\\
+        0 &0 &1
+    \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}（p64.11）
+    设$3$阶矩阵$\bs{A}^2=\bs{E}$，求$\bs{A}$的全部可能的Jordan标准形。
+\end{question}
+
+\begin{solution}
+    由题意与Hamilton-Cayley定理可知，$\bs{A}^2=\bs{E} \Rightarrow \lambda_1=1,\lambda_2=-1,m_{\bs{A}}(\lambda)|\lambda^2-1$，
+    且$\bs{A}$一定可以相似对角化。
+    \begin{enumerate}[label=(\arabic*)]
+        \item 若$m_{\bs{A}}(\lambda)=\lambda+1$，此时初等因子为$\lambda+1,\lambda+1,\lambda+1$，$\bs{J}=\begin{pmatrix}
+            -1 &0 &0\\
+            0 &-1 &0\\
+            0 &0 &-1
+        \end{pmatrix}$
+        \item 若$m_{\bs{A}}(\lambda)=\lambda-1$，此时初等因子为$\lambda-1,\lambda-1,\lambda-1$，$\bs{J}=\begin{pmatrix}
+            1 &0 &0\\
+            0 &1 &0\\
+            0 &0 &1
+        \end{pmatrix}$
+        \item 若$m_{\bs{A}}(\lambda)=(\lambda+1)(\lambda-1)$，
+        此时初等因子为$\lambda+1,\lambda+1,\lambda-1$或$\lambda+1,\lambda-1,\lambda-1$。$\bs{J}=\begin{pmatrix}
+        -1 &0 &0\\
+        0 &-1 &0\\
+        0 &0 &1
+    \end{pmatrix}$或$\bs{J}=\begin{pmatrix}
+        -1 &0 &0\\
+        0 &1 &0\\
+        0 &0 &1
+    \end{pmatrix}$
+    \end{enumerate}
+\end{solution}
+
+\begin{question}（p64.12）
+    设$n$阶矩阵$\bs{A}^2=\bs{E}$，证明：$\bs{A}$相似于对角阵。
+\end{question}
+
+\begin{proof}
+    由题意与Hamilton-Cayley定理可知，$\bs{A}^2=\bs{E} \Rightarrow \lambda_1=1,\lambda_2=-1,m_{\bs{A}}(\lambda)|\lambda^2-1$，
+    $\lambda-1,\lambda+1$两个多项式的次数均为$1$，所以一定可以相似于对角阵。
+\end{proof}
+
+\begin{question}（p64.13）
+    设$n$阶矩阵$\bs{A}^3-\bs{A}=10\bs{E}$，证明：$\bs{A}$相似于对角阵。
+\end{question}
+
+\begin{proof}
+    由题意与Hamilton-Cayley定理可知，$\bs{A}^3-\bs{A}=10\bs{E} \Rightarrow m_{\bs{A}}(\lambda)|\lambda^3-\lambda-10$，
+    下面探究$g(\lambda)=\lambda^3-\lambda-10$在复数域$\mathbb{C}$上根的分布。
+
+    $g'(\lambda)=3\lambda^2-1$，$g(\lambda)$在$(-\infty,-\frac{1}{\sqrt{3}}]$上单调递增，
+    在$(-\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}}]$单调递减，在$(\frac{1}{\sqrt{3}},+\infty)$上单调递增。
+    且$g(-\frac{1}{\sqrt{3}})=\frac{2}{3\sqrt{3}}-10<0,g(\frac{1}{\sqrt{3}})=-\frac{2}{3\sqrt{3}}-10<0$，
+    $\lim_{\lambda \to +\infty}=+\infty$，即存在$\lambda_0 \in (\frac{1}{\sqrt{3}},+\infty)$使$g(\lambda_0)=0$，
+    这表明了$g(\lambda)$可以被分解为$(\lambda-\lambda_0)(\lambda^2+a\lambda+b)$的形式，其中$a^2-4b <0$。
+    
+    进一步的，我们可以在复数域上将其分解为$(\lambda-\lambda_0)(\lambda-\lambda_1)(\lambda-\lambda_2)$的形式，
+    并且由于$\lambda_1,\lambda_2$共轭，所以$\lambda_0\neq\lambda_1 \neq \lambda_2$。
+    $\lambda-\lambda_0,\lambda-\lambda_1,\lambda-\lambda_2$三个多项式的次数均为$1$，所以$\bs{A}$相似于对角阵。
+\end{proof}
+
+\begin{question}（p65.19）
+    设$\bs{A}$为$n$阶非零复方阵，$d=\mathrm{deg}m_{\bs{A}}(\lambda)$。
+    \begin{enumerate}[label=(\arabic*)]
+        \item 证明：对一切$n \times 1$的列矩阵$\bs{x}$，都有$\bs{x},\bs{A}\bs{x},\ldots,\bs{A}^{d}\bs{x}$线性相关。
+        \item 证明：对一切正整数$k<d$，都存在列矩阵$\bs{x}$，使得$\bs{x},\bs{A}\bs{x},\ldots,\bs{A}^{k-1}\bs{x}$线性无关。\label{线性无关2}
+        \item 当$\bs{A}$为实方阵时，是否存在实的列矩阵$\bs{x}$，使得\ref{线性无关2}成立？
+    \end{enumerate}
+\end{question}
+
+\begin{proof}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 由$\mathrm{deg}m_{\bs{A}}(\lambda)=d$，
+        则$m_{\bs{A}}(\lambda)=a_1\lambda^d+a_2\lambda^{d-1}+\cdots+a_d\lambda+a_{d+1}$，其中$a_1 \neq 0$。
+        由Hamilton-Cayley定理，有$a_1\bs{A}^d+a_2\bs{A}^{d-1}+\cdots+a_d\bs{A}+a_{d+1}=\bs{O}$，
+        等式两边同乘列向量$\bs{x}$，$a_1(\bs{A}^d\bs{x})+a_2(\bs{A}^{d-1}\bs{x})+\cdots+a_d(\bs{A}\bs{x})+a_{d+1}\bs{x}=\bs{0}$，
+        且$a_1,a_2,\ldots,a_{d+1}$不全为$0$，这是线性相关的定义，由此便完成了证明。
+        \item 使用反证法。若对一切正整数$k<d$，任取列矩阵$\bs{x}$，都有$\bs{x},\bs{A}\bs{x},\ldots,\bs{A}^{k-1}\bs{x}$线性相关，
+        即若$a_0\bs{x}+a_1\bs{A}\bs{x}+\cdots+a_{k-1}\bs{A}^{k-1}\bs{x}=\bs{0}$成立，
+        则$a_0,\ldots,a_{k-1}$不能全为$0$。
+
+        由于$\mathrm{deg}m_{\bs{A}}(\lambda)=d$，则$\bs{A}$在复数域上至少有$d$个特征值（$\lambda_i,\ldots,\lambda_d$）。
+        
+        不妨设$\bs{x}$为$\bs{A}$的特征向量（$\bs{x}\neq \bs{0}$），
+        于是$\bs{A}^j\bs{x}=\lambda^j_i \bs{x}$，其中$\lambda_i \in \{\lambda_1,\ldots,\lambda_d\}$。
+        
+        此时$a_0\bs{x}+a_1\bs{A}\bs{x}+\cdots+a_{k-1}\bs{A}^{k-1}\bs{x}=
+        (a_0+a_1\lambda_i+\cdots+a_{k-1}\lambda_i^{k-1})\bs{x}=\bs{0} \Rightarrow h(\lambda_i)=a_0+a_1\lambda_i+\cdots+a_{k-1}\lambda_i^{k-1}= 0$
+        （以上的等式对于所有的$\lambda_i$都是成立的）。
+
+        由于$h(\lambda)$在复数域上有且只有$k-1$个根，则一定存在某些$\lambda_i \in \{\lambda_1,\ldots,\lambda_d\}$使得$h(\lambda_i)\neq 0$，
+        与$h(\lambda_i)=0$矛盾。所以只有当$a_0=\ldots=a_{k-1}=0$才能保证全部的$\lambda_i$有$h(\lambda_i)=0$成立，
+        这说明了$\bs{x},\bs{A}\bs{x},\ldots,\bs{A}^{k-1}\bs{x}$线性无关，反证法推出矛盾，所以原命题成立。 \label{第二问解答}
+        \item \textbf{结论}：不一定存在。
+        % 由于$\bs{A}$与$\bs{x}$都是实的，那么$\lambda \in \R$。
+        % 于是\ref{第二问解答}中的$h(\lambda_i)$放在实数域中讨论根的个数，
+        % 只需要保证$\{\lambda_1,\ldots,\lambda_d\}$中的实数特征值
+        % 又因为\ref{第二问解答}中存在某些$\lambda_i \notin R$，
+        % $h(\lambda_i)$，因为有
+    \end{enumerate}
+\end{proof}
+
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

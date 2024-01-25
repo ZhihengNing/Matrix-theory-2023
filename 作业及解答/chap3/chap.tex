@@ -1,0 +1,86 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{多项式}
+\begin{question}（p44.1）
+计算$g(x)$除$f(x)$的商式$q(x)$和余式$r(x)$。
+\begin{enumerate}[label=(\arabic*)]
+    \item $f(x)=x^4-4x+5$，$g(x)=x^2-x+2$
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+    $f(x)=q(x)g(x)+r(x)$，其中$q(x)=x^2+x-1$，$r(x)=-7x+7$。
+    
+\end{solution}
+
+\begin{question}（p44.2）
+    求多项式$f(x)$和$g(x)$的最大公因式和最小公倍式。
+    \begin{enumerate}[label=(\arabic*)]
+        \item $f(x)=x^4+x^3+2x^2+x+1$，$g(x)=x^3+2x^2+2x+1$
+    \end{enumerate}
+\end{question}
+
+\begin{solution}
+    $f(x)=q_1(x)g(x)+r_1(x)$，其中$q_1(x)=x-1$，$r_1(x)=2x^2+2x+2$
+
+    $g(x)=q_2(x)r_1(x)$，其中$q_2(x)=\frac{1}{2}x+\frac{1}{2}$
+
+    于是
+    \begin{align*}
+        \mathrm{gcd}(f(x),g(x))=&\frac{1}{2} r_1(x)=x^2+x+1 \\
+        \mathrm{lcm}(f(x),g(x))=&4\frac{f(x)g(x)}{\mathrm{gcd}(f(x),g(x))} \\
+        =&\frac{(x^4+x^3+2x^2+x+1)(x^3+2x^2+2x+1)}{x^2+x+1}\\
+        =&(x^2+1)(x+1)(x^2+x+1)
+    \end{align*}
+    注：以上计算最大公因式和最小公倍式乘的系数均为凑首$1$多项式。
+
+\end{solution}
+
+
+
+\begin{question}（p44.3）
+求多项式$f(x)$和$g(x)$的最大公因式$\mathrm{gcd}(f(x),g(x))$，
+以及满足等式$u(x)f(x)+v(x)g(x)=\mathrm{gcd}(f(x),g(x))$的多项式$u(x)$和$v(x)$。
+\begin{enumerate}[label=(\arabic*)]
+    \item $f(x)=x^4-x^3-4x^2+4x+1$，$g(x)=x^2-x-1$
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+    $f(x)=q_1(x)g(x)+r_1(x)$，其中$q_1(x)=x^2-3$，$r_1(x)=x-2$
+
+    $g(x)=q_2(x)r_1(x)+r_2(x)$，其中$q_2(x)=x$，$r_2(x)=x-1$
+
+    $r_1(x)=q_3(x)r_2(x)+r_3(x)$，其中$q_3(x)=1$，$r_3(x)=-1$
+
+    $r_2(x)=q_4(x)r_3(x)$，其中$q_4(x)=-x+1$
+
+    $\mathrm{gcd}(f(x),g(x))=-r_3(x)=1$，于是$1=u(x)f(x)+v(x)g(x)$，
+    其中$u(x)=-1-x$，$v(x)=x^3+x^2-3x-2$
+
+    注：以上计算最大公因式乘的系数为凑首$1$多项式。
+
+\end{solution}
+    
+\begin{question}（p45.6）
+    若多项式$f(x),g(x),u(x),v(x)$满足$u(x)f(x)+v(x)g(x)=\mathrm{gcd}(f(x),g(x))$，证明$u(x),v(x)$互素。
+\end{question}
+
+\begin{proof}
+    令$d(x)=\mathrm{gcd}(f(x),g(x))$，则$f(x)=d(x)p(x)$，$g(x)=d(x)q(x)$，
+    
+    $u(x)f(x)+v(x)g(x)=\mathrm{gcd}(f(x),g(x)) \Rightarrow 
+    u(x)d(x)p(x)+v(x)d(x)q(x)=d(x) \Rightarrow u(x)p(x)+v(x)q(x)=1$，
+    这便说明了$u(x),v(x)$互素。
+
+\end{proof}
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

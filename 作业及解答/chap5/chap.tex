@@ -1,0 +1,889 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{矩阵函数}
+\begin{question}（p79.1）
+设函数矩阵$\bs{A}(t)=\begin{pmatrix}
+    \sin t &-e^t & t \\
+    \cos t & e^t & t^2 \\
+    1 & 0 & 0
+\end{pmatrix}$，
+试求$\frac{\d }{\d t} \bs{A}(t),|\frac{\d }{\d t} \bs{A}(t)|,\lim\limits_{t \to 0} \bs{A}(t)$。
+\end{question}
+
+\begin{solution}
+    $\frac{\d }{\d t} \bs{A}(t)=\begin{pmatrix}
+    \cos t &-e^t & 1 \\
+    -\sin t & e^t & 2t \\
+    0 & 0 & 0
+    \end{pmatrix}$，$|\frac{\d }{\d t} \bs{A}(t)|=0$，
+    $\lim\limits_{t \to 0} \bs{A}(t)=\begin{pmatrix}
+        0 &-1 & 0 \\
+        1 & 1 & 0 \\
+        1 & 0 & 0
+    \end{pmatrix}$
+
+\end{solution}
+
+\begin{question}（p79.2）
+    设函数矩阵$\bs{A}(t)=\begin{pmatrix}
+        e^{2t}& te^t & 1\\
+        e^{-t} & 2e^{2t} & 0\\
+        3t & 0 & 0
+    \end{pmatrix}$，试求$\int \bs{A}(t) dt,\int_{0}^u \bs{A}(t)dt$。
+\end{question}
+
+\begin{solution}
+    $\int \bs{A}(t) dt=\begin{pmatrix}
+        \frac{1}{2} e^{2t}& (t-1)e^t & t\\
+        -e^{-t} & e^{2t} & 0\\
+        \frac{3}{2}t^2 & 0 & 0
+    \end{pmatrix}$
+    
+    $\int_{0}^u \bs{A}(t) dt=\begin{pmatrix}
+        \frac{1}{2} e^{2u}& (u-1)e^u & u\\
+        -e^{-u} & e^{2u} & 0\\
+        \frac{3}{2}u^2 & 0 & 0
+    \end{pmatrix}-\begin{pmatrix}
+        \frac{1}{2} & -1 & 0\\
+        -1 & 1 & 0\\
+        0 &0& 0
+    \end{pmatrix}=\begin{pmatrix}
+        \frac{1}{2} e^{2u} -\frac{1}{2}& (u-1)e^u+1 & u\\
+        -e^{-u}+1 & e^{2u}-1 & 0\\
+        \frac{3}{2}u^2 & 0 & 0
+    \end{pmatrix}$
+\end{solution}
+
+\begin{question}（p79.3）
+    判断级数$\sum\limits_{n=0}^\infty \frac{1}{10^n}\begin{pmatrix}
+        1 & 2 \\
+        8& 1
+    \end{pmatrix}^n$是否收敛，如果收敛，计算出结果。
+\end{question}
+
+
+\begin{solution}
+    令$\bs{A}=\begin{pmatrix}
+         1 & 2\\
+         8 &1
+    \end{pmatrix}$，特征值$\lambda_1=-3,\lambda_2=5$。
+
+    则$\bs{A}=\bs{P}\bs{\Lambda}\bs{P}^{-1}=\bs{P}\begin{pmatrix}
+        -3 & 0\\
+        0 & 5
+    \end{pmatrix} \bs{P}^{-1}$，其中$\bs{P}=\begin{pmatrix}
+        1 & 1\\
+        -2& 2
+    \end{pmatrix},\bs{P}^{-1}=\begin{pmatrix}
+        \frac{1}{2} & -\frac{1}{4} \\
+        \frac{1}{2} & \frac{1}{4}
+    \end{pmatrix}$，于是：
+    \begin{align*}
+        \sum\limits_{n=0}^\infty \frac{1}{10^n}\begin{pmatrix}
+            1 & 2 \\
+            8& 1
+        \end{pmatrix}^n
+        &=\begin{pmatrix}
+            1 & 1\\
+            -2& 2
+        \end{pmatrix}  \sum\limits_{n=0}^\infty \frac{1}{10^n}\begin{pmatrix}
+            -3 & 0 \\
+            0& 5
+        \end{pmatrix}^n \begin{pmatrix}
+            \frac{1}{2} & -\frac{1}{4} \\
+            \frac{1}{2} & \frac{1}{4}
+        \end{pmatrix}\\
+    &=\begin{pmatrix}
+        1 & 1\\
+        -2& 2
+    \end{pmatrix}  \sum\limits_{n=0}^\infty \frac{1}{10^n}\begin{pmatrix}
+        \frac{10}{13} & 0 \\
+        0& 2
+    \end{pmatrix} \begin{pmatrix}
+        \frac{1}{2} & -\frac{1}{4} \\
+        \frac{1}{2} & \frac{1}{4}
+    \end{pmatrix}\\
+    &=\begin{pmatrix}
+        \frac{18}{13}&\frac{4}{13}\\
+        \frac{16}{13} & \frac{18}{13}
+    \end{pmatrix}
+    \end{align*}
+计算出级数的值恰恰说明了其收敛。
+
+\end{solution}
+
+
+\begin{question}（p79.4）
+    已知矩阵$\bs{A}=\begin{pmatrix}
+        0 & 1 \\
+        -2 & 3
+    \end{pmatrix},\bs{B}=\begin{pmatrix}
+        0 & -1 \\
+        4 & 4
+    \end{pmatrix}$，试求$e^{\bs{A}},e^{\bs{B}}$。
+\end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\lambda_1=1,\lambda_2=2,m_{\bs{A}}(\lambda)=(\lambda-1)(\lambda-2)$，
+        令$P(\lambda)=a_0+a_1\lambda$，则：
+        \begin{align*}
+            \left\{
+                \begin{array}{ll}
+                    P(\lambda_1)=P(1)=a_0+a_1=e\\
+                    P(\lambda_1)=P(2)=a_0+2a_1=e^2
+                \end{array}
+                \right.
+                \Rightarrow
+                \left\{
+                    \begin{array}{ll}
+                        a_0=a_0=2e-e^2\\
+                        a_1=e^2-e
+                    \end{array}
+                    \right.    
+        \end{align*}
+    \begin{align*}
+        e^{\bs{A}}=P(\bs{A})
+    =(2e-e^2)\bs{E}+(e^2-e)\bs{A}
+    =\begin{pmatrix}
+        2e-e^2 &e^2-e \\
+        -2e^2+2e & 2e^2-e
+    \end{pmatrix}
+    \end{align*}
+    \item $\lambda_1=\lambda_2=2,m_{\bs{A}}(\lambda)=(\lambda-2)^2$，
+    令$P(\lambda)=a_0+a_1\lambda$，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda)=P(2)=a_0+2a_1=e^2\\
+                P'(\lambda)=P'(2)=a_1=e^2
+            \end{array}
+            \right.
+            \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=-e^2\\
+                a_1=e^2
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{B}}=P(\bs{B})
+    &=e^2\bs{E}+e^2\bs{B}\\
+    &=\begin{pmatrix}
+        -e^2 &-e^2 \\
+        4e^2 & 3e^2
+    \end{pmatrix}
+    \end{align*} 
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}（p79.5）
+    \label{上题}
+    已知矩阵$\bs{A}=\begin{pmatrix}
+        0 & -\theta \\
+        \theta & 0
+    \end{pmatrix}$，试证$e^{\bs{A}t}=\begin{pmatrix}
+        \cos \theta t & -\sin \theta t\\
+        \sin \theta t & \cos \theta t
+    \end{pmatrix}$。
+\end{question}
+
+
+\begin{proof} 
+    $\lambda_1=\theta \i,\lambda_2=-\theta \i,m_{\bs{A}}(\lambda)=(\lambda-\theta \i)(\lambda+\theta \i)$，
+    令$P(\lambda)=a_0+a_1\lambda$，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda_1)=P(\theta \i)=a_0+a_1 \theta \i=e^{\theta t \i}\\
+                P(\lambda_2)=P(-\theta \i)=a_0-a_1 \theta \i=e^{-\theta t \i}
+            \end{array}
+            \right.
+            \Rightarrow
+            \left\{
+                \begin{array}{ll}
+                    a_0=\cos \theta t\\
+                    a_1=\frac{\sin \theta t}{\theta}
+                \end{array}
+                \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    =\cos \theta t\bs{E}+\frac{\sin \theta t}{\theta} \bs{A}
+    =\begin{pmatrix}
+        \cos \theta t &-\sin \theta t \\
+        -\sin \theta t & \cos \theta t
+    \end{pmatrix}
+    \end{align*} 
+\end{proof}
+
+
+\begin{question}（p79.6）
+    设矩阵$\bs{A}=\begin{pmatrix}
+        0 & -\theta \\
+        \theta & 0
+    \end{pmatrix}$，利用上题\ref{上题}结果求$e^{\bs{A}}$。
+\end{question}
+
+\begin{solution}
+    令$\bs{A}=\sigma \bs{E}+\bs{B}$，其中$\bs{B}=\begin{pmatrix}
+         0 & -\theta \\
+         \theta & 0
+    \end{pmatrix}$
+    由于$\bs{E}$与$\bs{B}$可交换，并且根据题\ref{上题}可得：
+    \begin{align*}
+        e^{\bs{A}}=e^{\sigma \bs{E}+\bs{B}}=e^{\sigma \bs{E}} e^{\bs{B}}
+        =\begin{pmatrix}
+            e^{\sigma} & 0\\
+            0 & e^{\sigma}
+        \end{pmatrix} \begin{pmatrix}
+            \cos \theta  &-\sin \theta  \\
+            -\sin \theta  & \cos \theta 
+        \end{pmatrix}=\begin{pmatrix}
+            e^{\sigma} \cos \theta  &-e^{\sigma}\sin \theta  \\
+            -e^{\sigma} \sin \theta  & e^{\sigma}\cos \theta 
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+
+\begin{question}（p80.7）
+    设$\bs{A}=\begin{pmatrix}
+        9 &-6 &  -7 \\
+        -1 & -1 & 1 \\
+        10 & -6 & -8
+    \end{pmatrix}$，求$e^{2\bs{A}t}$。
+\end{question}
+
+\begin{solution}
+    $\lambda_1=2,\lambda_2=\lambda_3=-1$，
+    显然$\bs{A}$的若当标准形$\bs{J}=\begin{pmatrix}
+        2 & & \\
+         & -1 & 1\\
+         & & -1
+    \end{pmatrix}$，其中空白位置全是$0$。
+    并且有$\bs{J}=\bs{P}^{-1}\bs{A}\bs{P} \Rightarrow \bs{P}\bs{J}=\bs{A}\bs{P}$。
+    不妨令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3)$，其中$\bs{P}$为非奇异矩阵，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                \bs{A}\bs{p}_1=2\bs{p}_1 \\
+                \bs{A}\bs{p}_2=-\bs{p}_2 \\
+                \bs{A}\bs{p}_3=\bs{p}_2-\bs{p}_3
+            \end{array} 
+            \right.
+            \Rightarrow
+            \left\{
+            \begin{array}{ll}
+                \bs{p}_1=(1,0,1)^T \\
+                \bs{p}_2=(2,1,2)^T \\
+                \bs{p}_3=(5,1,2)^T
+            \end{array} 
+            \right.
+    \end{align*}
+    \begin{align*}
+        \bs{P}=\begin{pmatrix}
+            1 & 2 &5 \\
+            0 & 1 &1 \\
+            1 & 2 & 6
+        \end{pmatrix} \quad
+        \bs{P}^{-1}=\begin{pmatrix}
+            4 & -2 &-3 \\
+            1 & 1 &-1 \\
+            -1 & 0 & 1        
+        \end{pmatrix}
+    \end{align*}
+    于是
+    \begin{align*}
+    \bs{e}^{2\bs{A}t}=\bs{P}e^{2\bs{J}t}\bs{P}^{-1}
+    =&\begin{pmatrix}
+        1 & 2 &5 \\
+        0 & 1 &1 \\
+        1 & 2 & 6
+    \end{pmatrix}\begin{pmatrix}
+        e^{4t}& 0 & 0 \\
+        0 & e^{-2t} & 2te^{-2t} \\
+        0& 0 &e^{-2t}
+    \end{pmatrix}
+    \begin{pmatrix}
+        4 & -2 &-3 \\
+        1 & 1 &-1 \\
+        -1 & 0 & 1        
+    \end{pmatrix}\\
+    =&\begin{pmatrix}
+        4e^{4t}+(-4t-3)e^{-2t}& -2e^{4t}+2e^{-2t} & -3e^{4t}+(4t+3)e^{-2t} \\
+        -2te^{-2t} & e^{-2t} & 2te^{-2t} \\
+        4e^{4t}+(-4t-4)e^{-2t}& -2e^{4t}+2e^{-2t} &-3e^{4t}+(4t+4)e^{-2t} 
+    \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+\begin{question}（p80.8）
+    设$\bs{A}=\begin{pmatrix}
+        3 &1 &  -3 \\
+        -7 & -2 & 8 \\
+        -2 & -1 & 4
+    \end{pmatrix}$，求$e^{\bs{A}t}$。
+\end{question}
+
+
+\begin{solution}
+    $\lambda_1=\lambda_2=2,\lambda_3=1$，
+    显然$\bs{A}$的若当标准形$\bs{J}=\begin{pmatrix}
+        2 &1 & \\
+         & 2 & \\
+         & & 1
+    \end{pmatrix}$，其中空白位置全是$0$。
+    并且有$\bs{J}=\bs{P}^{-1}\bs{A}\bs{P} \Rightarrow \bs{P}\bs{J}=\bs{A}\bs{P}$。
+    不妨令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3)$，其中$\bs{P}$为非奇异矩阵，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                \bs{A}\bs{p}_1=2\bs{p}_1 \\
+                \bs{A}\bs{p}_2=\bs{p}_1+2\bs{p}_2 \\
+                \bs{A}\bs{p}_3=\bs{p}_3
+            \end{array} 
+            \right.
+            \Rightarrow
+            \left\{
+            \begin{array}{ll}
+                \bs{p}_1=(-1,4,1)^T \\
+                \bs{p}_2=(-1,3,1)^T \\
+                \bs{p}_3=(0,3,1)^T
+            \end{array} 
+            \right.
+    \end{align*}
+    \begin{align*}
+        \bs{P}=\begin{pmatrix}
+            -1 & -1 &0 \\
+            4 & 3 &3 \\
+            1 & 1 & 1
+        \end{pmatrix} \quad
+        \bs{P}^{-1}=\begin{pmatrix}
+            0 & 1 &-3 \\
+            -1 & -1 &3 \\
+            1 & 0 & 1        
+        \end{pmatrix}
+    \end{align*}
+    于是
+    \begin{align*}
+    \bs{e}^{\bs{A}t}=\bs{P}e^{\bs{J}t}\bs{P}^{-1}
+    =&\begin{pmatrix}
+        -1 & -1 &0 \\
+        4 & 3 &3 \\
+        1 & 1 & 1
+    \end{pmatrix}\begin{pmatrix}
+        e^{2t}& te^{2t} & 0 \\
+        0 & e^{2t} & 0 \\
+        0& 0 &e^{t}
+    \end{pmatrix}
+    \begin{pmatrix}
+        0 & 1 &-3 \\
+        -1 & -1 &3 \\
+        1 & 0 & 1         
+    \end{pmatrix}\\
+    =&\begin{pmatrix}
+        (t+1)e^{2t}& te^{2t} & -3te^{2t} \\
+        (-4t-3)e^{2t}+3e^t & (-4t+1)e^{2t} & (12t-3)e^{2t}+3e^{t} \\
+       (-t-1)e^{2t}+e^{t}& -te^{2t} &3te^{2t}+e^{t}
+    \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+
+\begin{question}（p80.9）
+    已知$\bs{A}=\begin{pmatrix}
+        2 & 2 & 1\\
+        1 &3 &1 \\
+        1 &2 &2
+    \end{pmatrix},\bs{B}=\begin{pmatrix}
+        3 & 0 & 0 &0 \\
+        0 & -2 & 1 &0 \\
+        0 & 0 & -2 &1 \\
+        0 & 0 & 0 &-2 \\
+    \end{pmatrix}$，试求$\cos \bs{A},\sin \bs{B},e^{\bs{B}t}$。
+\end{question}
+
+
+\begin{solution}
+    $\lambda_1=\lambda_2=1,\lambda_3=5,m_{\bs{A}}(\lambda)=(\lambda-1)(\lambda-5)$，
+    令$P(\lambda)=a_0+a_1\lambda$，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda_1)=P(1)=a_0+a_1=\cos 1\\
+                P(\lambda_2)=P(5)=a_0+5a_1=\cos 5
+            \end{array}
+            \right.
+            \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=\frac{-\cos 5+5\cos 1}{4}\\
+                a_1=\frac{\cos 5-\cos1}{4}
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        \cos \bs{A}=P(\bs{A})
+    &=\frac{-\cos 5+5\cos 1}{4}\bs{E}+\frac{\cos 5-cos1}{4}\bs{A}\\
+    &=
+    \frac{1}{4}\begin{pmatrix}
+        \cos 5+3\cos 1 &2\cos5-2\cos 1 &\cos 5-\cos 1\\
+        \cos 5- \cos 1& 2\cos 5+2\cos 1& \cos 5-\cos 1 \\
+        \cos 5-\cos 1 & 2\cos 5-2 \cos 1 & \cos 5 +3\cos 1
+    \end{pmatrix}
+    \end{align*}
+
+    由于$\bs{B}=
+    \left ( \begin{array}{c:ccc}
+        3 & 0 & 0 &0 \\
+        \hdashline
+        0 & -2 & 1 &0 \\
+        0 & 0 & -2 &1 \\
+        0 & 0 & 0 &-2 \\
+    \end{array} \right )
+    =\begin{pmatrix}
+        \bs{J}_1 & \\
+         & \bs{J}_2 
+    \end{pmatrix}$，其中$\bs{J}_1,\bs{J}_2$为若当块，空白位置全是$0$。
+    
+    则$\sin \bs{B}=\begin{pmatrix}
+        \sin \bs{J}_ 1 & \\
+         & \sin \bs{J}_2
+    \end{pmatrix}=\begin{pmatrix}
+        \sin 3&0 &0 &0 \\
+         0&-\sin 2&\cos 2&\frac{\sin 2}{2}\\
+         0&0 &-\sin 2& \cos 2\\
+         0& 0& 0& -\sin 2 
+    \end{pmatrix}$
+
+    则$e^{\bs{B}t}=\begin{pmatrix}
+        e^{\bs{J}_1 t} & \\
+         & e^{\bs{J}_2 t}
+    \end{pmatrix}=\begin{pmatrix}
+        e^{3t}&0 &0 &0 \\
+         0&e^{-2t}&te^{-2t} &\frac{t^2e^{-2t} }{2}\\
+         0&0 & e^{-2t} & te^{-2t} \\
+         0& 0& 0& e^{-2t} 
+    \end{pmatrix}$
+
+\end{solution}
+
+
+\begin{question}（p80.10）
+    已知$\bs{A}=\begin{pmatrix}
+        0 & 1\\
+        0 & -2
+    \end{pmatrix},\bs{B}=\begin{pmatrix}
+        -2 & 1 & 1\\
+        0& 2 & 0\\
+        -4 & 1& 3
+    \end{pmatrix}$，试求$e^{\bs{A}t},e^{\bs{B}t},\sin \bs{B}t$。
+\end{question}
+
+\begin{solution}
+    $\bs{A}$的特征值为$\lambda_1=0,\lambda_2=-2,m_{\bs{A}}(\lambda)=\lambda(\lambda+2)$，
+    令$P(\lambda)=a_0+a_1\lambda$，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda_1)=P(0)=a_0=1\\
+                P(\lambda_2)=P(-2)=a_0-2a_1=e^{-2t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+        \begin{array}{ll}
+            a_0=1\\
+            a_1=\frac{1-e^{-2t}}{2}
+        \end{array}
+        \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    &=\bs{E}+\frac{1-e^{-2t}}{2}\bs{A}\\
+    &=\begin{pmatrix}
+        1 &\frac{1-e^{-2t}}{2} \\
+        0 & e^{-2t}
+    \end{pmatrix}
+    \end{align*}
+
+    $\bs{B}$的特征值$\lambda_1=-1,\lambda_2=\lambda_3=2,m_{\bs{B}}(\lambda)=(\lambda+1)(\lambda-2)$，
+    \begin{enumerate}[label=(\arabic*)]
+        \item 令$P(\lambda)=a_0+a_1\lambda$，则：
+        \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda_1)=P(-1)=a_0-a_1=e^{-t}\\
+                P(\lambda_2)=P(2)=a_0+2a_1=e^{2t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=\frac{2e^{-t}+e^{2t}}{3}\\
+                a_1=\frac{-e^{-t}+e^{2t}}{3}
+            \end{array}
+            \right.
+        \end{align*}
+        \begin{align*}
+            e^{\bs{B}t}=P(\bs{B})
+        &=\frac{2e^{-t}+e^{2t}}{3}\bs{E}+\frac{-e^{-t}+e^{2t}}{3}\bs{B}\\
+        &=\frac{1}{3}\begin{pmatrix}
+            -e^{2t}+4e^{-t} &e^{2t}-e^{-t} &e^{2t}-e^{-t} \\
+            0 & 3e^{2t}& 0\\
+            -4e^{2t}+4e^{-t}&e^{2t}-e^{-t}&4e^{2t}-e^{-t}
+        \end{pmatrix}
+        \end{align*}
+        \item 令$P(\lambda)=a_0+a_1\lambda$，则：
+        \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda_1)=P(-1)=a_0-a_1=\sin t\\
+                P(\lambda_2)=P(2)=a_0+2a_1=\sin 2t
+            \end{array}
+            \right.
+            \Rightarrow
+            \left\{
+                \begin{array}{ll}
+                    a_0=\frac{\sin 2t+2\sin t}{3}\\
+                    a_1=\frac{\sin 2t-\sin t}{3}
+                \end{array}
+                \right.
+        \end{align*}
+        \begin{align*}
+            \sin \bs{B}t=P(\bs{B})
+        &=\frac{\sin 2t+2\sin t}{3}\bs{E}+\frac{\sin 2t-\sin t}{3}\bs{B}\\
+        &=\frac{1}{3}\begin{pmatrix}
+            -\sin 2t +4\sin t &\sin 2t-\sin t &\sin 2t-\sin t\\
+            0 & 3\sin 2t& 0\\
+            -4\sin 2t+4\sin t&\sin 2t-\sin t&4\sin 2t -\sin t
+        \end{pmatrix}
+    \end{align*}
+    \end{enumerate}
+\end{solution}
+
+
+\begin{question}（p80.11）
+    求常系数线性齐次微分方程组
+    \begin{align*}
+        \left\{
+        \begin{array}{ll}
+            x_1'(t)=-7x_1-7x_2+5x_3\\
+            x_2'(t)=-8x_1-8x_2-5x_3\\
+            x_3'(t)=-5x_2
+        \end{array}
+        \right.
+    \end{align*}
+    满足初始条件$x_1(0)=3,x_2(0)=-2,x_3(0)=1$的解。
+\end{question}
+
+\begin{solution}
+    由题意得：$\bs{x}'(t)=\bs{A}\bs{x}(t)$，其中$\bs{A}=\begin{pmatrix}
+        -7 & -7 & 5\\
+        -8 &-8& -5 \\
+        0 & -5 & 0
+    \end{pmatrix},\bs{x}=(x_1,x_2,x_3)^T$，矩阵$\bs{A}$的特征值为$\lambda_1=-15,\lambda_2=-5,\lambda_3=5$。
+
+    则$\bs{A}=\bs{P}\bs{\Lambda}\bs{P}^{-1}=\begin{pmatrix}
+        2 & 1& 1\\
+        3 &-1 &-1 \\
+        1&-1&1
+    \end{pmatrix} \begin{pmatrix}
+        -15 & &\\
+        & -5& \\
+        & & 5
+    \end{pmatrix} \begin{pmatrix}
+        \frac{1}{5}& \frac{1}{5}&0\\
+        \frac{2}{5}&-\frac{1}{10}&-\frac{1}{2}\\
+        \frac{1}{5}&-\frac{3}{10}&\frac{1}{2}
+    \end{pmatrix}$
+
+    $e^{\bs{A}t}=\bs{P}e^{\bs{\Lambda}t}\bs{P}^{-1}
+    =\begin{pmatrix}
+        2 & 1& 1\\
+        3 &-1 &-1 \\
+        1&-1&1
+    \end{pmatrix} \begin{pmatrix}
+        e^{-15t} & &\\
+        & e^{-5t}& \\
+        & & e^{5t}
+    \end{pmatrix} \begin{pmatrix}
+        \frac{1}{5}& \frac{1}{5}&0\\
+        \frac{2}{5}&-\frac{1}{10}&-\frac{1}{2}\\
+        \frac{1}{5}&-\frac{3}{10}&\frac{1}{2}
+    \end{pmatrix}
+    =\begin{pmatrix}
+        2e^{-15t} & e^{-5t} & e^{5t}\\
+        3e^{-15t} & -e^{-5t} & -e^{5t}\\
+        e^{-15t} & -e^{-5t} & e^{5t}
+    \end{pmatrix}$
+
+    $\bs{x}(t)=e^{\bs{A}t}\bs{x}(0)=\begin{pmatrix}
+        \frac{2}{5}e^{-15t}+\frac{9}{10}e^{-5t}+\frac{17}{10}e^{5t}\\
+        \frac{3}{5}e^{-15t}-\frac{9}{10}e^{-5t}-\frac{17}{10}e^{5t}\\
+        \frac{1}{5}e^{-15t}-\frac{9}{10}e^{-5t}+\frac{17}{10}e^{5t}
+
+    \end{pmatrix}$
+
+\end{solution}
+
+\begin{question}（p80.12）
+    求常系数线性齐次微分方程组
+    \begin{align*}
+        \left\{
+        \begin{array}{ll}
+            x_1'(t)=x_1(t)-x_2(t)\\
+            x_2'(t)=4x_1(t)-3x_2(t)+1
+        \end{array}
+        \right.
+    \end{align*}
+    满足初始条件$x_1(0)=1,x_2(0)=2$的解。
+\end{question}
+
+\begin{solution}
+    由题意得：$\bs{x}'(t)=\bs{A}\bs{x}(t)+\bs{F}(t)$，其中$\bs{A}=\begin{pmatrix}
+        1 & -1\\
+        4 &-3
+    \end{pmatrix},\bs{x}=(x_1,x_2,x_3)^T,\bs{F}(t)=(0,1)^T$，
+    $\bs{A}$的特征值为$\lambda_1=\lambda_2=-1,m_{\bs{A}}(\lambda)=(\lambda+1)^2$。
+    令$P(\lambda)=a_0+a_1\lambda$
+    ，则 \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda)=P(-1)=a_0-a_1=e^{-t}\\
+                P'(\lambda)=P'(-1)=a_1=te^{-t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=(1+t)e^{-t}\\
+                a_1=te^{-t}
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    &=(1+t)e^{-t}\bs{E}+te^{-t}\bs{A}\\
+    &=\begin{pmatrix}
+        (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+    \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+    \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{b} du\\
+    &=\begin{pmatrix}
+        (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+    \end{pmatrix}\begin{pmatrix}
+        1 \\
+        2
+    \end{pmatrix}\\
+    &+\begin{pmatrix}
+        (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+    \end{pmatrix}\int_{0}^t 
+    \begin{pmatrix}
+        (-2u+1)e^{u} &ue^{u} \\
+        -4ue^{u}  & (2u+1)e^{u}
+    \end{pmatrix} \begin{pmatrix}
+        0\\
+        1
+    \end{pmatrix} du \\
+    &=\begin{pmatrix}
+        (t+2)e^{-t}-1 \\
+        (2t+3)e^{-t}-1
+    \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+\begin{question}（p80.13）
+    求微分方程组$\bs{X}'(t)=\bs{A}\bs{X}(t)$的通解，其中$\bs{A}=\begin{pmatrix}
+        2 &1 &1 \\
+        0 & 3 & 1\\
+        0 & -1 & 1
+    \end{pmatrix}$。
+\end{question}
+
+
+\begin{solution}
+    由题意得：$\bs{X}'(t)=\bs{A}\bs{X}(t)$，其中$\bs{A}=\begin{pmatrix}
+        2 & 1 & 1\\
+        0 &3& 1 \\
+        0 & -1 & 1
+    \end{pmatrix},\bs{x}=(x_1,x_2,x_3)^T$，
+    矩阵$\bs{A}$的特征值为$\lambda_1=\lambda_2=\lambda_3=2$，显然$\bs{A}$的若当标准型$\bs{J}=\begin{pmatrix}
+        2 & &\\
+        & 2 & 1\\
+        & & 2
+    \end{pmatrix}$，
+    并且有$\bs{J}=\bs{P}^{-1}\bs{A}\bs{P} \Rightarrow \bs{P}\bs{J}=\bs{A}\bs{P}$。
+    不妨令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3)$，其中$\bs{P}$为非奇异矩阵，则：
+
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                \bs{A}\bs{p}_1=2\bs{p}_1 \\
+                \bs{A}\bs{p}_2=2\bs{p}_2 \\
+                \bs{A}\bs{p}_3=\bs{p}_2+\bs{p}_3
+            \end{array} 
+            \right.
+            \Rightarrow
+            \left\{
+            \begin{array}{ll}
+                \bs{p}_1=(1,0,0)^T \\
+                \bs{p}_2=(2,2,-2)^T \\
+                \bs{p}_3=(0,1,1)^T
+            \end{array} 
+            \right.
+    \end{align*}
+    \begin{align*}
+        \bs{P}=\begin{pmatrix}
+            1 & 2 &0 \\
+            0 & 2 &1 \\
+            0 & -2 & 1
+        \end{pmatrix} \quad
+        \bs{P}^{-1}=\begin{pmatrix}
+            1 & -\frac{1}{2} &\frac{1}{2} \\
+            0 & \frac{1}{4} &-\frac{1}{4} \\
+            0 & \frac{1}{2}& \frac{1}{2}       
+        \end{pmatrix}
+    \end{align*}
+    于是
+    \begin{align*}
+    e^{\bs{A}t}=\bs{P}e^{\bs{\Lambda}t}\bs{P}^{-1}
+    =\begin{pmatrix}
+        1 & 2 &0 \\
+        0 & 2 &1 \\
+        0 & -2 & 1
+    \end{pmatrix} \begin{pmatrix}
+        e^{2t} & &\\
+        & e^{2t}&te^{2t} \\
+        & & e^{2t}
+    \end{pmatrix} \begin{pmatrix}
+        1 & -\frac{1}{2} &\frac{1}{2} \\
+        0 & \frac{1}{4} &-\frac{1}{4} \\
+        0 & \frac{1}{2}& \frac{1}{2} 
+    \end{pmatrix}
+    =\begin{pmatrix}
+        e^{2t} &te^{2t}&te^{2t} \\
+        0 &  (t+1)e^{2t} &te^{2t}\\
+        0 & -te^{2t} &(1-t)e^{2t}
+    \end{pmatrix}
+    \end{align*}
+    不妨设$\bs{x}(0)=(k_1,k_2,k_3)^T$，则
+    $\bs{x}(t)=e^{\bs{A}t}\bs{x}(0)=\begin{pmatrix}
+        k_1e^{2t}+k_2te^{2t}+k_3te^{2t} \\
+        k_2(t+1)e^{2t}+k_3te^{2t}\\
+        -k_2te^{2t}+k_3(1-t)e^{2t}
+    \end{pmatrix}$
+
+\end{solution}
+
+
+
+\begin{question}（p80.14）
+    求微分方程组$\bs{X}'(t)=\bs{A}\bs{X}(t)+\bs{F}(t)$的通解，其中$\bs{A}=\begin{pmatrix}
+        3 &1  \\
+        1 & 3  \\
+    \end{pmatrix},\bs{F}(t)=\begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}$。
+\end{question}
+
+\begin{solution}
+    由题意得：$\bs{x}'(t)=\bs{A}\bs{x}(t)+\bs{F}(t)$，其中$\bs{A}=\begin{pmatrix}
+        3 & 1\\
+        1 &3 \\
+    \end{pmatrix},\bs{x}=(x_1,x_2,x_3)^T$，
+    矩阵$\bs{A}$的特征值为$\lambda_1=2,\lambda_2=4,\lambda_3=5$。
+
+    则$\bs{A}=\bs{P}\bs{\Lambda}\bs{P}^{-1}=\begin{pmatrix}
+        -1 & 1\\
+        1 &1  \\
+    \end{pmatrix} \begin{pmatrix}
+        2 & \\
+        & 4
+    \end{pmatrix} \begin{pmatrix}
+        -\frac{1}{2}& \frac{1}{2}\\
+        \frac{1}{2}&\frac{1}{2}\\
+    \end{pmatrix}$
+
+    $e^{\bs{A}t}=\bs{P}e^{\bs{\Lambda}t}\bs{P}^{-1}
+    =\begin{pmatrix}
+        -1 & 1\\
+        1 &1  \\
+    \end{pmatrix} \begin{pmatrix}
+        e^{2t} & \\
+        & e^{4t}
+    \end{pmatrix} \begin{pmatrix}
+        -\frac{1}{2}& \frac{1}{2}\\
+        \frac{1}{2}&\frac{1}{2}\\
+    \end{pmatrix}
+    =\frac{1}{2} \begin{pmatrix}
+        e^{2t}+e^{4t} & -e^{2t}+e^{4t}\\
+        -e^{2t}+e^{4t}& e^{2t}+e^{4t}
+    \end{pmatrix}$
+    
+    不妨设$\bs{x}(0)=(k_1,k_2)^T$，则：
+    \begin{align*}
+        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{F}(t) du\\
+        &=\frac{1}{2}\begin{pmatrix}
+            e^{2t}+e^{4t} & -e^{2t}+e^{4t}\\
+        -e^{2t}+e^{4t}& e^{2t}+e^{4t}
+        \end{pmatrix}\begin{pmatrix}
+            k_1 \\
+            k_2
+        \end{pmatrix}\\
+        &+\frac{1}{2}\begin{pmatrix}
+            e^{2t}+e^{4t} & -e^{2t}+e^{4t}\\
+            -e^{2t}+e^{4t}& e^{2t}+e^{4t}
+        \end{pmatrix}\int_{0}^t
+        \frac{1}{2}\begin{pmatrix}
+            e^{-2u}+e^{-4u} & -e^{-2u}+e^{-4u}\\
+            -e^{-2u}+e^{-4u}& e^{-2u}+e^{-4u}
+        \end{pmatrix} \begin{pmatrix}
+            1\\
+            -1
+        \end{pmatrix} du \\
+        &=\frac{1}{2} \begin{pmatrix}
+            k_1(e^{2t}+e^{4t})+k_2(-e^{2t}+e^{4t})+e^{2t}-1 \\
+            k_1(-e^{2t}+e^{4t})+k_2(e^{2t}+e^{4t})+1-e^{2t}
+        \end{pmatrix}\\
+        &=\frac{1}{2} \begin{pmatrix}
+           (k_1+k_2)e^{4t}+(k_1-k_2+1)e^{2t}-1 \\
+            (k_1+k_2)e^{4t}+(k_2-k_1-1)e^{2t}+1
+        \end{pmatrix}
+        \end{align*}
+\end{solution}
+
+
+\begin{question}（p81.16）
+    设$\bs{A}$为方阵，$\bs{B}(t)=e^{\bs{A}t}$。若$\mathrm{tr}\bs{A}=0$，证明对一切$t \in \R$，$\mathrm{det}\bs{B}(t)=1$。
+\end{question}
+
+\begin{proof}
+    由题意得，不妨设$\bs{A}\in \R^{n\times n}$，$\lambda_i$为矩阵$\bs{A}$的特征值，
+    则$\bs{B}(t)e^{\bs{A}t}$的特征值为$e^{\lambda_i t}$，
+    则
+    \begin{align*}
+    \mathrm{det}\bs{B}(t)=\prod\limits_{i}^ne^{\lambda_i  t}=
+    e^{\sum\limits_{i}^n \lambda_i t}=e^{t \times \mathrm{tr}(\bs{A})}=e^0=1
+    \end{align*}
+    
+\end{proof}
+
+
+\ifx\allfiles\undefined
+\end{document}
+\fi
