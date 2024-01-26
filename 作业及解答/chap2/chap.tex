@@ -32,12 +32,13 @@
 
 \begin{solution}
     由题意得，设$\bs{\nu}_1=k(1,1,1)^T$，则$k=\frac{\sqrt{3}}{3}$，
-    易知$\bs{\nu}_2=\frac{1}{\sqrt{2}}(-1,0,1)^T,\bs{\nu}_3=\frac{1}{\sqrt{6}}(1,-2,-1)^T$与$\bs{\nu}_1$正交，且$\bs{\nu}_2$与$\bs{\nu}_3$正交。
+    易知$\bs{\nu}_2=\frac{1}{\sqrt{2}}(-1,0,1)^T,\bs{\nu}_3=\frac{1}{\sqrt{6}}(1,-2,1)^T$与$\bs{\nu}_1$正交，且$\bs{\nu}_2$与$\bs{\nu}_3$正交。
     则标准正交基为$(\bs{\nu}_1,\bs{\nu}_2,\bs{\nu}_3)=\begin{pmatrix}
         \frac{1}{\sqrt{3}} & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}} \\
         \frac{1}{\sqrt{3}} & 0& -\frac{2}{\sqrt{6}} \\
         \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}}& \frac{1}{\sqrt{6}}
-    \end{pmatrix}$
+    \end{pmatrix}$。
+    
 \end{solution}
 
 \begin{question}（p119.3）
@@ -57,7 +58,8 @@
         -1 \\
         1 \\
         1
-    \end{pmatrix}$
+    \end{pmatrix}$。
+
 \end{solution}
 
 
@@ -77,7 +79,8 @@
         e_4=&x^3-\frac{(x^3,x^2-\frac{1}{3})}{(x^2-\frac{1}{3},x^2-\frac{1}{3})}(x^2-\frac{1}{3})-
         \frac{(x^3,x)}{(x,x)}x-\frac{(x^3,x)}{(1,1)}1=x^3-\frac{3}{5}x
     \end{align*}
-    $e=(e_1,e_2,e_3,e_4)=(1,x,x^2-\frac{1}{3},x^2-\frac{3}{5}x)$
+    $e=(e_1,e_2,e_3,e_4)=(1,x,x^2-\frac{1}{3},x^3-\frac{3}{5}x)$。
+
 \end{solution}
 
 \begin{question}（p120.11）
@@ -86,11 +89,11 @@
 
 \begin{proof}
     令$\bs{\nu}=(a_1,\ldots,a_n)^T$，显然$(\bs{\nu}\bs{\nu}^T)^T=\bs{\nu}\bs{\nu}^T$，$\bs{A} \in \mc{S}^n$必可相似对角化。
-    $\mathrm{r}(\bs{A})=\mathrm{r}(\bs{\nu}\bs{\nu}^T) \leq \min(\mathrm{\bs{\nu},\mathrm{\bs{\nu}^T}})=1$，所以$\mathrm{r}(\bs{A})=0,1$，
+    $\mathrm{r}(\bs{A})=\mathrm{r}(\bs{\nu}\bs{\nu}^T) \leq \min(\mathrm{\bs{\nu},\mathrm{\bs{\nu}^T}})=1$，所以$\mathrm{r}(\bs{A})=0,1$。
     
     若$\mathrm{r}(\bs{A})=0$，则$\bs{A}=\bs{O} \Rightarrow \bs{\nu}=\bs{0}$，此时$\bs{A}$相似于$\mathrm{diag}\{0,\ldots,0\}$。
     取$\R^n$上的一组标准正交基$\bs{e}_1,\ldots,\bs{e}_n$组成矩阵$\bs{Q}$，
-    使得$\bs{Q}^T\bs{A}\bs{Q}=\bs{\Lambda}=\bs{O}$其中$\bs{e}_1=(1,0,\ldots,0),\ldots,\bs{e}_n=(0,\ldots,1)$。
+    使得$\bs{Q}^T\bs{A}\bs{Q}=\bs{\Lambda}=\bs{O}$，其中$\bs{e}_1=(1,0,\ldots,0),\ldots,\bs{e}_n=(0,\ldots,1)$。
 
     若$\mathrm{r}(\bs{A})=1$，则$a_1,\ldots,a_n$不全为0，不妨令$a_1 \neq 0$，所以
     $\bs{A}=\begin{pmatrix}
@@ -118,7 +121,8 @@
 
     当$\lambda=1$时，其单位特征向量为$\bs{\eta}_n=\frac{1}{\bs{\nu}^T\bs{\nu}}(a_1,\ldots,a_n)^T$，且与$\bs{\eta}_1,\ldots,\bs{\eta}_{n-1}$正交。
 
-    令$\bs{Q}=(\bs{\eta}_1,\ldots,\bs{\eta}_{n})$，则$\bs{Q}^T\bs{A}\bs{Q}=\bs{\Lambda}=\mathrm{diag}\{0,\ldots,0,\bs{\nu}^T\bs{\nu}\}$。
+    综上，令$\bs{Q}=(\bs{\eta}_1,\ldots,\bs{\eta}_{n})$，则$\bs{Q}^T\bs{A}\bs{Q}=\bs{\Lambda}=\mathrm{diag}\{0,\ldots,0,\bs{\nu}^T\bs{\nu}\}$。
+
 \end{proof}
 
 \begin{question}（p120.12）
@@ -149,6 +153,7 @@
     矩阵$\bs{A}$的行列式因子为$D_1=D_1=1,D_3=\lambda(\lambda^2+a^2+b^2+c^2)$；
     矩阵$\bs{W}$的行列式因子为$D_1=D_1=1,D_3=\lambda(\lambda^2+\omega^2)$。
     所以$a^2+b^2+c^2=\omega^2 \Rightarrow \omega=\pm \sqrt{a^2+b^2+c^2}$。
+
 \end{solution}
 
 \begin{question}（p120.13）
@@ -165,8 +170,9 @@
         且$\bs{\mu}^H\bs{A}\bs{\mu}=(\bs{\mu}^H\bs{A}\bs{\mu})^H=\bs{\mu}^H\bs{A}^H\bs{\mu}=-\bs{\mu}^H\bs{A}\bs{\mu}$，所以$\bs{\mu}^H\bs{A}\bs{\mu}=0$；同理，$\bs{\nu}^H\bs{A}\bs{\nu}=0$。
         又因为$\bs{\mu}^H\bs{A}\bs{\mu}=a\bs{\mu}^H\bs{\mu}-b\bs{\mu}^H\bs{\nu},\bs{\nu}^H\bs{A}\bs{\nu}=a\bs{\nu}^H\bs{\nu}+b\bs{\nu}^H\bs{\mu}$，
         $\bs{\mu}^H\bs{A}\bs{\mu}+\bs{\nu}^H\bs{A}\bs{\nu}=a(||\bs{\mu}||^2+||\bs{\nu}||^2)=0$，而$\bs{\mu},\bs{\nu}$不能同时为$\bs{0}$，所以$a=0$，这说明了$\lambda=bi$为纯虚数或0。
-        \item  $\bs{A}\bs{x}=\lambda\bs{x} \Rightarrow  (\bs{A}\bs{x})^H=(\lambda\bs{x})^H \Rightarrow \bs{x}^H\bs{A}^H=\bar{\lambda}\bs{x}^H $，
-        两边同时与$\bs{x}$做内积，得$\bs{x}^H\bs{A}^H\bs{x}=\bar{\lambda}\bs{x}^H\bs{x} \Rightarrow -\bs{x}^H\bs{A}\bs{x}=\bar{\lambda}\bs{x}^H\bs{x}
+        \item  $\bs{A}\bs{x}=\lambda\bs{x}$，
+        两边同时与$\bs{x}$做内积$(\bs{A}\bs{x},\bs{x})=(\lambda \bs{x},\bs{x})$。又因为$(\bs{A}\bs{x})^H=\bs{x}^H\bs{A}^H,(\lambda\bs{x})^H=\bar{\lambda}\bs{x}^H $
+        ，于是$\bs{x}^H\bs{A}^H\bs{x}=\bar{\lambda}\bs{x}^H\bs{x} \Rightarrow -\bs{x}^H\bs{A}\bs{x}=\bar{\lambda}\bs{x}^H\bs{x}
         \Rightarrow -\lambda \bs{x}^H\bs{x}=\bar{\lambda}\bs{x}^H\bs{x}$，此时有$-(a+bi)=a-bi \Rightarrow a=0$，这说了$\lambda=bi$为纯虚数或0。
         
         ps：两种方法都不需要针对矩阵类型分类讨论，原因在于共轭转置$H$包含转置$T$。
@@ -180,9 +186,11 @@
 
 \begin{proof}
     取标准正交基$(\bs{e}_1,\ldots,\bs{e}_n)$，设$\bs{v}$在基下的坐标为$\bs{x}$，
-    对称变换$\mc{A}$在基下的变换矩阵为$\bs{A}$
-    则$\mc{A}\bs{v}=\bs{A}\bs{x}$。由$(\mc{A}\bs{\nu},\bs{\nu}) > 0$与$\bs{A}^T=\bs{A}$，得$\bs{x}^T\bs{A}^T> 0 \Rightarrow \bs{x}^T\bs{A}\bs{x}>0$，
+    对称变换$\mc{A}$在基下的变换矩阵为$\bs{A}$，
+    则$\mc{A}\bs{v}=(\bs{e}_1,\ldots,\bs{e}_n)\bs{A}\bs{x}=\bs{A}\bs{x}$。由$(\mc{A}\bs{\nu},\bs{\nu}) > 0$与$\bs{A}^T=\bs{A}$，
+    得$\bs{x}^T\bs{A}\bs{x}>0$，
     即$\bs{A}$是正定矩阵。
+
 \end{proof}
 
 
@@ -191,8 +199,8 @@
 \end{question}
 
 \begin{solution}
-    不妨设矩阵$\bs{A}$为满足这些变换，
-    在标准正交基$(\bs{e}_1,\ldots,\bs{e}_n)$下的变换矩阵。
+    不妨设矩阵$\bs{A}$为在标准正交基$(\bs{e}_1,\ldots,\bs{e}_n)$下满足上述变换
+    的变换矩阵。
     对称变换即$\bs{A}^T=\bs{A}$；正交变换即$\bs{A}\bs{A}^T=\bs{E}$；
     正规变换为$\bs{A}^H\bs{A}=\bs{A}\bs{A}^H$。由于对称变换与正交变换定义在欧式空间，矩阵需要满足的条件变为
     $\bs{A}\neq \bs{A}^T,\bs{A}^T\bs{A}=\bs{A}^T\bs{A} \neq \bs{E}$。
@@ -201,6 +209,7 @@
         2 & 0 & 0 \\
         0 & 2 & 0
     \end{pmatrix}$为所求，其中$\bs{A}^T\neq \bs{A},\bs{A}^T\bs{A}=\bs{A}^T\bs{A}=4\bs{E}$。
+
 \end{solution}
 
 
@@ -212,7 +221,7 @@
     \item 证明：对任何$\bs{V}$上的投影变换$\mc{T}$，有$\mathrm{ker}\mc{T}=(\mathrm{Im}\mc{T})^{\perp}$，该命题的逆命题是否成立？
     \item 证明：线性变换$\mc{T}$为$\bs{V}$上的投影变换的充分必要条件是$\mc{T}$是对称变换且满足$\mc{T}^2=\mc{T}$。
     \item 设$\mc{T}_1,\mc{T}_2$均为$\bs{V}$上的投影变换，求证：$\mc{T}_1+\mc{T}_2$为投影变换当且仅当$\mc{T}_1\mc{T}_2=\mc{O}$，当且仅当$\mc{T}_1 \perp \mc{T}_2$。
-    \item 设$\mc{T}_1,\mc{T}_2$均为$\bs{V}$上的投影变换，求证：$\mc{T}_1-\mc{T}_2$为投影变换当且仅当$\mathrm{Im}\mc{T}_1 \supset \mathrm{Im}\mc{T}_2$
+    \item 设$\mc{T}_1,\mc{T}_2$均为$\bs{V}$上的投影变换，求证：$\mc{T}_1-\mc{T}_2$为投影变换当且仅当$\mathrm{Im}\mc{T}_1 \supset \mathrm{Im}\mc{T}_2$。
     \item 设$\mc{T}_1,\mc{T}_2$均为$\bs{V}$上的投影变换，求证：$\mc{T}_1\mc{T}_2$为投影变换当且仅当$\mc{T}_1\mc{T}_2=\mc{T}_2\mc{T}_1$，且此时有$\mathrm{Im}\mc{T}_1\mc{T}_2=\mathrm{Im}\mc{T}_1 \cap \mathrm{Im} \mc{T}_2$。
     \item 设$\mc{A}$为$\bs{V}$上的对称变换，证明$\mc{A}$可表示为一组投影变换的线性组合，且该组投影变换的像空间的直和恰为$\bs{V}$。
 \end{enumerate}
@@ -222,12 +231,12 @@
 \begin{proof}
     由于线性变换和线性变换下对应的矩阵是基本等价的，在后续的证明过程中，不再对两者进行区分。
     \begin{thm} \label{反对称}
-        若对于任意的$\bs{\alpha} \in \bs{V}$ ，有$(\bs{\alpha},\bs{A}\bs{\alpha})=\bs{\alpha}^T\bs{A}\bs{\alpha}=0$恒成立，则$\bs{A}$为反对称矩阵（即$\bs{A}^T=-\bs{A}$）。
+        若对于任意的$\bs{\alpha} \in \bs{V}$ ，有$(\bs{\alpha},\bs{A}\bs{\alpha})=\bs{\alpha}^T\bs{A}\bs{\alpha}=0$恒成立，当且仅当$\bs{A}$为反对称矩阵（即$\bs{A}^T=-\bs{A}$）。
     \end{thm}
     \begin{enumerate}[label=(\arabic*)]
-        \item 先证$\mathrm{ker}\mc{T} \subset (\mathrm{Im}\mc{T})^{\perp}$，只需证明任取$\bs{\alpha} \in \mathrm{ker}\mc{T}$有$\bs{\alpha} \in (\mathrm{Im}\mc{T})^{\perp}$，
+        \item \label{p121.21(1)} 先证$\mathrm{ker}\mc{T} \subset (\mathrm{Im}\mc{T})^{\perp}$，只需证明任取$\bs{\alpha} \in \mathrm{ker}\mc{T}$有$\bs{\alpha} \in (\mathrm{Im}\mc{T})^{\perp}$，
         即任取$\bs{\alpha} \in \bs{V},\bs{\beta} \in \mathrm{Im}\mc{T}$有$(\bs{\alpha},\mc{T}\bs{\gamma})=0$，
-        其中$\mc{T}\bs{\alpha}=0,\mc{T}\bs{\gamma}=\bs{\beta}$。根据投影变换的定义，有$0=(\bs{\alpha}-\mc{T}\bs{\alpha},\mc{T}\bs{\gamma})=(\bs{\alpha},\mc{T}\bs{\gamma})$，
+        其中$\mc{T}\bs{\alpha}=\bs{0},\mc{T}\bs{\gamma}=\bs{\beta}$。根据投影变换的定义，有$0=(\bs{\alpha}-\mc{T}\bs{\alpha},\mc{T}\bs{\gamma})=(\bs{\alpha},\mc{T}\bs{\gamma})$，
         于是$\mathrm{ker}\mc{T} \subset (\mathrm{Im}\mc{T})^{\perp}$；
 
         下证$\mathrm{ker}\mc{T} =(\mathrm{Im}\mc{T})^{\perp}$，由于$\mathrm{dim}(\mathrm{ker}\mc{T})+\mathrm{dim}(\mathrm{Im}\mc{T})=n$，
@@ -236,9 +245,8 @@
 
         \textbf{逆命题不一定成立}。令$\mc{T}$在标准正交基下的矩阵为$2\bs{E}$，此时$\mathrm{ker}(\mc{T})=\{\bs{0}\},\mathrm{Im}\mc{T}=\R^n,(\mathrm{Im}\mc{T})^{\perp}=\{\bs{0}\}$，
         这满足了$\mathrm{ker}\mc{T} =(\mathrm{Im}\mc{T})^{\perp}$，
-        但$\bs{\nu}-\mc{T}\bs{\nu}=\bs{\nu}-2\bs{E}\bs{\nu}=-\bs{\nu}\notin (\mathrm{Im}\mc{T})^{\perp}$。
-
-        \item 先证必要性：由（1）可得，任取$\bs{\alpha} \in \bs{V}$有$\bs{\alpha} -\mc{T}\bs{\alpha} \in \mathrm{ker}{\mc{T}}$，
+        但$\bs{\nu}-\mc{T}\bs{\nu}=\bs{\nu}-2\bs{E}\bs{\nu}=-\bs{\nu}\notin (\mathrm{Im}\mc{T})^{\perp}$。 
+        \item 先证必要性：由\ref{p121.21(1)}得，任取$\bs{\alpha} \in \bs{V}$有$\bs{\alpha} -\mc{T}\bs{\alpha} \in \mathrm{ker}{\mc{T}}$，
         因此$\mc{T}(\bs{\alpha}-\mc{T}\bs{\alpha})=\bs{0} \Rightarrow \mc{T}\bs{\alpha}-\mc{T}^2 \bs{\alpha}=\bs{0}$，这说明了$\mc{T}^2=\mc{T}$。
         又由于$(\bs{\alpha}-\mc{T}\bs{\alpha},\mc{T}\bs{\alpha})=0$，
         而$(\mc{T}(\bs{\alpha}-\mc{T}\bs{\alpha}),\bs{\alpha})=(\mc{T}\bs{\alpha}-\mc{T}^2 \bs{\alpha},\bs{\alpha})=(\bs{0},\bs{\alpha})=0$，
@@ -273,8 +281,9 @@
         只需注意到$(\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\beta})=(\bs{\alpha},\mc{T}_1\mc{T}_2\bs{\beta})=(\bs{\alpha},\bs{0})=0$。
         \end{enumerate}
         \item 先证充分性，显然$\mc{T}_1-\mc{T}_2$是对称变换，只需证明$(\mc{T}_1-\mc{T}_2)^2=\mc{T}_1-\mc{T}_2$，
-        即证$2\mc{T}_2=\mc{T}_1\mc{T}_2+\mc{T}_2\mc{T}_1$。任取$\bs{\alpha} \in \bs{V}$，由于$\bs{\alpha}-\mc{T}_1\bs{\alpha} \in (\mathrm{Im}\mc{T}_1)^{\perp} \subset (\mathrm{Im}\mc{T}_2)^{\perp} $，
-        则$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=\bs{0}$。
+        即证$2\mc{T}_2-\mc{T}_1\mc{T}_2-\mc{T}_2\mc{T}_1=\mc{O}$。
+        由于$\bs{\alpha}-\mc{T}_1\bs{\alpha} \in (\mathrm{Im}\mc{T}_1)^{\perp} \subset (\mathrm{Im}\mc{T}_2)^{\perp} $，
+        则$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=0$。
         \begin{align*}
             &(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})\\
             =&(\bs{\alpha},\mc{T}_2 \bs{\alpha})-(\mc{T}_1\bs{\alpha},\mc{T}_2 \bs{\alpha}) \\
@@ -285,48 +294,87 @@
         再证必要性，若$\mc{T}_1-\mc{T}_2$是投影变换，则$2\mc{T}_2=\mc{T}_1\mc{T}_2+\mc{T}_2\mc{T}_1$。
         只需证明任取$\bs{\alpha} \in \bs{V}$，存在$\bs{\beta} \in \bs{V}$，
         有$\mc{T}_2 \bs{\alpha}=\mc{T}_1 \bs{\beta}$。
-        由于$\mc{T}_2 \bs{\alpha}=2\mc{T}_2 \bs{\alpha}_1
-        =(\mc{T}_1\mc{T}_2+\mc{T}_2\mc{T}_1)\bs{\alpha}_1=
-        \mc{T}_1\mc{T}_2\bs{\alpha}_1+\mc{T}_2\mc{T}_1 \bs{\alpha}_1
-        =\mc{T}_1\bs{\beta}+\mc{T}_2\bs{\gamma} \Rightarrow
-        \mc{T}_2 (\bs{\alpha}-\bs{\gamma})=\mc{T}_1 \bs{\beta}$
+        由于任取$\bs{\nu} \in \bs{V}$，有$2\mc{T}_2(\mc{T}_1\bs{\nu})=( \mc{T}_1\mc{T}_2+\mc{T}_2\mc{T}_1 )(\mc{T}_1 \bs{\nu}) \Rightarrow \mc{T}_2\mc{T}_1\bs{\nu}=\mc{T}_1\mc{T}_2\mc{T}_1\bs{\nu} $，
+        所以$\mc{T}_2\bs{\alpha}=2\mc{T}_2\bs{\alpha}_1=(\mc{T}_1\mc{T}_2+\mc{T}_2\mc{T}_1)\bs{\alpha}_1
+        =\mc{T}_1\mc{T}_2\bs{\alpha}_1+\mc{T}_1\mc{T}_2\mc{T}_1\bs{\alpha}_1
+        =\mc{T}_1(\mc{T}_2\bs{\alpha}_1+\mc{T}_2\mc{T}_1\bs{\alpha}_1)=\mc{T}_1\bs{\beta}$。
         
         
-        只需证明任取$\bs{\alpha},\bs{\beta} \in \bs{V}$，
-        有$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\beta})=0$，不妨令$\bs{\alpha}=\bs{\beta}$
-        \begin{align*}
-            (\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})
-            =&(\bs{\alpha},\mc{T}_2 \bs{\alpha})-(\mc{T}_1\bs{\alpha},\mc{T}_2 \bs{\alpha})=(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\alpha}) \label{4.1} \tag{1}\\
-            (\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})
-            =&(\bs{\alpha},\mc{T}_2 \bs{\alpha})-(\mc{T}_2\bs{\alpha},\mc{T}_1 \bs{\alpha})=(\bs{\alpha},(\mc{T}_2-\mc{T}_2\mc{T}_1 )\bs{\alpha})
-            \label{4.2} \tag{2}
-        \end{align*}
-        \eqref{4.1}式加\eqref{4.2}式得：
-        \begin{align*}
-        2(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=&(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\alpha})+(\bs{\alpha},(\mc{T}_2-\mc{T}_2\mc{T}_1) \bs{\alpha}) \\
-        =&(\bs{\alpha},(2\mc{T}_2-\mc{T}_2\mc{T}_1-\mc{T}_1\mc{T}_2)\bs{\alpha})\\
-        =&(\bs{\alpha},\bs{0})=0 
-        \end{align*}
-        即$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=0$恒成立。
-        根据定理\ref{反对称}有$(\mc{T}_2-\mc{T}_1\mc{T}_2)^T=-(\mc{T}_2-\mc{T}_1\mc{T}_2)$，即
-        即$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\beta})=(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\beta})=\bs{0} $。
-        \item 先证充分性，$(\mc{T}_1\mc{T}_2)^T=\mc{T}_2^T\mc{T}_1^T=\mc{T}_2\mc{T}_1=\mc{T}_1\mc{T}_2$，则其为对称变换；接着有$(\mc{T}_1\mc{T}_2)^2=\mc{T}_1(\mc{T}_2\mc{T}_1)\mc{T}_2
+        % 只需证明任取$\bs{\alpha},\bs{\beta} \in \bs{V}$，
+        % 有$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\beta})=0$，不妨令$\bs{\alpha}=\bs{\beta}$
+        % \begin{align*}
+        %     (\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})
+        %     =&(\bs{\alpha},\mc{T}_2 \bs{\alpha})-(\mc{T}_1\bs{\alpha},\mc{T}_2 \bs{\alpha})=(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\alpha}) \label{4.1} \tag{1}\\
+        %     (\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})
+        %     =&(\bs{\alpha},\mc{T}_2 \bs{\alpha})-(\mc{T}_2\bs{\alpha},\mc{T}_1 \bs{\alpha})=(\bs{\alpha},(\mc{T}_2-\mc{T}_2\mc{T}_1 )\bs{\alpha})
+        %     \label{4.2} \tag{2}
+        % \end{align*}
+        % \eqref{4.1}式加\eqref{4.2}式得：
+        % \begin{align*}
+        % 2(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=&(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\alpha})+(\bs{\alpha},(\mc{T}_2-\mc{T}_2\mc{T}_1) \bs{\alpha}) \\
+        % =&(\bs{\alpha},(2\mc{T}_2-\mc{T}_2\mc{T}_1-\mc{T}_1\mc{T}_2)\bs{\alpha})\\
+        % =&(\bs{\alpha},\bs{0})=0 
+        % \end{align*}
+        % 即$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\alpha})=0$恒成立。
+        % 根据定理\ref{反对称}有$(\mc{T}_2-\mc{T}_1\mc{T}_2)^T=-(\mc{T}_2-\mc{T}_1\mc{T}_2)$，即
+        % 即$(\bs{\alpha}-\mc{T}_1\bs{\alpha},\mc{T}_2\bs{\beta})=(\bs{\alpha},(\mc{T}_2-\mc{T}_1\mc{T}_2 )\bs{\beta})=\bs{0} $。
+        
+        \item 
+        \begin{enumerate}
+            \item 
+        先证充分性，$(\mc{T}_1\mc{T}_2)^T=\mc{T}_2^T\mc{T}_1^T=\mc{T}_2\mc{T}_1=\mc{T}_1\mc{T}_2$，则其为对称变换；接着有$(\mc{T}_1\mc{T}_2)^2=\mc{T}_1(\mc{T}_2\mc{T}_1)\mc{T}_2
         =\mc{T}_1\mc{T}_1\mc{T}_2\mc{T}_2=\mc{T}_1^2\mc{T}^2_2=\mc{T}_1\mc{T}_2$，说明为投影变换。
         
         再证必要性，若$\mc{T}_1\mc{T}_2$是投影变换，则其也是对称变换，
         于是$\mc{T}_1\mc{T}_2=(\mc{T}_1\mc{T}_2)^T=\mc{T}_2^T\mc{T}_1^T=\mc{T}_2\mc{T}_1$。
-
+            \item
         先证$\mathrm{Im}\mc{T}_1\mc{T}_2 \subset \mathrm{Im}\mc{T}_1 \cap \mathrm{Im}\mc{T}_2$，若$\bs{\alpha} \in \mathrm{Im}{\mc{T}_1\mc{T}_2}$，则$\alpha \in \mathrm{Im}\mc{T}_1$，
         又由于$\mc{T}_1\mc{T}_2=\mc{T}_2\mc{T}_1$，所以$\mathrm{Im}\mc{T}_1\mc{T}_2=\mathrm{Im}\mc{T}_2\mc{T}_1$，
         即$\bs{\alpha} \in \mathrm{Im}\mc{T}_2$，所以$\bs{\alpha} \in \mathrm{Im}\mc{T}_1 \cap \mathrm{Im}\mc{T}_2$。
 
         再证$\mathrm{Im}\mc{T}_1\mc{T}_2 \supset \mathrm{Im}\mc{T}_1 \cap \mathrm{Im}\mc{T}_2$，任取$\bs{\alpha} \in \mathrm{Im}\mc{T}_1 \cap \mathrm{Im}\mc{T}_2$，
         其中$\bs{\alpha}=\mc{T}_1\bs{\alpha}_1=\mc{T}_2\bs{\alpha}_2$，则
-        $\bs{\alpha}=\mc{T}_1\bs{\alpha}=\mc{T}_1^2\bs{\alpha}=\mc{T}_1\mc{T}_2\bs{\alpha}_2$，说明了$\bs{\alpha} \in \mathrm{Im}\mc{T}_1\mc{T}_2$。
+        $\bs{\alpha}=\mc{T}_1\bs{\alpha}_1=\mc{T}_1^2\bs{\alpha}_1=
+        \mc{T}_1(\mc{T}_2\bs{\alpha})=(\mc{T}_1\mc{T}_2)\bs{\alpha}_2$，说明了$\bs{\alpha} \in \mathrm{Im}\mc{T}_1\mc{T}_2$。
         
         综上$\mathrm{Im}\mc{T}_1\mc{T}_2 = \mathrm{Im}\mc{T}_1 \cap \mathrm{Im}\mc{T}_2$。
-        
+        \end{enumerate}
+    \item 只需证明$\mc{A}=\sum\limits_{i=1}^n \lambda_i \mc{T}_i$，
+    其中
+    \begin{enumerate}
+        \item $\mc{T}_i$为对称变换
+        \item $\mc{T}_i^2=\mc{T}_i$
+        \item $\mc{T}_i\mc{T}_j=\mc{O}(i\neq j)$
+        \item $\mc{I}=\mc{T}_1+\cdots+\mc{T}_n$
+    \end{enumerate}
+    下面讨论其构造方法。
 
+    由于是对称变换，则必可相似对角化，于是有$\mc{Q}\mc{Z}\mc{Q}^{T}=\mc{A}$。
+    令$\mc{Z}=\sum\limits_{i=1}^n \lambda_i \mc{T}_{ii}$，其中$\mc{Q}$为正交变换；$\mc{T}_{ii}=\begin{pmatrix}
+        0& \cdots &0 \\
+        \vdots & 1 & \vdots \\
+        0 & \cdots & 0
+    \end{pmatrix}$，即第$i$行$i$列的元素为$1$，其他元素全是0。
+    于是$\mc{A}=\sum\limits_{i=1}^n\lambda_i \mc{Q}\mc{T}_{ii}\mc{Q}^T=\sum\limits_{i=1}^n\lambda_i \mc{T}_i$，
+    接下来验证四个条件
+    \begin{enumerate}
+        \item $(\mc{T}_i)^T=(\mc{Q}\mc{T}_{ii}\mc{Q}^T)^T=\mc{Q}\mc{T}_{ii}\mc{Q}^T=\mc{T}_i$
+        \item $\mc{T}_i^2=(\mc{Q}\mc{T}_{ii}\mc{Q}^T)^2=\mc{Q}\mc{T}_{ii}\mc{Q}^T=\mc{T}_i$
+        \item $\mc{T}_i\mc{T}_j=\mc{Q}\mc{T}_{ii}\mc{Q}^T\mc{Q}\mc{T}_{jj}\mc{Q}^T=\mc{O}$
+        \item $\mc{T}_1+\cdots+\mc{T}_n=\sum\limits_{i=1}^n \mc{Q}\mc{T}_{ii}\mc{Q}^T=
+        \mc{Q} (\sum\limits_{i=1}^n \mc{T}_{ii} )\mc{Q}^T
+        =\mc{Q}\mc{I}\mc{Q}^T=\mc{Q}\mc{Q}^T=\mc{I}$
+    \end{enumerate}
+    
+    下面说明$\mathrm{Im}\mc{T}_1 \oplus \cdots \oplus \mathrm{Im}\mc{T}_n=\bs{V}$。
+    
+    显然$\mathrm{Im}\mc{T}_i \subset \bs{V}$，则$\mathrm{Im}\mc{T}_1 +\cdots +\mathrm{Im}\mc{T}_n \subset \bs{V}$，
+    由于$\mathrm{dim}(\mathrm{Im}\mc{T}_1 +\cdots +\mathrm{Im}\mc{T}_n)
+    =\mathrm{dim}(\mathrm{Im}(\mc{T}_1 +\cdots+\mc{T}_n))
+    =\mathrm{dim}(\mathrm{Im}\mc{I})=n$，这说明了$\mathrm{Im}\mc{T}_1 +\cdots +\mathrm{Im}\mc{T}_n = \bs{V}$；
+    又因为$\mathrm{dim}(\mathrm{Im}\mc{T}_i)=\mathrm{r}(\bs{Q}\bs{T}_{ii}\bs{Q}^T)=\mathrm{r}(\bs{T}_{ii})=1$，
+    所以$\sum\limits_{i=1}^n \mathrm{dim}(\mathrm{Im}\mc{T}_i)=1+\cdots+1=n=\mathrm{dim}(\mathrm{Im}\mc{T}_1 +\cdots +\mathrm{Im}\mc{T}_n)$，
+    说明了和为直和。
     \end{enumerate}
 \end{proof}
 \ifx\allfiles\undefined

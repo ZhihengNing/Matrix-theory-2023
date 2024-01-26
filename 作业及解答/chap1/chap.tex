@@ -97,7 +97,8 @@
     -\frac{9}{2}& -\frac{7}{2}&4 \\
     \frac{9}{2}& \frac{13}{2}& 0 \\
     -\frac{1}{2} &-\frac{3}{2} &-1
-\end{pmatrix}$
+\end{pmatrix}$。
+
 \end{solution}
 
 \begin{question}
@@ -109,19 +110,22 @@
 \begin{proof}
     \textbf{结论}：不构成直和。下面通过举反例给出证明：
 
-    取线性空间$\bs{V}=\R^3$，并令$\bs{e}_1$，$\bs{e}_2$，$\bs{e}_3$分别为$\bs{V}$
-    子空间$\bs{V}_1$，$\bs{V}_2$，$\bs{V}_3$上的一组基，其中$\bs{V}_i=\{ke_i|k\in\R\} i=1,2,3$
-    （此时$\bs{V}_i$为三维空间中的一条直线），
-    则$\mathrm{dim}(\bs{V}_i)=1$。
-    
-    容易验证子空间$\bs{V}_i$满足题设要求，
-    并且$\bs{A}=(\bs{e}_1,\bs{e}_2,\bs{e}_3)=\begin{pmatrix}
+    取线性空间$\bs{V}=\R^3$，并令$\bs{e}_1,\bs{e}_2,\bs{e}_3$分别为$\bs{V}$
+    子空间$\bs{V}_1,\bs{V}_2,\bs{V}_3$上的一组基，其中$\bs{V}_i=\{k\bs{e}_i|k\in\R,i=1,2,3\}$
+    ，$(\bs{e}_1,\bs{e}_2,\bs{e}_3)=\begin{pmatrix}
         1 & -1 &1 \\
         1 & 1 &2 \\
         0 & 0 & 0
-    \end{pmatrix}$，$\mathrm{r}(\bs{A})=2$，$\mathrm{dim}(\bs{V}_1+\bs{V}_2+\bs{V}_3)=2$，所以$\bs{V}_1+\bs{V}_2+\bs{V}_3$构成了$\R^2$。
+    \end{pmatrix}$。考察$\bs{V}_i$的几何意义，为同一二维平面的一条直线，
+    则$\mathrm{dim}(\bs{V}_i)=1$。
+    
+    容易验证子空间满足$\bs{V}_1 \cap \bs{V}_2 \cap \bs{V}_3=\{\bs{0}\}$，
+    并且$\bs{V}_1+\bs{V}_2+\bs{V}_3=\{\sum\limits_{i=1}^n\bs{\alpha}_i|\bs{\alpha}_i \in \bs{V}_i\}
+    =\{k_i\bs{e}_i|k_i \in \R \}=(k_1-k_2+k_3,k_1+k_2+2k_3,0)^T=\R^2$，
+    所以$\mathrm{dim}(\bs{V}_1+\bs{V}_2+\bs{V}_3)=\mathrm{r}(\bs{e}_1,\bs{e}_2,\bs{e}_3)=2$。
     此时$\mathrm{dim}(\bs{V}_1)+\mathrm{dim}(\bs{V}_2)+\mathrm{dim}(\bs{V}_3)=1+1+1=3 \neq \mathrm{dim}(\bs{V}_1+\bs{V}_2+\bs{V}_3)$，这便说明了
     $\bs{V}_1+\bs{V}_2+\bs{V}_3$不构成直和。
+
 \end{proof}
 
 \begin{question}
@@ -132,17 +136,17 @@
 
 \begin{proof}
     与例\ref{no zhihe}有类似的证明过程，不妨令$\bs{V}=\R^n$，则$\mathrm{dim}(\bs{V})=n$
-    ，取$n$个向量$\bs{e}_1,\cdots,\bs{e}_n$，
+    ，取$n$个向量$\bs{e}_1,\cdots,\bs{e}_n$，令$\bs{V}_i=\{k_i\bs{e}_i|k_i\in\R,i=1,\ldots,n\}$，
     其中
     $\bs{e}_1=(1,0,\ldots,0)^T$，
     $\bs{e}_2=(\cos \frac{\pi}{n},\sin \frac{\pi}{n},0,\ldots,0)^T$，
     $\bs{e}_k=(\cos \frac{k\pi}{n},\sin \frac{\pi}{n},0,\ldots,0)^T$，
     $\bs{e}_n=(\cos \frac{(n-1)\pi}{n},\sin \frac{(n-1)\pi}{n},0,\ldots,0)^T$，
-    并且$||\bs{e}_i||_2^2=1$。
+    并且$||\bs{e}_i||_2^2=1$。考察$\bs{V}_i$的几何意义，为同一二维平面上的一条直线，则$\mathrm{dim}(\bs{V}_i)=1$。
 
-    令$\bs{V}_i=\{k\bs{e}_i|k\in\R,i=1,\ldots,n\}$，则$\mathrm{dim}(\bs{V}_i)=1$，
-    $\sum_{i=1}^n \bs{V}_i=\{\sum_{i=1}^n \bs{\alpha}_i|\bs{\alpha}_i \in \bs{V}_1\}$构成了$\R^2$，
-    所以$\mathrm{dim}(\sum_{i=1}^n \bs{V}_i)=2$。而$\sum_{i=1}^n \mathrm{dim}(\bs{V}_i)=n \neq \mathrm{dim}(\sum_{i=1}^n \bs{V}_i)$，
+    于是$\sum\limits_{i=1}^n \bs{V}_i=\{\sum\limits_{i=1}^n \bs{\alpha}_i|\bs{\alpha}_i \in \bs{V}_i\}=
+    \{\sum\limits_{i=1}^n k_i\bs{e}_i|k_i \in \R\}=\R^2$，
+    所以$\mathrm{dim}(\sum\limits_{i=1}^n \bs{V}_i)=2$。而$\sum\limits_{i=1}^n \mathrm{dim}(\bs{V}_i)=n \neq \mathrm{dim}(\sum\limits_{i=1}^n \bs{V}_i)$，
     这便说明了不构成直和。
     
     下面验证$\bs{V}_1$，$\bs{V}_2$，$\ldots$，$\bs{V}_n$两两的交空间均为零空间。
@@ -153,20 +157,22 @@
     k_i\sin \frac{(i-1)\pi}{n}=k_j \sin \frac{(j-1)\pi}{n} \label{(2)}
     \end{align}
 \begin{itemize}
-    \item 若$i=1$，$k_i=k_j=0$。
-    \item 若$i,j>1$，$k_i=0$，
+    \item 若$i=1$，根据式\eqref{(2)}得$k_j=0$，根据式\eqref{(1)}得$k_i=0$。
+    \item 若$i>1$，$k_i=0$，
     由于$\frac{(i-1)\pi}{n} \in (0,\pi)$，
     则$\sin x \in (0,\pi)$，
-    则$k_j=0$。同理：若$k_j=0$，则$k_i=0$。
-    \item 若$i,j>1$，$i=1+\frac{n}{2}$，根据式$\ref{(1)}$得$k_j=0$，根据式$\ref{(2)}$得$k_i=0$。
+    根据式\eqref{(2)}得$k_j=0$。同理：若$k_j=0$，则$k_i=0$。
+    \item 若$i>1$，$i=1+\frac{n}{2}$，
+    根据式\eqref{(1)}得$k_j=0$，根据式\eqref{(2)}得$k_i=0$。
     同理：若$j=1+\frac{n}{2}$，则$k_i=k_j=0$。
-    \item 若$i,j>1$，且$k_i\neq 0$，$k_j \neq 0$，
-    $i\neq 1+\frac{n}{2}$，$j \neq 1+\frac{n}{2}$。
+    \item 若$i>1$，且$k_i\neq 0$，$k_j \neq 0$，
+    $i\neq 1+\frac{n}{2}$，$j \neq 1+\frac{n}{2}$，
     此时$k_i\cos \frac{(i-1)\pi}{n} \neq 0$，$k_j\cos \frac{(i-1)\pi}{n} \neq 0$，
-    用式$\ref{(2)}$除以式$\ref{(1)}$，
+    用式\eqref{(2)}除以式\eqref{(1)}，
     得$\tan \frac{(i-1)\pi}{n}=\tan \frac{(i-1)\pi}{n}$，此时$i= j$，这与$i \neq j$矛盾。
 \end{itemize}
-则$k_1=k_2=0$，$\bs{V}_i \cap \bs{V}_j =\{\bs{0}\}$，这便完成了证明。
+综上$k_1=k_2=0$，$\bs{V}_i \cap \bs{V}_j =\{\bs{0}\}$，这便完成了证明。
+
 \end{proof}
 
 
@@ -185,16 +191,20 @@
         所以$\bs{V}$显然满足加法和乘法的八条运算法则。
         接下来一一验证八条法则：
 
-        任取$a,b,c \in \bs{V}$，$k,l \in \R$，则$a=(a_2x^2+a_1x+a_0)e^x$，$a=(b_2x^2+b_1x+b_0)e^x$，$c=(c_2x^2+c_1x+c_0)e^x$
+        任取$a,b,c \in \bs{V}$，$k,l \in \R$，令$a=(a_2x^2+a_1x+a_0)e^x$，$a=(b_2x^2+b_1x+b_0)e^x$，$c=(c_2x^2+c_1x+c_0)e^x$。
         
         加法：
 
-        $a+b=b+a$，$(a+b)+c=a+(b+c)$，$a+0=a \Leftrightarrow 0=(0x^2+0x+0)e^x$，
-        $a+b=0 \Leftrightarrow b=(-a_2x^2-a_1x-a_0)e^x$
+        $a+b=b+a$；$(a+b)+c=a+(b+c)$；
+        $a+0=a \Leftrightarrow 0=(0x^2+0x+0)e^x$；
+        $a+b=0 \Leftrightarrow b=(-a_2x^2-a_1x-a_0)e^x$。
         
         乘法：
 
-        $k(a+b)=ka+kb$，$(k+l)a=ka+la$，$(kl)a=k(la)$，$1a=a$
+        $k(a+b)=ka+kb$；
+        $(k+l)a=ka+la$；
+        $(kl)a=k(la)$；
+        $1a=a$。
         
         \item 只需验证其对加法和乘法封闭，
         任取$a,b \in \bs{V}$，$k \in \R$，
@@ -202,12 +212,12 @@
         则$\mc{D}(a)+\mc{D}(b)=((a_2+b_2)x^2+(2a_2+a_1+2b_2+b_1)x+a_1+a_0+b_1+b_0)e^x=\mc{D}(a+b)$，
         $\mc{D}(ka)=k(a_2x^2+(2a_2+a_1)x+a_1+a_0)e^x=k\mc{D}(a)$。
 
-        又由于$\mc{D}(\alpha_1)=(x^2+2x)e^x$，$\mc{D}(\alpha_2)=(x+1)e^x$，$\mc{D}(\alpha_3)=e^x$。
+        接下来计算基经过线性变换后的结果，即$\mc{D}(\alpha_1)=(x^2+2x)e^x$，$\mc{D}(\alpha_2)=(x+1)e^x$，$\mc{D}(\alpha_3)=e^x$。
         所以$\mc{D}(\alpha_1,\alpha_2,\alpha_3)=(\alpha_1,\alpha_2,\alpha_3)\begin{pmatrix}
             1 & 0 & 0\\
             2 & 1 & 0 \\
             0 & 1 & 1
-        \end{pmatrix}$
+        \end{pmatrix}$。
     \end{enumerate}
 \end{solution}
 
@@ -218,10 +228,12 @@
 \begin{solution}
 \textbf{结论}：不一定成立。下面通过举反例说明，即若$\mc{A}^2=n\mc{A}$，$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$仍然成立。
 
-先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，
-显然$\mathrm{Im}\mc{A} \subset \bs{V}$，所以$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
+先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，任取$\bs{\alpha} \in \bs{V}$，有$\mc{A}\bs{\alpha} \in \bs{V}$，
+即$\mathrm{Im}\mc{A} \subset \bs{V}$，于是有$\mc{A}(\mathrm{Im}\mc{A}) \subset \mc{A}(\bs{V})$
+即$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
 任取$\bs{\alpha} \in \bs{V}$，若存在$\bs{\beta}$，使$\mc{A}^2(\bs{\beta})=\mc{A}(\bs{\alpha})$，则$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。因为$\mc{A}(\bs{\alpha})=\frac{1}{n}\mc{A}^2(\bs{\alpha})=\mc{A}^2(\frac{1}{n}\bs{\alpha})$，
-而线性空间数乘封闭，令$\frac{1}{n}\bs{\alpha}=\bs{\beta}$便说明了$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$。
+令$\frac{1}{n}\bs{\alpha}=\bs{\beta}$便说明了$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}\mc{A}^2=\mathrm{Im}\mc{A}$。
+
 \end{solution}
 
 \begin{question}（p100.18）
@@ -238,16 +250,18 @@
         \mathrm{Im}(\mc{A})=\mathrm{Im}(\bs{V})=\mathrm{Im}(\mathrm{ker}\mc{A} \oplus  \mathrm{Im} \mc{A})=\mathrm{Im}(\mathrm{ker}\mc{A})+\mathrm{Im}(\mathrm{Im}\mc{A})
         =\bs{0}+\mathrm{Im}^2\mc{A}=\mathrm{Im}^2\mc{A}
     \end{align*}
-    \item 先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，
-    显然$\mathrm{Im}\mc{A} \subset \bs{V}$，所以$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
+    \item 先证$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$，任取$\bs{\alpha} \in \bs{V}$，有$\mc{A}\bs{\alpha} \in \bs{V}$，
+    即$\mathrm{Im}\mc{A} \subset \bs{V}$，于是有$\mc{A}(\mathrm{Im}\mc{A}) \subset \mc{A}(\bs{V})$
+    即$\mathrm{Im}\mc{A}^2 \subset \mathrm{Im}\mc{A}$；
+    再证$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$，
     任取$\bs{\alpha} \in \bs{V}$，一定存在$\bs{\beta},\bs{\gamma}$，
-    使$\bs{\alpha}=\bs{\beta}+\bs{\gamma}$，其中$\mc{A}(\bs{\beta})=0,\bs{\gamma}=\mc{A}(\eta) \in \mathrm{Im}(\mc{A})$，
+    使$\bs{\alpha}=\bs{\beta}+\bs{\gamma}$，其中$\mc{A}(\bs{\beta})=\bs{0},\bs{\gamma}=\mc{A}(\eta) \in \mathrm{Im}(\mc{A})$，
     \begin{align*}
         \mc{A}(\bs{\alpha})=\mc{A}(\bs{\beta}+\bs{\gamma})=
         \mc{A}(\bs{\beta})+\mc{A}(\bs{\gamma})=\mc{A}(\bs{\gamma})=\mc{A}(\mc{A}(\bs{\eta}))
         =\mc{A}^2(\eta)
     \end{align*}
-    则$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}(\mc{A}^2)=\mathrm{Im}(\mc{A})$
+    则$\mathrm{Im}\mc{A} \subset \mathrm{Im}\mc{A}^2$。综上，$\mathrm{Im}(\mc{A}^2)=\mathrm{Im}(\mc{A})$。
     
 \end{enumerate}
 \end{proof}
@@ -258,7 +272,7 @@
     \mc{T}(\bs{A})=\begin{pmatrix}
         1 & 2\\
         0 & 0
-    \end{pmatrix} \bs{A},\quad \bs{A} \in \R^{2 \times 2}
+    \end{pmatrix} \bs{A}
 \end{align*}
 \begin{enumerate}[label=(\arabic*)]
     \item 证明：$\mc{T}$是$\R^{2 \times 2}$上的线性变换。
@@ -287,9 +301,9 @@
 
 \begin{solution}
     \begin{enumerate}[label=(\arabic*)]
-        \item 任取$\bs{A},\bs{B} \in \mc{R}^{2 \times 2}$，$k \in \R$，
+        \item 任取$\bs{A},\bs{B} \in \R^{2 \times 2}$，$k \in \R$，
         显然$\mc{T}(\bs{A}+\bs{B})=\mc{T}(\bs{A})+\mc{T}(\bs{A})$，$k\mc{T}(\bs{A})=\mc{T}(k\bs{A})$，这便说明了$\mc{T}$是$\R^{2 \times 2}$上的线性变换。
-        \item 
+        \item 计算基经过线性变换后的结果，即
         \begin{align*}
             \mc{T}(\bs{E}_1)=\begin{pmatrix}
                 1  & 0\\
@@ -308,8 +322,8 @@
         所以$\mc{T}(\bs{E}_1)=\bs{E}_1$，
         $\mc{T}(\bs{E}_2)=\bs{E}_1+\bs{E}_3+\bs{E}_4$，
         $\mc{T}(\bs{E}_3)=2\bs{E}_1+\frac{1}{2}\bs{E}_3+\frac{1}{2}\bs{E}_4$，
-        $\mc{T}(\bs{E}_4)=-2\bs{E}_1+\frac{1}{2}\bs{E}_3+\frac{1}{2}\bs{E}_4$
-        所以
+        $\mc{T}(\bs{E}_4)=-2\bs{E}_1+\frac{1}{2}\bs{E}_3+\frac{1}{2}\bs{E}_4$，
+        于是
         \begin{align*}
             \mc{T}(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)=(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4) 
             \begin{pmatrix}
@@ -334,21 +348,21 @@
             0 &0 
         \end{pmatrix}
         \end{align*}
-        其中$\bs{x}=(1,2,3,4)^T$
+        其中$\bs{x}=(1,2,3,4)^T$。
         \item 将$\bs{C}$化为行阶梯形式矩阵$\begin{pmatrix}
             1 & 1 & 2& -2 \\
             0 & 0& 0& 0 \\
             0& 1 & \frac{1}{2} & \frac{1}{2} \\
             0& 0 & 0 & 0
         \end{pmatrix}$，可知$\mathrm{r}(\bs{C})=2$，则选取第一和第二列作为极大无关组，
-        则$\mathrm{Im}\mc{T}=(\bs{E_1},\bs{E_1}+\bs{E}_3+\bs{E}_4)$；$\mathrm{ker}(\mc{T})$则为矩阵$\bs{C}$的化零空间，
-        即$\mathrm{ker}(\mc{T})=(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4)$
+        则$\mathrm{Im}\mc{T}=(\bs{E_1},\bs{E_1}+\bs{E}_3+\bs{E}_4)$；由于$\mathrm{ker}(\mc{T})$为矩阵$\bs{C}$的化零空间，
+        则$\mathrm{ker}(\mc{T})=(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4)$。
         \item
-        矩阵$\bs{C}$的特征值为$\lambda_1=\lambda_2=0,\lambda_3=\lambda_4=1$，
+        矩阵$\bs{C}$的特征值为$\lambda_1=\lambda_2=0,\lambda_3=\lambda_4=1$；
         
-        行列式因子为$D_1=1,D_2=1,D_3=\lambda(\lambda-1),D_4=\lambda^2(\lambda-1)^2$，
+        行列式因子为$D_1=1,D_2=1,D_3=\lambda(\lambda-1),D_4=\lambda^2(\lambda-1)^2$；
         
-        则不变因子为$d_1=1,d_2=1,d_3=\lambda(\lambda-1),d_3=\lambda(\lambda-1)$，
+        则不变因子为$d_1=1,d_2=1,d_3=\lambda(\lambda-1),d_3=\lambda(\lambda-1)$；
         
         最小多项式为$m_{\bs{A}}(\lambda)=\lambda(\lambda-1)$。
         \item 一定存在，这是由于最小多项式不同项的最高系数为1。
@@ -358,7 +372,7 @@
             0 & 0& 0& 0 \\
             0& 0 & 1 & 0 \\
             0& 0 & 0 & 1
-        \end{pmatrix}$
+        \end{pmatrix}$。
 
         求出属于$\lambda=0$的特征向量$\bs{p}_1=(-3,-1,2,0)^T$，$\bs{p}_2=(5,-1,0,2)^T$。
         
@@ -367,12 +381,13 @@
         接着设新基底为$(\bs{Y}_1,\bs{Y}_2,\bs{Y}_3,\bs{Y}_4)$，
         令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3,\bs{p}_4)$，
         则$(\bs{Y}_1,\bs{Y}_2,\bs{Y}_3,\bs{Y}_4)=(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)\bs{P}
-        =(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4,\bs{E}_1,\bs{E}_3+\bs{E}_4)$
+        =(-3\bs{E_1}-\bs{E}_2+2\bs{E}_3,5\bs{E_1}-\bs{E}_2+2\bs{E}_4,\bs{E}_1,\bs{E}_3+\bs{E}_4)$。
     \end{enumerate}
 \end{solution}
 
 \begin{question}（p100.21）
-复数集$\mathbb{C}$上的共轭变换$\bs{z} \rightarrow \bar{\bs{z}}$是否是$\mathbb{C}$作为复线性空间上的线性变换？是否是$\bs{C}$作为实线性空间上的
+复数集$\mathbb{C}$上的共轭变换$\bs{z} \rightarrow \bar{\bs{z}}$是否是$\mathbb{C}$作为复线性空间上的线性变换？
+是否是$\mathbb{C}$作为实线性空间上的
 线性变换？
 \end{question}
 
@@ -387,39 +402,59 @@
     $\mc{T}(kz_1)=(k_1a-k_2b)+(-k_1b-k_2a)i $，
     $k\mc{T}(z_1)=(k_1+k_2i)(a-bi)=(k_1a+k_2b)+(-k_1b+k_2a)i$，
     $\mc{T}(kz_1) \neq k\mc{T}(z_1)$，
-    对数乘不封闭，不构成线性变换。
+    对数乘不封闭。于是在复线性空间上不构成线性变换。
     
     若选取的是实线性空间。加法封闭同上，下面验证数乘封闭，此时$k_2=0$，
-    $\mc{T}(kz_1)=ka-k_1b=k\mc{T}(z_1)$，则构成线性变换。
+    $\mc{T}(kz_1)=ka-k_1b=k\mc{T}(z_1)$。于是在实线性空间上构成线性变换。
 \end{solution}
 
 \begin{question}（p100.22）
-设矩阵$\bs{A}$可以相似对角化，证明：$\bs{A}$可以表示为矩阵$\bs{P}_1$，$\cdots$，$\bs{P}_n$的线性组合，
-其中$\bs{P}_1$，$\ldots$，$\bs{P}_n$满足
+设矩阵$\bs{A}$可以相似对角化，证明：$\bs{A}$可以表示为矩阵$\bs{P}_1,\ldots,\bs{P}_n$的线性组合，
+其中$\bs{P}_1,\ldots,\bs{P}_n$满足
 \begin{enumerate}[label=(\arabic*)]
-    \item 对一切$i$，有$\bs{P}_i^2=\bs{P}_i$；
-    \item 对一切$i \neq j$，有$\bs{P}_i\bs{P}_j=\bs{O}$;
+    \item 对一切$i$，有$\bs{P}_i^2=\bs{P}_i$
+    \item 对一切$i \neq j$，有$\bs{P}_i\bs{P}_j=\bs{O}$
     \item $\bs{E}=\bs{P_1}+\cdots+\bs{P}_n$
 \end{enumerate}
 给出具体的构造方法，并讨论该分解的唯一性。
 \end{question}
 
 \begin{solution}
-    由于矩阵$\bs{A}$可相似对角化，则存在$\bs{Q}$使得$\bs{Q}^{-1}\bs{A}\bs{Q}=\bs{\Lambda}=\mathrm{diag}(\lambda_1,\ldots,\lambda_n)$
-    不妨令$\bs{E}_{ii}=\begin{pmatrix}
+    不妨令$\bs{A}\in \R^{n\times n}$，
+    由于矩阵$\bs{A}$可相似对角化，则存在$\bs{Q}$使得
+    $\bs{Q}^{-1}\bs{A}\bs{Q}=\bs{\Lambda}=\\
+    \mathrm{diag}\{\lambda_1,\ldots,\lambda_n\}$。
+    设$\bs{E}_{ii}=\begin{pmatrix}
         0& \cdots &0 \\
         \vdots & 1 & \vdots \\
         0 & \cdots & 0
     \end{pmatrix}$，这表明了矩阵第$i$行第$i$列为$1$，其他元素全为$0$。
-    则$\bs{\Lambda}=\sum_{i=1}^n \lambda_i \bs{E}_{ii}$，
-    $\bs{A}=\sum_{i=1}^n\lambda_i \bs{Q}\bs{E}_{ii}\bs{Q}^{-1}$，
+    则$\bs{\Lambda}=\sum\limits_{i=1}^n \lambda_i \bs{E}_{ii}$，
+    $\bs{A}=\sum\limits_{i=1}^n\lambda_i \bs{Q}\bs{E}_{ii}\bs{Q}^{-1}$，
     令$\bs{P}_i=\bs{Q}\bs{E}_{ii}\bs{Q}^{-1}$，
-    便满足了线性组合的要求，并且容易验证$\bs{P}_{i},\ldots,\bs{P}_{n}$满足三个约束条件。
+    则$\bs{A}$可以表示为矩阵$\bs{P}_1,\ldots,\bs{P}_n$的线性组合，
+    并且容易验证$\bs{P}_{i},\ldots,\bs{P}_{n}$满足三个约束条件。
 
-    下面验证该分解的唯一性，假设存在其他符合题意的分解，记$\bs{A}=\sum_{i=1}^n\bs{\nu}_i\bs{H}_i$。
-    则$\bs{A}\bs{H}_j=\sum_{i=1}^n \bs{\nu}_i\bs{H}_i\bs{H}_j=\bs{\nu}_i\bs{H}_j$。
+    唯一性的证明不会。
+    % 下面验证该分解的唯一性，假设存在其他符合题意的分解，记$\bs{A}=\sum\limits_{i=1}^n \nu_i\bs{H}_i$。
+    % 则$\bs{A}\bs{H}_j=\sum\limits_{i=1}^n \nu_i \bs{H}_i\bs{H}_j= \nu_i \bs{H}_j^2=\nu_i \bs{H}_j$。
 
-    若$\bs{H}_j=\bs{O}$，
+    % 若$\bs{H}_j=\bs{O}$，说明了矩阵$\bs{H}_j$在线性组合中是不作贡献的，
+
+    % 若$\bs{H}_j\neq\bs{O}$，对其进行列分块$(\bs{h}_1,\ldots,\bs{h}_n)$，则有$\bs{H}_j\bs{h}_k=\nu_i \bs{h}_k$。
+    % 若$\bs{h}_k \neq \bs{0}$，则
+    % $\nu_i$是$\bs{H}_j$的特征值，$\bs{h}_k$是对应的特征向量。于是$\bs{H}_j$可表示为$\begin{pmatrix}
+    %     \bs{h}
+    % \end{pmatrix}$
+
+    % 由于$\bs{H}_j^2=\bs{H}_j$，则$\bs{H}_j$必可相似对角化，
+    % 并且其特征值为$0,1$，于是$\bs{H}_j=\bs{P}_j\begin{pmatrix}
+    %     1 & & & & \\
+    %     & \ddots& & & \\
+    %     & & 0 & &\\
+    %     & & & \ddots &\\
+    %     & & & & 0
+    % \end{pmatrix}$
 \end{solution}
 
 \begin{question}（p100.23）
@@ -434,8 +469,8 @@
 
 \begin{solution}
     \begin{enumerate}[label=(\arabic*)]
-        \item 只需验证对于实数$l_1,\ldots,l_k$，当$l_1\bs{\nu}+l_2 \mc{A}\bs{\nu}+\cdots+l_k\mc{A}^{k-1}\bs{\nu} = \bs{0}$时，有$l_1=\cdots=l_k=0$
-        对等式两边进行$\mc{A}^m, m=k-1,\ldots,1$的线性变换， 由于$\mc{A}^k\bs{\nu}=\bs{0}$，则$\mc{A}^{k+d}\bs{\nu}=\bs{0}$，其中$d \geq 0$。
+        \item 只需验证对于实数$l_1,\ldots,l_k$，当$l_1\bs{\nu}+l_2 \mc{A}\bs{\nu}+\cdots+l_k\mc{A}^{k-1}\bs{\nu} = \bs{0}$时，有$l_1=\cdots=l_k=0$。
+        对等式两边进行$\mc{A}^m \ (m=k-1,\ldots,1)$的线性变换， 由于$\mc{A}^k\bs{\nu}=\bs{0}$，则$\mc{A}^{k+d}\bs{\nu}=\bs{0}$，其中$d \geq 0$。
         \begin{align*}
             &l_1\mc{A}^{k-1}\bs{\nu}+l_2\mc{A}^{k}\bs{\nu}+\cdots+l_k\mc{A}^{2k-2}\bs{\nu}=\bs{0}  \tag{1} \label{式1}\\
             &l_1\mc{A}^{k-2}\bs{\nu}+l_2\mc{A}^{k-1}\bs{\nu}+\cdots+l_k\mc{A}^{2k-1}\bs{\nu}=\bs{0}  \tag{2} \label{式2}\\
@@ -443,16 +478,17 @@
             &l_1\mc{A}\bs{\nu}+l_2\mc{A}^{2}\bs{\nu}+\cdots+l_k\mc{A}^{k}\bs{\nu}=\bs{0}  \tag{n} \label{式n}
         \end{align*}
         由式\eqref{式1}可知，$l_1\mc{A}^{k-1}\bs{\nu}=\bs{0}$，而$\mc{A}^{k-1}\bs{\nu} \neq \bs{0}$，所以$l_1=0$。
-        同理，观察式\eqref{式2} 到式\eqref{式n}，可得$l_1=\cdots=l_n=0$。
+        同理，观察式\eqref{式2} 到式\eqref{式n}，
+        可得$l_2=0,\ldots,l_n=0$，于是$l_1=\cdots=l_n=0$。
         \item 验证$\bs{W}$的基$(\bs{e}_1,\ldots,\bs{e}_k)$经过线性变换后仍在$\bs{W}$中即可。$\mc{A}(\bs{e}_1)=\mc{A}\bs{\nu},\ldots,\mc{A}(\bs{e}_k)=\mc{A}^{k}\bs{\nu}=\bs{0}$，
-        这表明了经过线性变换后$\mc{A}(\bs{e}_i)=\bs{e}_{i+1} \in \bs{W}$（$i=1,\ldots,k-1$），而$\mc{A}(\bs{e}_k)=\bs{0} \in \bs{W}$。
-        \item 根据第(2)问，$\mc{A}(\bs{e}_1,\ldots,\bs{e}_k)=(\bs{e}_1,\ldots,\bs{e}_k)\begin{pmatrix}
+        这表明了$\mc{A}(\bs{e}_i)=\bs{e}_{i+1} \in \bs{W}\ (i=1,\ldots,k-1)$，$\mc{A}(\bs{e}_k)=\bs{0} \in \bs{W}$。\label{100.23(2)}
+        \item 根据第\ref{100.23(2)}问，$\mc{A}(\bs{e}_1,\ldots,\bs{e}_k)=(\bs{e}_1,\ldots,\bs{e}_k)\begin{pmatrix}
             0 & 0 &\cdots& 0 & 0\\
             1 & 0 & \cdots& 0 & 0 \\
-            0 & 1 &  & 0 & 0  \\
-            \vdots& & \ddots & & \vdots \\
+            0 & 1 &\cdots  & 0 & 0  \\
+            \vdots& \vdots& \ddots &\vdots & \vdots \\
             0 & 0 & \cdots & 1 & 0
-        \end{pmatrix}$
+        \end{pmatrix}$。
     \end{enumerate}
 \end{solution}
 
@@ -462,18 +498,20 @@
 \begin{align*}
     \bs{W}_i=\mathrm{span}\{\bs{\nu}_i,(\mc{A}-\lambda_i \mathrm{id})\bs{\nu}_i,\ldots,(\mc{A}-\lambda_i \mathrm{id})^{k_i-1}\bs{\nu}_i\}
 \end{align*}
-证明：若$\lambda_i \neq \lambda_j$，则$\bs{W} \cap \bs{W}_j =\{\bs{0}\}$
+证明：若$\lambda_i \neq \lambda_j$，则$\bs{W} \cap \bs{W}_j =\{\bs{0}\}$。
 \end{question}
 
 \begin{proof}
     由$(x-\lambda_i)^{k_i}$与$(x-\lambda_j)^{k_j}$互素，则存在$f(x),g(x)$，使$f(x)(x-\lambda_i)^{k_i}+g(x)(x-\lambda_j)^{k_j}=1$，
     对应到线性变换$\mc{A}$上即为$f(\mc{A})(\mc{A}-\lambda_i\mathrm{id})^{k_i}+g(\mc{A})(\mc{A}-\lambda_j\mathrm{id})^{k_j}=\mathrm{id}$。
     
-    令$\bs{\alpha} \in \bs{W}_i \cap \bs{W}_j$，则$\bs{\alpha}=l_1\bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{k_i-1}\bs{\nu}_i$，
-    $(\mc{A}-\lambda_i\mathrm{id})^{k_i}\bs{\alpha}=l_1(\mc{A}-\lambda_i\mathrm{id})^{k_i} \bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{2k_i-1}=\bs{0}$；同理，$(\mc{A}-\lambda_j\mathrm{id})^{k_j}\bs{\alpha}=\bs{0}$。
+    令$\bs{\alpha} \in \bs{W}_i \cap \bs{W}_j$，则$\bs{\alpha} \in \bs{W}_i$，于是$\bs{\alpha}=l_1\bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{k_i-1}\bs{\nu}_i$，
+    $(\mc{A}-\lambda_i\mathrm{id})^{k_i}\bs{\alpha}=l_1(\mc{A}-\lambda_i\mathrm{id})^{k_i} \bs{\nu}_i+\cdots+l_{k_i}(\mc{A}-\lambda_i\mathrm{id})^{2k_i-1}=\bs{0}$；
+    同理，$\bs{\alpha} \in \bs{W}_j$，$(\mc{A}-\lambda_j\mathrm{id})^{k_j}\bs{\alpha}=\bs{0}$。
     又因为$\bs{\alpha}=\mathrm{id}(\bs{\alpha})=f(\mc{A})(\mc{A}-\lambda_i\mathrm{id})^{k_i}\bs{\alpha}+g(\mc{A})(\mc{A}-\lambda_j\mathrm{id})^{k_j}\bs{\alpha}$。
     所以$\bs{\alpha}=\mathrm{id}(\bs{\alpha})=\bs{0}+\bs{0}=\bs{0}$，
     即$\bs{W} \cap \bs{W}_j =\{\bs{0}\}$。
+
 \end{proof}
 \ifx\allfiles\undefined
 \end{document}

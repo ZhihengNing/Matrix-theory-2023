@@ -26,7 +26,7 @@
         0 &-1 & 0 \\
         1 & 1 & 0 \\
         1 & 0 & 0
-    \end{pmatrix}$
+    \end{pmatrix}$。
 
 \end{solution}
 
@@ -516,7 +516,7 @@
     \end{pmatrix}
     \end{align*}
 
-    $\bs{B}$的特征值$\lambda_1=-1,\lambda_2=\lambda_3=2,m_{\bs{B}}(\lambda)=(\lambda+1)(\lambda-2)$，
+    $\bs{B}$的特征值$\lambda_1=-1,\lambda_2=\lambda_3=2,m_{\bs{B}}(\lambda)=(\lambda+1)(\lambda-2)$。
     \begin{enumerate}[label=(\arabic*)]
         \item 令$P(\lambda)=a_0+a_1\lambda$，则：
         \begin{align*}
@@ -782,10 +782,10 @@
     \end{align*}
     不妨设$\bs{x}(0)=(k_1,k_2,k_3)^T$，则
     $\bs{x}(t)=e^{\bs{A}t}\bs{x}(0)=\begin{pmatrix}
-        k_1e^{2t}+k_2te^{2t}+k_3te^{2t} \\
-        k_2(t+1)e^{2t}+k_3te^{2t}\\
-        -k_2te^{2t}+k_3(1-t)e^{2t}
-    \end{pmatrix}$
+        (k_1+k_2t+k_3t)e^{2t} \\
+        (k_2t+k_2+k_3t)e^{2t}\\
+        (-k_2t-k_3t+k_3)e^{2t}
+    \end{pmatrix}$。
 
 \end{solution}
 
@@ -837,7 +837,7 @@
     
     不妨设$\bs{x}(0)=(k_1,k_2)^T$，则：
     \begin{align*}
-        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{F}(t) du\\
+        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{F}(u) du\\
         &=\frac{1}{2}\begin{pmatrix}
             e^{2t}+e^{4t} & -e^{2t}+e^{4t}\\
         -e^{2t}+e^{4t}& e^{2t}+e^{4t}
