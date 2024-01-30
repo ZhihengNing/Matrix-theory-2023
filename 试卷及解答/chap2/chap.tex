@@ -1,0 +1,135 @@
+\ifx\allfiles\undefined
+\documentclass[12pt, a4paper, oneside, UTF8]{ctexbook}
+\def\configPath{../config}
+\input{\configPath/_config}
+\begin{document}
+\else
+\fi
+
+\chapter{模拟卷二}
+\begin{question} 
+   设$\bs{A}=\begin{pmatrix}
+    1&2&-2&3\\
+    2&-1&1&1\\
+    4&3&-3&7
+   \end{pmatrix}$，
+   求$\bs{A}$的广义逆$\bs{A}^+$。
+\end{question}
+
+\begin{solution}
+    对矩阵$\bs{A}$进行满秩分解，得：
+    $\bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+        1 & 2\\
+        2&-1\\
+        4&3
+    \end{pmatrix}\begin{pmatrix}
+        1&0&0&1\\
+        0&1&-1&1
+    \end{pmatrix}$，于是
+    \begin{align*}
+        \bs{C}\bs{C}^T=\begin{pmatrix}
+            2&1\\
+            1&2
+        \end{pmatrix} \quad \bs{B}^T\bs{B}=\begin{pmatrix}
+            21&12\\
+            12&14
+        \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{A}^+&=
+    \bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+    &=\begin{pmatrix}
+        1 & 2\\
+        2&-1\\
+        4&3
+    \end{pmatrix}\begin{pmatrix}
+        2&1\\
+        1&2
+    \end{pmatrix}^{-1}\begin{pmatrix}
+        21&12\\
+        12&14
+    \end{pmatrix}^{-1}
+    \begin{pmatrix}
+        1&0&0&1\\
+        0&1&-1&1
+    \end{pmatrix}\\
+    &=\frac{1}{18}\begin{pmatrix}
+       4&-4&2\\
+       -5&8&-1\\
+       3&0&3 
+    \end{pmatrix}
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    设$\bs{A}=\begin{pmatrix}
+        3&1&-2\\
+        -7&-2&9\\
+        -2&-1&4
+    \end{pmatrix}$，
+    求可逆阵$\bs{P}$和若当（Jordan）标准型$\bs{J}$，
+    使$\bs{P}^{-1}\bs{A}\bs{P}=\bs{J}$，并求$e^{\bs{A}t}$。
+\end{question}
+
+
+\begin{question}
+    用矩阵函数求解下常微分方程组初值问题的解
+    \begin{align*}
+    \left\{
+        \begin{array}{ll}
+            \frac{\d x_1}{\d t}=-3x_1+4x_2+1\\
+            \frac{\d x_2}{\d t}=-x_1+x_2
+        \end{array}
+        \right.
+    \left\{
+        \begin{array}{ll}
+            x_1(0)=2\\
+            x_2(0)=1
+        \end{array}
+        \right.
+    \end{align*}
+\end{question}
+
+\begin{question}
+    设$\bs{V}$是二阶实方阵全体，，对任意$\bs{A}\in \bs{V}$，
+    令$\mc{T}(\bs{A})=2\bs{A}^T-3\bs{A}$，
+    证明$\mc{T}$是$\bs{V}$的线性变换。
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 求$\mc{T}$在$\bs{V}$的基$\bs{B}_1=\begin{pmatrix}
+            1&1\\
+            0&0
+        \end{pmatrix},\bs{B}_2=\begin{pmatrix}
+            2&0\\
+            0&0
+        \end{pmatrix},\bs{B}_3=\begin{pmatrix}
+            0&0\\
+            1&1
+        \end{pmatrix},\bs{B}_4=\begin{pmatrix}
+            0&0\\
+            1&2
+        \end{pmatrix}$下的矩阵表示。
+        \item 求$\mc{T}$的特征值。
+        \item 判别$\mc{T}$是否可对角化。
+    \end{enumerate}
+\end{question}
+
+\begin{question}
+    设$\mc{T}(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)=(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)
+    \begin{pmatrix}
+        1&2&4\\
+        2&1&5\\
+        -1&0&-2
+    \end{pmatrix}$，求$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$的基和维数。
+\end{question}
+
+\begin{question}
+    设$\mc{T}$是$n$维线性空间$\bs{V}$的线性变换，$\mathrm{rank}(\mc{T})=r$且$\mc{T}^2=3\mc{T}$，
+    证明：存在$\bs{V}$的一组基，使$\mc{T}$在这组基下的矩阵为$\begin{pmatrix}
+        \bs{O} &\bs{O}\\
+        \bs{O} &3\bs{E}_r
+    \end{pmatrix}$，其中$\bs{E}_r$为$r$阶单位阵。
+\end{question}
+
+\ifx\allfiles\undefined
+\end{document}
+\fi
