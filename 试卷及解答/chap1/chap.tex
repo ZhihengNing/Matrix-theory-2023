@@ -177,14 +177,14 @@
     \end{align*}
     于是：
     \begin{align*}
-        e^{\bs{A}t}&=\bs{P}e^{\bs{J}t}\bs{P}^{-1} \\
+        e^{2\bs{A}t}&=\bs{P}e^{\bs{J}t}\bs{P}^{-1} \\
         &=\begin{pmatrix}
             1 & 2 &1 \\
             0 & 1 &-1 \\
             1 & 2 &2
         \end{pmatrix} \begin{pmatrix}
             e^{4t}& & \\
-            & e^{-2t}&e^{2t} \\
+            & e^{-2t}&2te^{-2t} \\
             & & e^{-2t}
         \end{pmatrix}\begin{pmatrix}
             4&-2&-3\\
@@ -192,9 +192,9 @@
             -1&0&1       
         \end{pmatrix}\\
         &=\begin{pmatrix}
-            4e^{4t}-2e^{2t}-3e^{-2t}&-2e^{4t}+2e^{-2t}&3e^{4t}+2e^{2t}+3e^{-2t}\\
-            -e^{2t}&e^{-2t}&e^{2t}\\
-            4e^{4t}-2e^{2t}-4e^{-2t}&-2e^{4t}+2e^{-2t}&3e^{4t}+2e^{2t}+4e^{-2t}
+            4e^{4t}-(2t+3)e^{-2t}&-2e^{4t}+2e^{-2t}&-3e^{4t}+(2t+3)e^{-2t}\\
+            -te^{-2t}&e^{-2t}&te^{-2t}\\
+            4e^{4t}-(2t+4)e^{-2t}&-2e^{4t}+2e^{-2t}&-3e^{4t}+(2t+4)e^{-2t}
         \end{pmatrix}
     \end{align*}
 \end{solution}
@@ -267,8 +267,8 @@
             1
         \end{pmatrix} du \\
         &=\begin{pmatrix}
-            -(4t+4)e^{-t}+4 \\
-            -(2t+3)e^{-t}+3
+            (-6t-3)e^{-t}+4 \\
+            (-3t-3)e^{-t}+3
         \end{pmatrix}
         \end{align*}
 \end{solution}
@@ -337,7 +337,7 @@
 ，其中$\mathrm{Im}\mc{T}$是$\mc{T}$的像空间，$\mathrm{Ker}\mc{T}$是$\mc{T}$的核空间。
 \end{question}
 
-\begin{solution}
+\begin{proof}
     由于$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$均为$\bs{V}$的子空间，则
     $\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} \subset \bs{V}$。
     任取$\bs{\alpha}\in \mathrm{Im}\mc{T}\cap \mathrm{Ker}\mc{T}$，则存在$\bs{\beta}\in \bs{V}$，
@@ -349,7 +349,7 @@
     +\mathrm{dim}(\mathrm{Ker}\mc{T})=n$，所以$\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} = \bs{V}$。
     综上，$\mathrm{Im}\mc{T}\oplus \mathrm{Ker}\mc{T} = \bs{V}$。
     
-\end{solution}
+\end{proof}
 
 
 \ifx\allfiles\undefined

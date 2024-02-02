@@ -15,6 +15,39 @@
    求$\bs{A}$的谱分解。
 \end{question}
 
+\begin{solution}
+    特征值为$\lambda_1=2,\lambda_2=-1$。
+    其对应的特征向量分别是$(2,-1)^T,(1,1)^T$。
+    于是：
+    \begin{align*}
+        \bs{A}
+        &=\bs{P}\bs{\Lambda}\bs{P}^{-1}\\
+        &=
+        \begin{pmatrix}
+            2&1\\
+            -1&1
+        \end{pmatrix}\begin{pmatrix}
+            2&  \\
+            & -1
+        \end{pmatrix}\begin{pmatrix}
+            \frac{1}{3}&-\frac{1}{3}\\
+            \frac{1}{3}&\frac{2}{3}
+        \end{pmatrix}\\
+        &=2\begin{pmatrix}
+            2\\
+            -1
+        \end{pmatrix}\begin{pmatrix}
+            \frac{1}{3}&-\frac{1}{3}
+        \end{pmatrix}
+        -\begin{pmatrix}
+            1\\
+            1
+        \end{pmatrix}\begin{pmatrix}
+            \frac{1}{3}&\frac{2}{3}
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
+
 \begin{question}
     设$\bs{A}=\begin{pmatrix}
         2&0&0\\
@@ -22,6 +55,16 @@
         3&1&3
     \end{pmatrix}$，求$\bs{A}$的若当（Jordan）标准型$\bs{J}$。
 \end{question}
+
+\begin{solution}
+    特征值为$\lambda_1=\lambda_2=\lambda_3=2$，对应的若当标准型$\bs{J}=\begin{pmatrix}
+        2 & & \\
+        & 2& 1\\
+        & & 2
+    \end{pmatrix}$，其中空白位置全是$0$。
+
+\end{solution}
+
 
 \begin{question}
     设$\bs{a}_1,\bs{a}_2,\bs{a}_3$为内积空间$\bs{V}$的一个标准正交基，
@@ -32,6 +75,25 @@
         \item 求$\bs{S}$的一个标准正交基（用$\bs{a}_1,\bs{a}_2,\bs{a}_3$表示）。
     \end{enumerate}
 \end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 由题意得，$(\bs{b}_1,\bs{b}_2,\bs{b}_3)=(\bs{a}_1,\bs{a}_2,\bs{a}_3)\bs{A}$，
+        其中$\bs{A}=\begin{pmatrix}
+            1&0&1\\
+            1&1&0\\
+            0&-1&1
+        \end{pmatrix}$。由于$\mathrm{r}(\bs{A})=2$，
+        则$\mathrm{dim}(\bs{S})=\mathrm{r}(\bs{b}_1,\bs{b}_2,\bs{b}_3)=2$。
+        \item 显然，$\bs{b}_1,\bs{b}_2$构成了$\bs{S}$的一组基，
+        对其进行施密特正交并单位化得，
+        \begin{align*}
+            \bs{e}_1&=\frac{\bs{b}_1}{||\bs{b}_1||}=\frac{\bs{a}_1+\bs{a}_2}{\sqrt{2}} \\
+            \bs{e}_2&=\frac{1}{||\bs{e}_2||}(\bs{b}_2-\frac{(\bs{b}_2,\bs{e}_1)}{(\bs{e}_1,\bs{e}_1)}\bs{e}_1
+            )=\frac{\bs{a}_2- 2\bs{a}_3-\bs{a}_1}{\sqrt{6}}
+        \end{align*}
+    \end{enumerate}
+\end{solution}
 
 \begin{question}
     设$\bs{x}=\begin{pmatrix}
@@ -44,6 +106,29 @@
         0
     \end{pmatrix}$同方向。
 \end{question}
+
+\begin{solution}
+    不妨令$\bs{H}=\bs{E}-2\bs{\omega}\bs{\omega}^T$，其中$||\bs{\omega}||=1$。
+    由于$||\bs{H}\bs{x}||=||\bs{x}||=3$，所以$\bs{H}\bs{x}=3\bs{\beta}=\begin{pmatrix}
+        3\\
+        0\\
+        0
+    \end{pmatrix}$。
+    于是：
+    \begin{align*}
+        3\bs{\beta}=\bs{H}\bs{x}=\bs{H}(k\bs{\omega}+\bs{\alpha})=k\bs{H}\bs{\omega}+\bs{H}\bs{\alpha}=-k\bs{\omega}+\bs{\alpha}
+    \end{align*}
+    又因为$\R^3=<\bs{\omega}> \oplus <\bs{\omega}>^{\perp}$，所以设$\bs{x}=k\bs{\omega}+\bs{\alpha}$，
+    其中$k \in \R,\bs{\alpha} \in <\bs{\omega}>^{\perp}$。
+   
+    联立两个式子解得，$\bs{\omega}=\frac{\bs{x}-3\bs{\beta}}{2k}$。又因为$||\bs{\omega}||=1$，
+    所以$\bs{\omega}=\frac{\bs{x}-3\bs{\beta}}{2\sqrt{3}}=\frac{1}{\sqrt{3}}\begin{pmatrix}
+        -1 \\
+        1\\
+        1
+    \end{pmatrix}$。
+
+\end{solution}
 
 \begin{question}
     设方程$\bs{A}\bs{x}=\bs{b}$，其中$\bs{A}=\begin{pmatrix}
@@ -61,6 +146,73 @@
         \item 求方程$\bs{A}\bs{x}=\bs{b}$的长度最小的最小二乘解和最小二乘解通解。
     \end{enumerate}
 \end{question}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item $\bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+            -1&2\\
+            -1&2\\
+            0&3
+        \end{pmatrix}\begin{pmatrix}
+            1&0&-\frac{1}{3}\\
+            0&1&\frac{1}{3}
+        \end{pmatrix}$
+        \item  
+        \begin{align*}
+            \bs{C}\bs{C}^T=\begin{pmatrix}
+                \frac{10}{9}&-\frac{1}{9}\\
+                -\frac{1}{9}&\frac{10}{9}
+            \end{pmatrix} \quad \bs{B}^T\bs{B}=\begin{pmatrix}
+                2&-4\\
+                -4&17
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \bs{A}^+&=
+        \bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+        &=\begin{pmatrix}
+            1&0\\
+            0&1\\
+            -\frac{1}{3}&\frac{1}{3}
+        \end{pmatrix}\begin{pmatrix}
+            \frac{10}{9}&-\frac{1}{9}\\
+                -\frac{1}{9}&\frac{10}{9}
+        \end{pmatrix}^{-1}\begin{pmatrix}
+            2&-4\\
+                -4&17
+        \end{pmatrix}^{-1}
+        \begin{pmatrix}
+            -1&-1&0\\
+            2&2&3
+        \end{pmatrix}\\
+        &=\frac{1}{22}\begin{pmatrix}
+           -10&-10&14\\
+           -1&-1&8\\
+           3&3&-2
+        \end{pmatrix}
+        \end{align*}
+        则$\bs{A}\bs{A}^+\bs{b}=\begin{pmatrix}
+            0\\
+            0\\
+            1
+        \end{pmatrix} \neq \begin{pmatrix}
+            -1\\
+            1\\
+            1
+        \end{pmatrix}=\bs{b}$，
+        \item 最小二乘解的通解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+        =\frac{1}{11}\begin{pmatrix}
+           7+y_1-y_2+3y_3\\
+           4-y_1+y_2+3y_3\\
+            -1+3y_1-3y_2+9y_3
+        \end{pmatrix}$，其中$\bs{y}=(y_1,y_2)^T\in \R^2$。    
+        最小长度的最小二乘解为$\frac{1}{11}\begin{pmatrix}
+            7\\
+            4\\
+            -1
+        \end{pmatrix}$。
+    \end{enumerate}
+\end{solution}
 
 \begin{question}
     用矩阵函数求解常微分方程组初值问题的解
@@ -80,6 +232,62 @@
     \end{align*}
 \end{question}
 
+\begin{solution}
+    由题意得：$\frac{\d \bs{x}}{\d t}=\bs{A}\bs{x}+\bs{b}$，其中$\bs{A}=\begin{pmatrix}
+        1&-1\\
+        4&-3
+    \end{pmatrix},\bs{b}=(0,1)^T$。
+    矩阵$\bs{A}$的特征值为$\lambda_1=\lambda_2=-1$，$m_{\bs{A}}(\lambda)=(\lambda+1)^2$
+    不妨设$P(\lambda)=a_0+a_1\lambda$，则 \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda)=P(-1)=a_0-a_1=e^{-t}\\
+                P'(\lambda)=P'(-1)=a_1=te^{-t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=(1+t)e^{-t}\\
+                a_1=te^{-t}
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    &=(1+t)e^{-t}\bs{E}+te^{-t}\bs{A}\\
+    &=\begin{pmatrix}
+        (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+    \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{b} du\\
+        &=\begin{pmatrix}
+            (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+        \end{pmatrix}\begin{pmatrix}
+            1 \\
+            2
+        \end{pmatrix}\\
+        &+\begin{pmatrix}
+            (2t+1)e^{-t} &-te^{-t} \\
+        4te^{-t}  & (-2t+1)e^{-t}
+        \end{pmatrix}\int_{0}^t 
+        \begin{pmatrix}
+            (-2u+1)e^{u} &ue^{u} \\
+        -4ue^{u}  & (2u+1)e^{u}
+        \end{pmatrix} \begin{pmatrix}
+            0\\
+            1
+        \end{pmatrix} du \\
+        &=\begin{pmatrix}
+            (t+2)e^{-t}-1 \\
+            (2t+3)e^{-t}-1
+        \end{pmatrix}
+        \end{align*}
+\end{solution}
+
 \begin{question}
 
     设$\mc{D}$是三维线性空间$\bs{V}=\{(a_2t^2+a_1t+a_0)e^t|a_2,a_1,a_0 \in \R\}$
@@ -90,6 +298,24 @@
     \end{enumerate}
 \end{question}
 
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item \begin{align*}
+            \mc{D}f_1=(t^2+2t)e^t \quad
+            \mc{D}f_2=(t+1)e^t \quad
+            \mc{D}f_3=e^t
+        \end{align*}
+        即$\mc{D}(f_1,f_2,f_3)=(f_1,f_2,f_3)\begin{pmatrix}
+            1& 0&0 \\
+            2& 1&0 \\
+            0& 1&1
+        \end{pmatrix}$。
+        \item $\mathrm{dim}(\mathrm{Im}\mc{D})=3,\mathrm{dim}(\mathrm{Ker}\mc{D})=3-3=0$。
+        
+        于是$\mathrm{Im}\mc{D}=<f_1+2f_2,f_2+f_3,f_3>=<(t^2+2t)e^t,(t+1)e^t,e^t>;\mathrm{Ker}\mc{D}=<\bs{0}>$。
+    \end{enumerate}
+\end{solution}
+
 \begin{question}
     设$\R^{2\times 2}$是二阶实方阵在方阵运算下构成的线性空间，对任意$\bs{A}\in \R^{2\times 2}$，
     令$\mc{T}(\bs{A})=\bs{A}^T+\bs{A}$，
@@ -99,10 +325,80 @@
     \end{enumerate}
 \end{question}
 
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 任取$\bs{X},\bs{Y} \in \R^{2\times 2},k \in \R$，
+        $\mc{T}(\bs{X}+\bs{Y})=(\bs{X}+\bs{Y})^T+(\bs{X}+\bs{Y})=
+        (\bs{X}^T+\bs{X})+((\bs{X}^T+\bs{X}))=\mc{T}(\bs{X})+\mc{T}(\bs{Y})$，
+        这说明了对加法封闭；$\mc{T}(k\bs{X})=(k\bs{X})^T+k\bs{X}=k(\bs{X}^T+\bs{X})=k\mc{T}(\bs{X})$，
+        这说明了对数乘封闭。即$\mc{T}$是$\R^{2\times 2}$的线性变换。
+        \item 取$\R^{2\times 2}$的一组标准正交基$\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4$，其中
+        \begin{align*}
+            \bs{E}_1=\begin{pmatrix}
+                1&0\\
+                0&0
+            \end{pmatrix} \ 
+            \bs{E}_2=\begin{pmatrix}
+                0&1\\
+                0&0
+            \end{pmatrix} \ 
+            \bs{E}_3=\begin{pmatrix}
+                0&0\\
+                1&0
+            \end{pmatrix} \ 
+            \bs{E}_4=\begin{pmatrix}
+                0&0\\
+                0&1
+            \end{pmatrix}
+        \end{align*}
+        计算它们在线性变换$\mc{T}$下的矩阵：
+        \begin{align*}
+            \mc{T}\bs{E}_1=\begin{pmatrix}
+                2&0\\
+                0&0
+            \end{pmatrix} \ 
+            \mc{T}\bs{E}_2=\begin{pmatrix}
+                0&1\\
+                1&0
+            \end{pmatrix} \ 
+            \mc{T}\bs{E}_3=\begin{pmatrix}
+                0&1\\
+                1&0
+            \end{pmatrix} \ 
+            \mc{T}\bs{E}_4=\begin{pmatrix}
+                0&0\\
+                0&2
+            \end{pmatrix}
+        \end{align*}
+        于是$\mc{T}(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)=(\bs{E}_1,\bs{E}_2,\bs{E}_3,\bs{E}_4)\bs{A}$，
+        其中$\bs{A}=\begin{pmatrix}
+            2&0 &0 &0 \\
+            0&1 &1 &0 \\
+            0& 1& 1&0 \\
+            0& 0&0 &2 
+        \end{pmatrix}$，则$\bs{A}$的特征值为$\lambda_1=0,\lambda_1=\lambda_2=\lambda_3=2$。
+        由于$\lambda=2$的特征值有至少三个线性无关的特征向量，所以$\mc{T}$可对角化。
+    \end{enumerate}
+\end{solution}
+
 \begin{question}
     设$\mc{T}$是线性空间$\bs{V}$的线性变换且，$\mc{T}^2=\mc{T}$，证明：$\bs{V}=\mathrm{Im}\mc{T}\oplus \mathrm{Ker}\mc{T}$
 ，其中$\mathrm{Im}\mc{T}$是$\mc{T}$的像空间，$\mathrm{Ker}\mc{T}$是$\mc{T}$的核空间。
 \end{question}
+
+\begin{proof}
+    由于$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$均为$\bs{V}$的子空间，则
+    $\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} \subset \bs{V}$。
+    任取$\bs{\alpha}\in \mathrm{Im}\mc{T}\cap \mathrm{Ker}\mc{T}$，则存在$\bs{\beta}\in \bs{V}$，
+    使得$\mc{T}\bs{\alpha}=\bs{0},\mc{T} \bs{\beta}=\bs{\alpha} $，
+    于是$\bs{\alpha}=\mc{T}\bs{\beta}=\mc{T}(\mc{T} \bs{\beta})=
+    \mc{T}\bs{\alpha}=\bs{0}$，即$\bs{\alpha}=\bs{0}$，此时$\mathrm{Im}\mc{T}\cap \mathrm{Ker}\mc{T}=\{\bs{0}\}$，
+    这说明$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$构成直和。
+    又因为$\mathrm{dim}(\mathrm{Im}\mc{T}+\mathrm{Ker}\mc{T})=\mathrm{dim}(\mathrm{Im}\mc{T})
+    +\mathrm{dim}(\mathrm{Ker}\mc{T})=n$，所以$\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} = \bs{V}$。
+    综上，$\mathrm{Im}\mc{T}\oplus \mathrm{Ker}\mc{T} = \bs{V}$。
+    
+\end{proof}
 
 \ifx\allfiles\undefined
 \end{document}

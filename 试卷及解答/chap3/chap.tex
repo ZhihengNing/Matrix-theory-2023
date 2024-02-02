@@ -16,6 +16,57 @@
    求矩阵$\bs{A}$的LR分解。
 \end{question}
 
+\begin{solution}
+    \begin{align*}
+        \begin{pmatrix}
+            1&-1&0\\
+            2&0&-1\\
+            0&4&1
+           \end{pmatrix}\xrightarrow[]{r_2-2r_1}
+           \begin{pmatrix}
+            1&-1&0\\
+            0&2&-1\\
+            0&4&1
+           \end{pmatrix}\xrightarrow[]{r_3-2r_2}
+           \begin{pmatrix}
+            1&-1&0\\
+            0&2&-1\\
+            0&0&3
+           \end{pmatrix}
+    \end{align*}
+    上面矩阵即为所求矩阵$\bs{R}$。则$\bs{P}_2\bs{P}_1\bs{A}=\bs{R}$，于是：
+    \begin{align*}
+        \bs{L}=(\bs{P}_2\bs{P}_1)^{-1}=\bs{P}_1^{-1}\bs{P}_2^{-1}
+        =\begin{pmatrix}
+            1&0&0\\
+            2&1&0\\
+            0&0&1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1&0&0\\
+            0&1&0\\
+            0&2&1
+        \end{pmatrix}=\begin{pmatrix}
+            1&0&0\\
+            2&1&0\\
+            0&2&1
+        \end{pmatrix}
+    \end{align*}
+    即
+    \begin{align*}
+        \bs{A}=\bs{L}\bs{R}=\begin{pmatrix}
+            1&0&0\\
+            2&1&0\\
+            0&2&1
+        \end{pmatrix}
+        \begin{pmatrix}
+            1&-1&0\\
+            0&2&-1\\
+            0&0&3
+           \end{pmatrix}
+    \end{align*}
+\end{solution}
+
 \begin{question}
     设线性方程组$\left\{
         \begin{array}{ll}
@@ -27,6 +78,65 @@
     ，用广义逆验证它是矛盾方程，并求它的最小二乘解的通解。
 \end{question}
 
+\begin{solution}
+    由题意得：$\bs{A}\bs{x}=\bs{b}$，其中$\bs{A}=\begin{pmatrix}
+        1&-2\\
+        3&-6\\
+        -1&2
+    \end{pmatrix},\bs{x}=(x_1,x_2)^T,\bs{b}=(1,1,-6)^T$。下面计算$\bs{A}^+$：
+    
+    对矩阵$\bs{A}$进行满秩分解，得：
+    $\bs{A}=\bs{B}\bs{C}=\begin{pmatrix}
+        1 \\
+        3\\
+        -1
+    \end{pmatrix}\begin{pmatrix}
+        1&-2
+    \end{pmatrix}$，于是：
+    \begin{align*}
+        \bs{C}\bs{C}^T=\begin{pmatrix}
+            5
+        \end{pmatrix} \quad \bs{B}^T\bs{B}=\begin{pmatrix}
+            11
+        \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{A}^+&=
+    \bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
+    &=\begin{pmatrix}
+        1 \\
+        -2
+    \end{pmatrix}\begin{pmatrix}
+        5
+    \end{pmatrix}^{-1}\begin{pmatrix}
+        11
+    \end{pmatrix}^{-1}
+    \begin{pmatrix}
+        1&3&-1
+    \end{pmatrix}\\
+    &=\frac{1}{55}\begin{pmatrix}
+       1&3&-1\\
+       -2&-6&2
+    \end{pmatrix}
+    \end{align*}
+    则$\bs{A}\bs{A}^+\bs{b}=\frac{10}{11}\begin{pmatrix}
+        1\\
+        3\\
+        -1
+    \end{pmatrix} \neq \begin{pmatrix}
+        1\\
+        1\\
+        -6
+    \end{pmatrix}=\bs{b}$，
+    最小二乘解的通解为$\bs{x}=\bs{A}^+\bs{b}+(\bs{E}-\bs{A}^+\bs{A})\bs{y}
+    =\begin{pmatrix}
+       \frac{2}{11}+\frac{4}{5}y_1+\frac{2}{5}y_2\\
+       -\frac{4}{11}+\frac{2}{5}y_1+\frac{1}{5}y_2 
+        
+    \end{pmatrix}$，其中$\bs{y}=(y_1,y_2)^T\in \R^2$。
+    
+\end{solution}
+
 \begin{question}
     设$\bs{A}=\begin{pmatrix}
         0&1&2\\
@@ -34,9 +144,47 @@
         1&0&1
     \end{pmatrix}$，
     求可逆阵$\bs{P}$和$\bs{A}$的若当（Jordan）标准型$\bs{J}$，
-    使$\bs{P}^{-1}\bs{A}\bs{P}=\bs{J}$，并求$e^{2\bs{A}t}$。
+    使$\bs{P}^{-1}\bs{A}\bs{P}=\bs{J}$。
 \end{question}
 
+\begin{solution}
+    特征值为$\lambda_1=2,\lambda_2=\lambda_3=1$，对应的若当标准型为$\bs{J}=\begin{pmatrix}
+        2 & & \\
+        & 1& 1\\
+        & & 1
+    \end{pmatrix}$，其中空白位置全是$0$。
+    由于$\bs{J}=\bs{P}^{-1}\bs{A}\bs{P} \Rightarrow \bs{P}\bs{J}=\bs{A}\bs{P}$，
+    不妨令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3)$，其中$\bs{P}$为非奇异矩阵，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                \bs{A}\bs{p}_1=2\bs{p}_1 \\
+                \bs{A}\bs{p}_2=\bs{p}_2 \\
+                \bs{A}\bs{p}_3=\bs{p}_2+\bs{p}_3
+            \end{array} 
+            \right.
+            \Rightarrow
+            \left\{
+            \begin{array}{ll}
+                \bs{p}_1=(1,0,1)^T \\
+                \bs{p}_2=(0,2,-1)^T \\
+                \bs{p}_3=(-1,-1,0)^T
+            \end{array} 
+            \right.
+    \end{align*}
+    \begin{align*}
+        \bs{P}=\begin{pmatrix}
+            1 & 0 &-1 \\
+            0 & 2 &-1 \\
+            1 & -1 &0
+        \end{pmatrix} \quad
+        \bs{P}^{-1}=\begin{pmatrix}
+            -1&1&2\\
+            -1&1&1\\
+            -2&1&2       
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
 
 \begin{question}
     设$\mc{T}$为线性空间$\R^{2\times 2}$上的变换，$\mc{T}(\bs{X})=\bs{A}\bs{X}\bs{A},\bs{X} \in \R^{2\times 2}$，
@@ -60,6 +208,39 @@
         并求$\mc{T}$的特征值。
 \end{question}
 
+\begin{solution}
+    \begin{align*}
+        \mc{T}\bs{A}_1=\begin{pmatrix}
+            0&0\\
+            1&0
+        \end{pmatrix} \quad
+        \mc{T}\bs{A}_2=\begin{pmatrix}
+            -1&0\\
+            1&-1
+        \end{pmatrix}\quad
+        \mc{T}\bs{A}_3=\begin{pmatrix}
+            1&-2\\
+            0&0
+        \end{pmatrix}\quad
+        \mc{T}\bs{A}_4=\begin{pmatrix}
+            1&-1\\
+            0&0
+        \end{pmatrix}
+    \end{align*}
+        即
+        \begin{align*}
+            \mc{T}(\bs{A}_1,\bs{A}_2,\bs{A}_3,\bs{A}_4)=
+            (\bs{A}_1,\bs{A}_2,\bs{A}_3,\bs{A}_4)
+            \begin{pmatrix}
+                0& -1&0&0  \\
+                1 & 2&0 &0 \\
+                -1& -3& 2& 1\\
+                1& 3& -1&0
+            \end{pmatrix}
+        \end{align*}
+        $\lambda_1=\lambda_2=\lambda_3=\lambda_4=1$。
+\end{solution}
+
 \begin{question}
     用矩阵函数求解常微分方程组初值问题的解
     \begin{align*}
@@ -75,6 +256,51 @@
     \end{align*}
 \end{question}
 
+\begin{solution}
+    由题意得：$\frac{\d \bs{x}}{\d t}=\bs{A}\bs{x}$，其中$\bs{A}=\begin{pmatrix}
+        -5&1\\
+        -1&-3
+    \end{pmatrix}$。
+    矩阵$\bs{A}$的特征值为$\lambda_1=\lambda_2=-4$，$m_{\bs{A}}(\lambda)=(\lambda+4)^2$
+    不妨设$P(\lambda)=a_0+a_1\lambda$，则 \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda)=P(-4)=a_0-4a_1=e^{-4t}\\
+                P'(\lambda)=P'(-4)=a_1=te^{-4t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=(1+4t)e^{-4t}\\
+                a_1=te^{-4t}
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    &=(1+4t)e^{-4t}\bs{E}+te^{-4t}\bs{A}\\
+    &=\begin{pmatrix}
+        (-t+1)e^{-4t} &te^{-4t} \\
+        -te^{-4t}  & (t+1)e^{-4t}
+    \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)\\
+        &=\begin{pmatrix}
+            (-t+1)e^{-4t} &te^{-4t} \\
+        -te^{-4t}  & (t+1)e^{-4t}
+        \end{pmatrix}\begin{pmatrix}
+            1 \\
+            0
+        \end{pmatrix}\\
+        &=\begin{pmatrix}
+            (-t+1)e^{-4t} \\
+            -te^{-4t} 
+        \end{pmatrix}
+        \end{align*}
+\end{solution}
+
 \begin{question}
     在线性空间$\R^{2\times 2}$中，对于任意的$\bs{A},\bs{B}\in \R^{2\times 2}$，
     定义$\bs{A}$与$\bs{B}$的内积为$(\bs{A},\bs{B})=\mathrm{tr}(\bs{A}^T\bs{B})$，
@@ -86,6 +312,34 @@
     \end{enumerate}
 \end{question}
 
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 证明其满足加法封闭及数乘封闭即可。
+        
+        任取$\bs{A},\bs{B} \in \R^{2\times 2},k \in \R$。
+        $\mathrm{tr}(\bs{A}+\bs{B})=\mathrm{tr}(\bs{A})+\mathrm{tr}(\bs{B})=0+0=0$，这说明了对加法封闭；
+        $\mathrm{tr}(k\bs{A})=k\mathrm{tr}(\bs{A})=0$，这说明了对数乘封闭。即$\bs{V}$是$\R^{2\times 2}$的子空间。
+        \item 显然，$\mathrm{dim}(\bs{V})=3,\mathrm{dim}(\bs{V}^{\perp})=4-3=1$。
+        
+        $\bs{E}_1=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&0\\
+            0&-\frac{1}{\sqrt{2}}
+        \end{pmatrix} \quad 
+        \bs{E}_2=\begin{pmatrix}
+            0&1\\
+            0&0
+        \end{pmatrix} \quad 
+        \bs{E}_3=\begin{pmatrix}
+            0&0\\
+            1&0
+        \end{pmatrix}$构成了$\bs{V}$的一组标准正交基。
+
+        $\bs{E}_4=\begin{pmatrix}
+            \frac{1}{\sqrt{2}}&0\\
+            0&\frac{1}{\sqrt{2}}
+        \end{pmatrix}$构成了$\bs{V}^{\perp}$的一组标准正交基。
+    \end{enumerate}
+\end{solution}
 
 \begin{question}
     设$\mc{T}$是$n$维线性空间$\bs{V}$的线性变换，$\mathrm{rank}(\mc{T})=r>0$，$\mc{T}^2=\mc{T}$，证明：
@@ -102,6 +356,63 @@
 ，其中$\mathrm{Im}\mc{T}$是$\mc{T}$的像空间，$\mathrm{Ker}\mc{T}$是$\mc{T}$的核空间。
     \end{enumerate}
 \end{question}
+
+\begin{proof}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item
+    即证存在$\bs{V}$的一组基$\bs{\alpha}_1,\bs{\alpha}_2,\ldots,\bs{\alpha}_n$，
+    使得$\mc{T}(\bs{\alpha}_1,\ldots,\bs{\alpha}_n)=(\bs{\alpha}_1,\ldots,\bs{\alpha}_n)\begin{pmatrix}
+        \bs{E}_r& \bs{O}\\
+        \bs{O}& \bs{O}
+    \end{pmatrix}$。
+
+    由题意与Hamilton-Cayley定理可知，$\lambda=1$或$0$。
+    
+    取$n$维线性空间$\bs{V}$下的一组标准正交基，并记线性变换$\mc{T}$在该组基下的矩阵为$\bs{A}$。
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 若$r=n$，则$\lambda=1$，$m_{\bs{A}}(\lambda)=\lambda-1$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，其中$\bs{\Lambda}=\mathrm{diag}\{1,\ldots,1\}=\bs{E}$。
+        此时$\mathrm{dim}(\mathrm{Ker}\mc{T})=0$，
+        即$\bs{0}$为$\mathrm{Ker}\mc{T}$的基，满足题意。
+        \item 若$r=0$，则$\lambda=0$，$m_{\bs{A}}(\lambda)=\lambda$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，其中$\bs{\Lambda}=\mathrm{diag}\{0,\ldots,0\}=\bs{O}$。
+        此时$\mathrm{dim}(\mathrm{Ker}\mc{T})=n$，即$\bs{a}_1,\ldots,\bs{a}_n$为$\mathrm{Ker}\mc{T}$的基，满足题意。
+        \item 若$0<r<n$，$\lambda=1$或$0$，$m_{\bs{A}}(\lambda)=\lambda(\lambda-1)$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，
+        其中$\bs{\Lambda}=\mathrm{diag}\{\underbrace{1,\ldots,1}_{r\text{个}1},0,\ldots,0\}=
+        \begin{pmatrix}
+            \bs{E}_r &\bs{O}\\
+            \bs{O} & \bs{O}
+        \end{pmatrix}$。
+        此时$\mathrm{dim}(\mathrm{Ker}\mc{T})=n-r$，
+        即$\bs{a}_{r+1},\ldots,\bs{a}_n$为$\mathrm{Ker}\mc{T}$的基，
+        满足题意。
+    \end{enumerate}
+    \item $\mc{T}$在基$\bs{\alpha}_1,\bs{\alpha}_2,\ldots,\bs{\alpha}_n$下的矩阵为$\begin{pmatrix}
+        \bs{E}_r& \bs{O}\\
+        \bs{O}& \bs{O}
+    \end{pmatrix}$。
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 若$r=n$，则$\lambda=1$，$m_{\bs{A}}(\lambda)=\lambda-1$。
+        \item 若$r=0$，则$\lambda=0$，$m_{\bs{A}}(\lambda)=\lambda$。
+        \item 若$0<r<n$，则$\lambda=1$或$0$，$m_{\bs{A}}(\lambda)=\lambda(\lambda-1)$。
+    \end{enumerate}
+
+    \item 由于$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$均为$\bs{V}$的子空间，则
+    $\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} \subset \bs{V}$。
+    任取$\bs{\alpha}\in \mathrm{Im}\mc{T}\cap \mathrm{Ker}\mc{T}$，则存在$\bs{\beta}\in \bs{V}$，
+    使得$\mc{T}\bs{\alpha}=\bs{0},\mc{T} \bs{\beta}=\bs{\alpha} $，
+    于是$\bs{\alpha}=\mc{T}\bs{\beta}=\mc{T}(\mc{T} \bs{\beta})=
+    \mc{T}\bs{\alpha}=\bs{0}$，即$\bs{\alpha}=\bs{0}$，此时$\mathrm{Im}\mc{T}\cap \mathrm{Ker}\mc{T}=\{\bs{0}\}$，
+    这说明$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$构成直和。
+    又因为$\mathrm{dim}(\mathrm{Im}\mc{T}+\mathrm{Ker}\mc{T})=\mathrm{dim}(\mathrm{Im}\mc{T})
+    +\mathrm{dim}(\mathrm{Ker}\mc{T})=n$，所以$\mathrm{Im}\mc{T}+ \mathrm{Ker}\mc{T} = \bs{V}$。
+    综上，$\mathrm{Im}\mc{T}\oplus \mathrm{Ker}\mc{T} = \bs{V}$。
+\end{enumerate}
+\end{proof}
 
 \ifx\allfiles\undefined
 \end{document}

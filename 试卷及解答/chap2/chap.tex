@@ -29,7 +29,7 @@
     \begin{align*}
         \bs{C}\bs{C}^T=\begin{pmatrix}
             2&1\\
-            1&2
+            1&3
         \end{pmatrix} \quad \bs{B}^T\bs{B}=\begin{pmatrix}
             21&12\\
             12&14
@@ -39,31 +39,33 @@
         \bs{A}^+&=
     \bs{C}^T(\bs{C}\bs{C}^T)^{-1}(\bs{B}^T\bs{B})^{-1}\bs{B}^T\\
     &=\begin{pmatrix}
-        1 & 2\\
-        2&-1\\
-        4&3
+        1 & 0\\
+        0&1\\
+        0&-1\\
+        1&1
     \end{pmatrix}\begin{pmatrix}
         2&1\\
-        1&2
+        1&3
     \end{pmatrix}^{-1}\begin{pmatrix}
         21&12\\
         12&14
     \end{pmatrix}^{-1}
     \begin{pmatrix}
-        1&0&0&1\\
-        0&1&-1&1
+        1&2&4\\
+        2&-1&3
     \end{pmatrix}\\
-    &=\frac{1}{18}\begin{pmatrix}
-       4&-4&2\\
-       -5&8&-1\\
-       3&0&3 
+    &=\frac{1}{150}\begin{pmatrix}
+       -12&33&9\\
+       -14&-26&2\\
+       14&26&-2\\
+       2&7&11
     \end{pmatrix}
     \end{align*}
 \end{solution}
 
 \begin{question}
     设$\bs{A}=\begin{pmatrix}
-        3&1&-2\\
+        3&1&-3\\
         -7&-2&9\\
         -2&-1&4
     \end{pmatrix}$，
@@ -71,6 +73,66 @@
     使$\bs{P}^{-1}\bs{A}\bs{P}=\bs{J}$，并求$e^{\bs{A}t}$。
 \end{question}
 
+\begin{solution}
+    特征值为$\lambda_1=1,\lambda_2=\lambda_3=2$，对应的若当标准型为$\bs{J}=\begin{pmatrix}
+        1 & & \\
+        & 2& 1\\
+        & & 2
+    \end{pmatrix}$，其中空白位置全是$0$。
+    由于$\bs{J}=\bs{P}^{-1}\bs{A}\bs{P} \Rightarrow \bs{P}\bs{J}=\bs{A}\bs{P}$，
+    不妨令$\bs{P}=(\bs{p}_1,\bs{p}_2,\bs{p}_3)$，其中$\bs{P}$为非奇异矩阵，则：
+    \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                \bs{A}\bs{p}_1=\bs{p}_1 \\
+                \bs{A}\bs{p}_2=2\bs{p}_2 \\
+                \bs{A}\bs{p}_3=\bs{p}_2+2\bs{p}_3
+            \end{array} 
+            \right.
+            \Rightarrow
+            \left\{
+            \begin{array}{ll}
+                \bs{p}_1=(0,3,1)^T \\
+                \bs{p}_2=(1,-4,-1)^T \\
+                \bs{p}_3=(-1,5,1)^T
+            \end{array} 
+            \right.
+    \end{align*}
+    \begin{align*}
+        \bs{P}=\begin{pmatrix}
+            0 & 1 &-1 \\
+            3 & -4 &5 \\
+            1 & -1 &1
+        \end{pmatrix} \quad
+        \bs{P}^{-1}=\begin{pmatrix}
+            1	&0	&1 \\
+            2	&1	&-3\\
+            1	&1	&-3  
+        \end{pmatrix}
+    \end{align*}
+    于是：
+    \begin{align*}
+        e^{\bs{A}t}&=\bs{P}e^{\bs{J}t}\bs{P}^{-1} \\
+        &=\begin{pmatrix}
+            0 & 1 &-1 \\
+            3 & -4 &5 \\
+            1 & -1 &1
+        \end{pmatrix} \begin{pmatrix}
+            e^{t}& & \\
+            & e^{2t}&te^{2t} \\
+            & & e^{2t}
+        \end{pmatrix}\begin{pmatrix}
+            1	&0	&1 \\
+            2	&1	&-3\\
+            1	&1	&-3      
+        \end{pmatrix}\\
+        &=\begin{pmatrix}
+            (t+1)e^{2t}&te^{2t}&-3te^{2t}\\
+            3e^{t}-(4t+3)e^{2t}&(-4t+1)e^{2t}&3e^{t}+(12t-3)e^{2t}\\
+            e^{t}-(t+1)e^{2t}&-te^{2t}&e^{t}+3te^{2t}
+        \end{pmatrix}
+    \end{align*}
+\end{solution}
 
 \begin{question}
     用矩阵函数求解下常微分方程组初值问题的解
@@ -89,6 +151,62 @@
         \right.
     \end{align*}
 \end{question}
+
+\begin{solution}
+    由题意得：$\frac{\d \bs{x}}{\d t}=\bs{A}\bs{x}+\bs{b}$，其中$\bs{A}=\begin{pmatrix}
+        -3&4\\
+        -1&1
+    \end{pmatrix},\bs{b}=(1,0)^T$。
+    矩阵$\bs{A}$的特征值为$\lambda_1=\lambda_2=-1$，$m_{\bs{A}}(\lambda)=(\lambda+1)^2$
+    不妨设$P(\lambda)=a_0+a_1\lambda$，则 \begin{align*}
+        \left\{
+            \begin{array}{ll}
+                P(\lambda)=P(-1)=a_0-a_1=e^{-t}\\
+                P'(\lambda)=P'(-1)=a_1=te^{-t}
+            \end{array}
+            \right.
+        \Rightarrow
+        \left\{
+            \begin{array}{ll}
+                a_0=(1+t)e^{-t}\\
+                a_1=te^{-t}
+            \end{array}
+            \right.
+    \end{align*}
+    \begin{align*}
+        e^{\bs{A}t}=P(\bs{A})
+    &=(1+t)e^{-t}\bs{E}+te^{-t}\bs{A}\\
+    &=\begin{pmatrix}
+        (-2t+1)e^{-t} &4te^{-t} \\
+        -te^{-t}  & (2t+1)e^{-t}
+    \end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \bs{x}(t)&=e^{\bs{A}t}\bs{x}(0)+e^{\bs{A}t}\int_{0}^t e^{-\bs{A}u}\bs{b} du\\
+        &=\begin{pmatrix}
+            (-2t+1)e^{-t} &4te^{-t} \\
+        -te^{-t}  & (2t+1)e^{-t}
+        \end{pmatrix}\begin{pmatrix}
+            2 \\
+            1
+        \end{pmatrix}\\
+        &+\begin{pmatrix}
+            (-2t+1)e^{-t} &4te^{-t} \\
+        -te^{-t}  & (2t+1)e^{-t}
+        \end{pmatrix}\int_{0}^t 
+        \begin{pmatrix}
+            (2u+1)e^{u} &-4ue^{u} \\
+            ue^{u}  & (-2u+1)e^{u}
+        \end{pmatrix} \begin{pmatrix}
+            1\\
+            0
+        \end{pmatrix} du \\
+        &=\begin{pmatrix}
+            (2t+3)e^{-t}-1\\
+            (t+2)e^{-t}-1
+        \end{pmatrix}
+        \end{align*}
+\end{solution}
 
 \begin{question}
     设$\bs{V}$是二阶实方阵全体，，对任意$\bs{A}\in \bs{V}$，
@@ -113,6 +231,44 @@
     \end{enumerate}
 \end{question}
 
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 
+        \begin{align*}
+            \mc{T}\bs{B}_1=\begin{pmatrix}
+                -1&-3\\
+                2&0
+            \end{pmatrix}\ 
+            \mc{T}\bs{B}_2=\begin{pmatrix}
+               -2&0\\
+               0&0 
+            \end{pmatrix}\ 
+            \mc{T}\bs{B}_3=\begin{pmatrix}
+                0&2\\
+                -3&-1 
+             \end{pmatrix}\ 
+             \mc{T}\bs{B}_4=\begin{pmatrix}
+                0&2\\
+                -3&-2 
+             \end{pmatrix}
+        \end{align*}
+        即
+        \begin{align*}
+            \mc{T}(\bs{B}_1,\bs{B}_2,\bs{B}_3,\bs{B}_4)=(\bs{B}_1,\bs{B}_2,\bs{B}_3,\bs{B}_4)
+            \begin{pmatrix}
+                -3& 0&2&2  \\
+                1 & -1&-1 &-1 \\
+                4& 0& -5& -4\\
+                -2& 0& 2&0
+            \end{pmatrix}
+        \end{align*}
+        \item $\lambda_1=-3,\lambda_2=\lambda_3=-1,\lambda_4=-4$。
+        \item 可对角化，这是由于$\lambda=-1$的特征值有至少两个线性无关的特征向量。
+    \end{enumerate}
+\end{solution}
+
+
 \begin{question}
     设$\mc{T}(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)=(\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3)
     \begin{pmatrix}
@@ -122,6 +278,20 @@
     \end{pmatrix}$，求$\mathrm{Im}\mc{T}$和$\mathrm{Ker}\mc{T}$的基和维数。
 \end{question}
 
+\begin{solution}
+    记$\bs{A}=\begin{pmatrix}
+        1&2&4\\
+        2&1&5\\
+        -1&0&-2
+    \end{pmatrix}$。
+
+    $\mathrm{dim}(\mathrm{Im}\mc{T})=\mathrm{r}(\bs{A})=2,\mathrm{dim}(\mathrm{Ker}\mc{T})=3-\mathrm{r}(\bs{A})=1$。
+    
+    $\mathrm{Im}\mc{T}=<\bs{\alpha}_1+2\bs{\alpha}_2-\bs{\alpha}_3,2\bs{\alpha}_1+\bs{\alpha_2}>,
+    \mathrm{Ker}\mc{T}=<2\bs{\alpha}_1+\bs{\alpha}_2-\bs{\alpha}_3>$。
+
+\end{solution}
+
 \begin{question}
     设$\mc{T}$是$n$维线性空间$\bs{V}$的线性变换，$\mathrm{rank}(\mc{T})=r$且$\mc{T}^2=3\mc{T}$，
     证明：存在$\bs{V}$的一组基，使$\mc{T}$在这组基下的矩阵为$\begin{pmatrix}
@@ -129,6 +299,27 @@
         \bs{O} &3\bs{E}_r
     \end{pmatrix}$，其中$\bs{E}_r$为$r$阶单位阵。
 \end{question}
+
+\begin{proof}
+    由题意与Hamilton-Cayley定理可知，$\lambda=3$或$0$。
+    取$n$维线性空间$\bs{V}$下的一组标准正交基，并记线性变换$\mc{T}$在该组基下的矩阵为$\bs{A}$。
+    \begin{enumerate}[label=(\arabic{*})]
+        \item 若$r=n$，则$\lambda=3$，$m_{\bs{A}}(\lambda)=\lambda-3$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，其中$\bs{\Lambda}=\mathrm{diag}\{3,\ldots,3\}=3\bs{E}$，满足题意。
+        \item 若$r=0$，则$\lambda=0$，$m_{\bs{A}}(\lambda)=\lambda$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，其中$\bs{\Lambda}=\mathrm{diag}\{0,\ldots,0\}=\bs{O}$，满足题意。
+        \item 若$0<r<n$，则$\lambda=3$或$0$，$m_{\bs{A}}(\lambda)=\lambda(\lambda-3)$，说明$\bs{A}$可相似对角化。
+        则存在可逆矩阵$\bs{P}$，
+        使得$\bs{P}^{-1}\bs{A}\bs{P}=\bs{\Lambda}$，
+        其中$\bs{\Lambda}=\mathrm{diag}\{0,\ldots,0,\underbrace{3,\ldots,3}_{r\text{个}3}\}=
+        \begin{pmatrix}
+            \bs{O} &\bs{O}\\
+            \bs{O} &3\bs{E}_r
+        \end{pmatrix}$，满足题意。
+    \end{enumerate}
+\end{proof}
 
 \ifx\allfiles\undefined
 \end{document}
